@@ -1,0 +1,26 @@
+    <% layout('layouts/boilerplate') %>
+    <h1>All Students</h1>
+    <div>
+        <a href="/students/new">Add New Student</a>
+    </div>
+    <ul>
+        <% for (let student of students) {%>
+            <div class="card mb-3">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="<%=student.image%>" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title"><%=student.firstName%> <%=student.lastName%></h5>
+                            <p class="card-text">School Year <%=student.schoolYear%></p>
+                            <p class="card-text">
+                                <small class="text-muted">Primary Contact <%=student.primaryContactRelationship%></small>
+                            </p>
+                            <a class="btn btn-primary" href="/students/<%=student._id%>">Details <%=student.title%></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    </ul>

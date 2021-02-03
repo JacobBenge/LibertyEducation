@@ -1,0 +1,152 @@
+    <% layout('layouts/boilerplate') %>
+<div class="row">
+    <h1 class="text-center">Edit Student</h1>
+    <div class="col-6 offset-3">
+        <form action="/students/<%=student._id%>?_method=PUT" method="POST" novalidate class="validated-form">
+            <div class="mb-3">
+                <label class="form-label" for="firstName">Student First Name</label>
+                <input class="form-control" type="text" id="firstName" name="student[firstName]" value="<%=student.firstName%>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="lastName">Student Last Name</label>
+                <input class="form-control" type="text" id="lastName" name="student[lastName]" value="<%=student.lastName%>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="dateOfBirth">Student Date of Birth</label>
+                <input class="form-control" type="text" id="dateOfBirth" name="student[dateOfBirth]" value="<%=student.dateOfBirth%>">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="schoolYear">Student School Year</label>
+                <input class="form-control" type="text" id="schoolYear" name="student[schoolYear]" value="<%=student.schoolYear%>">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="primaryContactFirst">Primary Contact First Name</label>
+                <input class="form-control" type="text" id="primaryContactFirst" name="student[primaryContactFirst]" value="<%=student.primaryContactFirst%>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="primaryContactLast">Primary Contact Last Name</label>
+                <input class="form-control" type="text" id="primaryContactLast" name="student[primaryContactLast]" value="<%=student.primaryContactLast%>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="primaryContactRelationship">Primary Contact Relationship</label>
+                <input class="form-control" type="text" id="primaryContactRelationship" name="student[primaryContactRelationship]" value="<%=student.primaryContactRelationship%>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="primaryContactPhone">Primary Contact Phone</label>
+                <input class="form-control" type="text" id="primaryContactPhone" name="student[primaryContactPhone]" value="<%=student.primaryContactPhone%>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="primaryContactEmail">Primary Contact Email</label>
+                <input class="form-control" type="text" id="primaryContactEmail" name="student[primaryContactEmail]" value="<%=student.primaryContactEmail%>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="secondaryContactFirst">Secondary Contact First</label>
+                <input class="form-control" type="text" id="secondaryContactFirst" name="student[secondaryContactFirst]" value="<%=student.secondaryContactFirst%>">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="secondaryContactLast">Secondary Contact Last</label>
+                <input class="form-control" type="text" id="secondaryContactLast" name="student[secondaryContactLast]" value="<%=student.secondaryContactLast%>">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="secondaryContactRelationship">Secondary Contact Relationship</label>
+                <input class="form-control" type="text" id="secondaryContactRelationship" name="student[secondaryContactRelationship]" value="<%=student.secondaryContactRelationship%>">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="secondaryContactPhone">Secondary Contact Phone</label>
+                <input class="form-control" type="text" id="secondaryContactPhone" name="student[secondaryContactPhone]" value="<%=student.secondaryContactPhone%>">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="secondaryContactEmail">Secondary Contact Email</label>
+                <input class="form-control" type="text" id="secondaryContactEmail" name="student[secondaryContactEmail]" value="<%=student.secondaryContactEmail%>">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="addressLine1">Address Line 2</label>
+                <input class="form-control" type="text" id="addressLine1" name="student[addressLine1]" value="<%=student.addressLine1%>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="addressLine2">Address Line 2</label>
+                <input class="form-control" type="text" id="addressLine2" name="student[addressLine2]" value="<%=student.addressLine2%>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="city">City</label>
+                <input class="form-control" type="text" id="city" name="student[city]" value="<%=student.city%>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="stateCode">State Code</label>
+                <input class="form-control" type="text" id="stateCode" name="student[stateCode]" value="<%=student.stateCode%>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="zipCodeBase">Zip Code First 5</label>
+                <input class="form-control" type="text" id="zipCodeBase" name="student[zipCodeBase]" value="<%=student.zipCodeBase%>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="zipCodeExtension">Zip Code Last 4</label>
+                <input class="form-control" type="text" id="zipCodeExtension" name="student[zipCodeExtension]" value="<%=student.zipCodeExtension%>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-info">Update Student</button>
+            </div>
+        </form>
+        <a href="/students/<%=student._id%>">Back to Student</a>
+    </div>
+</div>

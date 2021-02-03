@@ -1,0 +1,152 @@
+<% layout('layouts/boilerplate') %>
+    <div class="row">
+        <h1 class="text-center">New Student</h1>
+        <div class="col-6 offset-3">
+            <form action="/students" method="POST" novalidate class="validated-form">
+                <div class="mb-3">
+                    <label class="form-label" for="firstName">Student First Name</label>
+                    <input class="form-control" type="text" id="firstName" name="student[firstName]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="lastName">Student Last Name</label>
+                    <input class="form-control" type="text" id="lastName" name="student[lastName]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="dateOfBirth">Student Date of Birth</label>
+                    <input class="form-control" type="text" id="dateOfBirth" name="student[dateOfBirth]">
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="schoolYear">Student School Year</label>
+                    <input class="form-control" type="text" id="schoolYear" name="student[schoolYear]">
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="primaryContactFirst">Primary Contact First Name</label>
+                    <input class="form-control" type="text" id="primaryContactFirst" name="student[primaryContactFirst]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="primaryContactLast">Primary Contact Last Name</label>
+                    <input class="form-control" type="text" id="primaryContactLast" name="student[primaryContactLast]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="primaryContactRelationship">Primary Contact Relationship</label>
+                    <input class="form-control" type="text" id="primaryContactRelationship" name="student[primaryContactRelationship]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="primaryContactPhone">Primary Contact Phone</label>
+                    <input class="form-control" type="text" id="primaryContactPhone" name="student[primaryContactPhone]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="primaryContactEmail">Primary Contact Email</label>
+                    <input class="form-control" type="text" id="primaryContactEmail" name="student[primaryContactEmail]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="secondaryContactFirst">Secondary Contact First</label>
+                    <input class="form-control" type="text" id="secondaryContactFirst" name="student[secondaryContactFirst]">
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="secondaryContactLast">Secondary Contact Last</label>
+                    <input class="form-control" type="text" id="secondaryContactLast" name="student[secondaryContactLast]">
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="secondaryContactRelationship">Secondary Contact Relationship</label>
+                    <input class="form-control" type="text" id="secondaryContactRelationship" name="student[secondaryContactRelationship]">
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="secondaryContactPhone">Secondary Contact Phone</label>
+                    <input class="form-control" type="text" id="secondaryContactPhone" name="student[secondaryContactPhone]">
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="secondaryContactEmail">Secondary Contact Email</label>
+                    <input class="form-control" type="text" id="secondaryContactEmail" name="student[secondaryContactEmail]">
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="addressLine1">Address Line 1</label>
+                    <input class="form-control" type="text" id="addressLine1" name="student[addressLine1]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="addressLine2">Address Line 2</label>
+                    <input class="form-control" type="text" id="addressLine2" name="student[addressLine2]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="city">City</label>
+                    <input class="form-control" type="text" id="city" name="student[city]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="stateCode">State Code</label>
+                    <input class="form-control" type="text" id="stateCode" name="student[stateCode]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="zipCodeBase">Zip Code First 5</label>
+                    <input class="form-control" type="text" id="zipCodeBase" name="student[zipCodeBase]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="zipCodeExtension">Zip Code Last 4</label>
+                    <input class="form-control" type="text" id="zipCodeExtension" name="student[zipCodeExtension]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-success">Add This Student</button>
+                </div>
+            </form>
+            <a href="/students">Back to All Students</a>
+        </div>
+    </div>
