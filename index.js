@@ -19,7 +19,8 @@ const database = "test-liberty"; //MUST BE LOWERCASE
 const localHostPort = 3000; //ANY UNUSED PORT IS FINE FOR TESTING. DEFAULT IS 3000
 const dbPort = 27017; //DEFAULT PORT FOR MONGODB
 
-// SETS UP CONNECTION TO MONGODB
+// MONGOOSE IS MIDDLEWARE THAT BRIDGES THE GAP BETWEEN EXPRESS AND MONGODB
+// SETS UP MONGODB CONNECTION. mongod.exe MUST BE RUNNING ALREADY TO CONNECT.
 mongoose.connect(`mongodb://localhost:${dbPort}/${database}`, mongooseOptions)
     .then(() => {
         console.log(`SUCCESSFULLY CONNECTED TO ${database} DATABASE ON MONGODB SERVER ON PORT: ${dbPort}`)
@@ -61,7 +62,7 @@ app.all('*', (req, res, next) => {
 // PASSES STATUS CODE AND ERROR MESSAGE TO DEFAULT ERROR PAGE (./partials/errorPage.ejs)
 app.use((err, req, res, next) => {
     const { statusCode = 500 } = err;
-    if (!err.message) err.message = 'Something Went Wrong! Try again or contact your system admin'
+    if (!err.message) err.message = 'Something Went Wrong! Try again or contact your system admin' // IF NO ERROR MESSAGE IS GENERATED THEN USE DEFAULT ERROR MESSAGE
     res.status(statusCode).render('errorPage', { err })
 })
 
