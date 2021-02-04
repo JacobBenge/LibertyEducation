@@ -34,4 +34,42 @@
             </div>
         </div>
     </div>
+    <div class="col-6">
+        <h2>Attendance</h2>
+        <form action="/students/<%=student._id%>/attendance" class="mb-3 validated-form" method="POST" novalidate>
+            <div class="mb-3">
+                <label for="attendanceDate">Date:</label>
+                <input type="date" id="attendanceDate" name="attendance[attendanceDate]" value="2021-01-01" min="2021-01-01" max="2031-12-31">
+            </div>
+            <div class="mb-3">
+                <select class="form-select" aria-label="Default select example" id="attendanceCode" name="attendance[attendanceCode]">
+                    <option selected>- Select an Attendance Code -</option>
+                    <option value="present">present</option>
+                    <option value="tardy">tardy</option>
+                    <option value="absent">absent</option>
+                    <option value="excused absence">excused absence</option>
+                  </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="comment">Comments</label>
+                <textarea class="form-control" name="attendance[comment]" id="comment" cols="30" rows="3"></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <button class="btn btn-success">Add Attendance</button>
+        </form>
+        <% for(let attendance of student.attendance) { %>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Date: <%= attendance.attendanceDate %></h5>
+                    <p class="card-text">Code: <%= attendance.attendanceCode %></p>
+                    <p class="card-text">Comments: <%= attendance.comment %></p>
+                    <form action="/students/<%=student._id%>/attendance/<%=attendance._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        <% } %>
+    </div>
 </div>

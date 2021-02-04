@@ -4,24 +4,24 @@ const Joi = require('joi');
 // MANAGES THE DATATYPES ALLOWED TO PASS THROUGH MONGOOSE AND INTO MONGODB. ANOTHER LEVEL ON TOP OF BROWSER FORM VALIDATION. THIS PREVENTS INVALID DATA FROM ENTERING DB WHEN USING POSTMAN.
 module.exports.studentSchema = Joi.object({
     student: Joi.object({
-        firstName: Joi.string().required(),
-        lastName: Joi.string().required(),
-        dateOfBirth: Joi.string().allow('').optional(),
+        firstName: Joi.string().trim().required(),
+        lastName: Joi.string().trim().required(),
+        dateOfBirth: Joi.string().trim().allow('').optional(),
         schoolYear: Joi.number().allow('').optional(),
-        primaryContactFirst: Joi.string().required(),
-        primaryContactLast: Joi.string().required(),
-        primaryContactRelationship: Joi.string().required(),
-        primaryContactPhone: Joi.string().required(),
-        primaryContactEmail: Joi.string().required(),
-        secondaryContactFirst: Joi.string().allow('').optional(),
-        secondaryContactLast: Joi.string().allow('').optional(),
-        secondaryContactRelationship: Joi.string().allow('').optional(),
-        secondaryContactPhone: Joi.string().allow('').optional(),
-        secondaryContactEmail: Joi.string().allow('').optional(),
-        addressLine1: Joi.string().required(),
-        addressLine2: Joi.string().required(),
-        city: Joi.string().required(),
-        stateCode: Joi.string().required().min(2).max(2),
+        primaryContactFirst: Joi.string().trim().required(),
+        primaryContactLast: Joi.string().trim().required(),
+        primaryContactRelationship: Joi.string().trim().required(),
+        primaryContactPhone: Joi.string().trim().required(),
+        primaryContactEmail: Joi.string().trim().required(),
+        secondaryContactFirst: Joi.string().trim().allow('').optional(),
+        secondaryContactLast: Joi.string().trim().allow('').optional(),
+        secondaryContactRelationship: Joi.string().trim().allow('').optional(),
+        secondaryContactPhone: Joi.string().trim().allow('').optional(),
+        secondaryContactEmail: Joi.string().trim().allow('').optional(),
+        addressLine1: Joi.string().trim().required(),
+        addressLine2: Joi.string().trim().required(),
+        city: Joi.string().trim().required(),
+        stateCode: Joi.string().trim().length(2).required(),
         zipCodeBase: Joi.number().required(),
         zipCodeExtension: Joi.number().allow('').optional()
     }).required()
@@ -30,7 +30,8 @@ module.exports.studentSchema = Joi.object({
 // MUST MATCH models/attendance.js
 module.exports.attendanceSchema = Joi.object({
     attendance: Joi.object({
-        date: Joi.string().required(),
-        enum: Joi.string().required().valid('present', 'tardy', 'absent', 'excused absence')
+        attendanceDate: Joi.date().greater('01-01-2021').required(),
+        attendanceCode: Joi.string().trim().valid('present', 'tardy', 'absent', 'excused absence'),
+        comment: Joi.string().trim().allow('').optional()
     }).required()
 })
