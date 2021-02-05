@@ -83,7 +83,7 @@ const studentSchema = new Schema({
     addressLine2: {
         type: String,
         trim: true,
-        required: true
+        required: false
     },
     city: {
         type: String,

@@ -19,7 +19,7 @@ module.exports.studentSchema = Joi.object({
         secondaryContactPhone: Joi.string().trim().allow('').optional(),
         secondaryContactEmail: Joi.string().trim().allow('').optional(),
         addressLine1: Joi.string().trim().required(),
-        addressLine2: Joi.string().trim().required(),
+        addressLine2: Joi.string().trim().allow('').optional(),
         city: Joi.string().trim().required(),
         stateCode: Joi.string().trim().length(2).required(),
         zipCodeBase: Joi.number().required(),
