@@ -16,7 +16,7 @@ module.exports.studentSchema = Joi.object({
         primaryContactEmail: Joi.string().trim().required(),
         secondaryContactFirst: Joi.string().trim().allow('').optional(),
         secondaryContactLast: Joi.string().trim().allow('').optional(),
-        secondaryContactRelationship: Joi.string().trim().valid('Unknown','Mother','Father','Mother-in-law','Father-in-law','Grandmother','Grandfather','Guardian','Sister','Brother', 'Other-Relative', 'Other-Nonrelative').allow('').optional(),
+        secondaryContactRelationship: Joi.string().trim().valid('Self','Mother','Father','Mother-in-law','Father-in-law','Grandmother','Grandfather','Guardian','Sister','Brother', 'Other-Relative', 'Other-Nonrelative', 'Unknown').allow('').optional(),
         secondaryContactPhone: Joi.string().trim().allow('').optional(),
         secondaryContactEmail: Joi.string().trim().allow('').optional(),
         addressLine1: Joi.string().trim().required(),
