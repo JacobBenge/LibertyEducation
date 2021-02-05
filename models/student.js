@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Attendance = require('./attendance');
 const Schema = mongoose.Schema;
+const stateList = require('../public/scripts/stateList.js')
+const relationshipTypes = require('../public/scripts/relationshipTypes.js')
 
 // MUST MATCH schema.js
 // MANAGES THE DATATYPES ALLOWED TO PASS THROUGH MONGOOSE AND INTO MONGODB. ANOTHER LEVEL ON TOP OF BROWSER FORM VALIDATION. THIS PREVENTS INVALID DATA FROM ENTERING DB WHEN USING POSTMAN. 
@@ -15,10 +17,16 @@ const studentSchema = new Schema({
         trim: true,
         required: true
     },
-    dateOfBirth: {
+    prefName: {
         type: String,
         trim: true,
         required: false
+    },
+    dateOfBirth: {
+        type: Date,
+        min: '1900-01-01',
+        max: '2051-12-31',
+        required: true
     },
     schoolYear: {
         type: Number,
@@ -38,6 +46,7 @@ const studentSchema = new Schema({
     primaryContactRelationship: {
         type: String,
         trim: true,
+        enum: relationshipTypes,
         required: true
     },
     primaryContactPhone: {
@@ -63,6 +72,7 @@ const studentSchema = new Schema({
     secondaryContactRelationship: {
         type: String,
         trim: true,
+        enum: relationshipTypes,
         required: false
     },
     secondaryContactPhone: {
@@ -95,6 +105,7 @@ const studentSchema = new Schema({
         trim: true,
         min: 2,
         max: 2,
+        enum: stateList,
         required: true
     },
     zipCodeBase: {
@@ -106,6 +117,11 @@ const studentSchema = new Schema({
         type: Number,
         trim: true,
         required: false
+    },
+    gender: {
+        type: String,
+        enum: ['Male', 'Female', 'Unknown'],
+        required: true
     },
     attendance: [
         {
