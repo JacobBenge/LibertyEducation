@@ -13,3 +13,5 @@ After index.js is running in the node.js REPL, then open a browser and type "htt
 We also recommend to install the nodemon package so the server automatically resets after there is changes to the code. To install it globally, type "npm install -g nodemon" in the terminal. To use nodemon just replace the keyword node with nodemon. I.E "nodemon index.js" to start the express server. Press ctrl-c to cancel. https://www.npmjs.com/package/nodemon
 
 If you want to add color to your terminal and make it easier to read, then follow along with Scott Hanselman. https://www.youtube.com/watch?v=lu__oGZVT98&list=WL&index=10
+
+THANKS!
