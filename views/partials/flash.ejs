@@ -1,0 +1,14 @@
+<!-- if there is a flash message, then create the bootstrap alert. Otherwise don't load anything. -->
+<% if(flashMessage && flashMessage.length) { %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= flashMessage %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>
+
+<% if(errorFlashMessage && errorFlashMessage.length) { %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%= errorFlashMessage %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>

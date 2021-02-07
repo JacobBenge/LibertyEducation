@@ -1,7 +1,11 @@
 const express = require('express');
 const app = express();
+const session = require('express-session'); // EXPRESS SESSION AUTOMATICALLY GIVES THE USER A connect.sid COOKIE. YOU CAN SEE THIS COOKIE UNDER THE Application> Cookies TAB IN THE CHROME DEVELOPER'S CONSOLE.
+const flash = require('connect-flash'); // USED FOR FLASH ALERTS. NEEDS TO HAVE EXPRESS-SESSION INSTALLED TO WORK
 const path = require('path');
 const ejsMate = require('ejs-mate');
+const students = require('./routes/students');
+const attendance = require('./routes/attendance');
 const ExpressError = require('./utils/ExpressError');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
@@ -11,9 +15,6 @@ const mongooseOptions = {
     useUnifiedTopology: true, 
     useFindAndModify: false
 };
-
-const students = require('./routes/students');
-const attendance = require('./routes/attendance');
 
 const database = "test-liberty"; //MUST BE LOWERCASE
 const localHostPort = 3000; //ANY UNUSED PORT IS FINE FOR TESTING. DEFAULT IS 3000
@@ -30,10 +31,10 @@ mongoose.connect(`mongodb://localhost:${dbPort}/${database}`, mongooseOptions)
         console.log(err)
     })
 
-// ENABLES EJS FOR PAGE TEMPLATING AND EMBEDDING JAVASCRIPT
-app.set('view engine', 'ejs')
 // ENABLES USE OF <% layout('boilerplate') -%> ON .ejs FILES. BETTER TEMPLATING THAN <% include ../footer %>
 app.engine('ejs', ejsMate);
+// ENABLES EJS FOR PAGE TEMPLATING AND EMBEDDING JAVASCRIPT
+app.set('view engine', 'ejs')
 // SETS DEFAULT VIEWS PATH FOR EXPRESS
 app.set('views', path.join(__dirname, 'views'))
 
@@ -43,6 +44,29 @@ app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'));
 // SERVES ALL FILES IN THE PUBLIC DIRECTORY WITH EVERY REQUEST
 app.use(express.static(path.join(__dirname, 'public')));
+
+const sessionOptions = { 
+    secret: 'thisisnotagoodsecret', // THE SECRET IS USED TO SIGN THE COOKIES TO CONFIRM THAT THEY HAVEN'T BEEN TAMPERED WITH.
+    resave: false, 
+    saveUninitialized: true,
+    cookie: {
+        expires: Date.now() + 1000 * 60 * 60 * 24, // Date.now() IS IN MILLISECONDS. EXPIRES IN A DAY
+        maxAge: 1000 * 60 * 60 * 24,
+        httpOnly: true, // HELPS PREVENT CROSS-SITE SCRIPTING ATTACKS FROM ACCESSING THE SESSIONID (connect.sid)
+    }
+}; 
+
+// ENABLES USE OF EXPRESS-SESSION
+app.use(session(sessionOptions));
+// ENABLES USE OF FLASHES, WHICH GIVES USER SUCCESS/FAILURE ALERTS
+app.use(flash());
+
+// ADDS A ONE-TIME req.flash(flashMessage) TO EVERY ROUTE. IF A flashMessage EXISTS, THEN IT WILL DISPLAY AT THE TOP OF THE PAGE
+app.use((req, res, next) => {
+    res.locals.flashMessage = req.flash('flashMessage');
+    res.locals.errorFlashMessage = req.flash('errorFlashMessage')
+    next();
+})
 
 // ANY URLS WITH /students WILL BE ROUTED TO ./routes/students.js
 app.use('/students', students)
