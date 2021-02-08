@@ -50,7 +50,7 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 const sessionOptions = { 
-    secret: 'thisisnotagoodsecret', // THE SECRET IS USED TO SIGN THE COOKIES TO CONFIRM THAT THEY HAVEN'T BEEN TAMPERED WITH.
+    secret: 'thisisnotagoodsecret', // THE SECRET IS USED TO SIGN THE COOKIES TO CONFIRM THAT THEY HAVEN'T BEEN TAMPERED WITH. NEED TO MAKE THIS AN ENVIRONMENT VARIABLE.
     resave: false, 
     saveUninitialized: true,
     cookie: {
@@ -97,7 +97,7 @@ app.get('/', (req, res) => {
 
 // DEFAULT ERROR PAGE WILL TRIGGER IF NO OTHER ROUTES HIT
 app.all('*', (req, res, next) => {
-    next(new ExpressError('Page Not Found', 404))
+    next(new ExpressError('Page Not Found', 404)) // SEE THE ExpressError UTILITY
 })
 
 // PASSES STATUS CODE AND ERROR MESSAGE TO DEFAULT ERROR PAGE (./partials/errorPage.ejs)

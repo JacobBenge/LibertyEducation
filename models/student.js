@@ -123,6 +123,10 @@ const studentSchema = new Schema({
         enum: ['Male', 'Female', 'Unknown'],
         required: true
     },
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     attendance: [
         {
             type: Schema.Types.ObjectId,

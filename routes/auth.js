@@ -41,7 +41,7 @@ router.post('/login', passport.authenticate('local', { failureFlash: true, failu
 })
 
 router.get('/logout', (req, res) => {
-    req.logout();
+    req.logout(); // PASSPORT FUNCTION TO LOG OUT. CLEARS THE SESSIONID FROM COOKIES.
     req.flash('success',`You've successfully logged out!`)
     res.redirect('/');
 })

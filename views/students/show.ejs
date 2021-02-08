@@ -23,52 +23,62 @@
                 <li class="list-group-item">State: <%=student.stateCode%></li>
                 <li class="list-group-item">ZipCode First 5:<%=student.zipCodeBase%></li>
                 <li class="list-group-item">ZipCode Last 4:<%=student.zipCodeExtension%></li>
+                <li class="list-group-item">Profile Created by User: <%=student.author.username%></li>
             </ul>
-            <div class="card-body">
-                <a href="/students/<%=student._id%>/edit" class="card-link btn btn-info">Edit</a>
-                <form class="d-inline" action="/students/<%=student._id%>?_method=DELETE" method="POST">
-                    <button class= "btn btn-danger">Delete</button>
-                </form>
-            </div>
+            <!-- CHECKS TO SEE IF THE currentUser IS THE SAME AS THE student.author. THIS ALONE DOESN'T PREVENT DELETE AND EDITS. IT JUST HIDES THE BUTTONS. -->
+            <% if(currentUser && student.author.equals(currentUser)) { %> 
+                <div class="card-body">
+                    <a href="/students/<%=student._id%>/edit" class="card-link btn btn-info">Edit</a>
+                    <form class="d-inline" action="/students/<%=student._id%>?_method=DELETE" method="POST">
+                        <button class= "btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            <% } %> 
             <div class="card-footer text-muted">
                 <a href="/students">Back to All Students</a>
             </div>
         </div>
     </div>
     <div class="col-6">
-        <h2>Attendance</h2>
-        <form action="/students/<%=student._id%>/attendance" class="mb-3 validated-form" method="POST" novalidate>
-            <div class="mb-3">
-                <label for="attendanceDate">Date:</label>
-                <input type="date" id="attendanceDate" name="attendance[attendanceDate]" value="2021-01-01" min="2021-01-01" max="2031-12-31">
-            </div>
-            <div class="mb-3">
-                <select class="form-select" aria-label="Default select example" id="attendanceCode" name="attendance[attendanceCode]" required>
-                    <option selected></option>
-                    <option value="present">present</option>
-                    <option value="tardy">tardy</option>
-                    <option value="absent">absent</option>
-                    <option value="excused absence">excused absence</option>
-                  </select>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="comment">Comments</label>
-                <textarea class="form-control" name="attendance[comment]" id="comment" cols="30" rows="3"></textarea>
-                <div class="valid-feedback">
-                    Looks good!
+        <!-- hides the review form if the user isn't logged in -->
+        <% if(currentUser) { %> 
+            <h2>Attendance</h2>
+            <form action="/students/<%=student._id%>/attendance" class="mb-3 validated-form" method="POST" novalidate>
+                <div class="mb-3">
+                    <label for="attendanceDate">Date:</label>
+                    <input type="date" id="attendanceDate" name="attendance[attendanceDate]" value="2021-01-01" min="2021-01-01" max="2031-12-31">
                 </div>
-            </div>
-            <button class="btn btn-success">Add Attendance</button>
-        </form>
+                <div class="mb-3">
+                    <select class="form-select" aria-label="Default select example" id="attendanceCode" name="attendance[attendanceCode]" required>
+                        <option selected></option>
+                        <option value="present">present</option>
+                        <option value="tardy">tardy</option>
+                        <option value="absent">absent</option>
+                        <option value="excused absence">excused absence</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="comment">Comments</label>
+                    <textarea class="form-control" name="attendance[comment]" id="comment" cols="30" rows="3"></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <button class="btn btn-success">Add Attendance</button>
+            </form>
+        <% } %> 
         <% for(let attendance of student.attendance) { %>
             <div class="card mb-3">
                 <div class="card-body">
                     <h5 class="card-title">Date: <%= attendance.attendanceDate %></h5>
                     <p class="card-text">Code: <%= attendance.attendanceCode %></p>
                     <p class="card-text">Comments: <%= attendance.comment %></p>
+                    <p class="card-text">Author: <%= attendance.author.username %></p>
+                    <% if(currentUser && attendance.author.equals(currentUser._id)) { %> 
                     <form action="/students/<%=student._id%>/attendance/<%=attendance._id%>?_method=DELETE" method="POST">
                         <button class="btn btn-sm btn-danger">Delete</button>
                     </form>
+                    <% } %> 
                 </div>
             </div>
         <% } %>
