@@ -4,6 +4,7 @@ const catchAsync = require('../utils/catchAsync');
 const Student = require('../models/student');
 const Attendance = require('../models/attendance');
 const ExpressError = require('../utils/ExpressError');
+const { isAuthenticated } = require('../utils/isAuthenticated');
 const { attendanceSchema } = require('../schemas.js');
 
 // CHECKS TO SEE IF FORM INPUT MEETS SCHEMA CRITERIA, OTHERWISE THROWS ERROR.
@@ -18,23 +19,23 @@ const validateAttendance = (req, res, next) => {
 }
 
 // SAVES THE ATTENDANCE IN THE ATTENDANCE COLLECTION AND ADDS THE ATTENDANCEID TO THE STUDENT OBJECT FOR REFERENCE
-router.post('/', validateAttendance, catchAsync(async (req, res) => {
+router.post('/', isAuthenticated, validateAttendance, catchAsync(async (req, res) => {
     const student = await Student.findById(req.params.id);
     const attendance = new Attendance(req.body.attendance);
     student.attendance.push(attendance);
     await attendance.save();
     await student.save();
-    req.flash('flashMessage', `Successfully added attendance for ${student.firstName}`);
+    req.flash('success', `Successfully added attendance for ${student.firstName}`);
     res.redirect(`/students/${student._id}`);
 }))
 
 // TRIGGERED BY DELETE BUTTON ON ATTENDANCE. DELETES THE ATTENDANCE ITSELF AND THE ATTENDANCEID ON THE STUDENT OBJECT.
-router.delete('/:attendanceId', catchAsync(async (req, res) => {
+router.delete('/:attendanceId', isAuthenticated, catchAsync(async (req, res) => {
     const { id, attendanceId} = req.params;
     const student = await Student.findById(req.params.id);
     await Student.findByIdAndUpdate(id, {$pull: { attendance: attendanceId}  });
     await Attendance.findByIdAndDelete(attendanceId);
-    req.flash('flashMessage', `Successfully deleted attendance for ${student.firstName}`);
+    req.flash('success', `Successfully deleted attendance for ${student.firstName}`);
     res.redirect(`/students/${id}`);
 }))
 

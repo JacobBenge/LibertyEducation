@@ -4,10 +4,14 @@ const session = require('express-session'); // EXPRESS SESSION AUTOMATICALLY GIV
 const flash = require('connect-flash'); // USED FOR FLASH ALERTS. NEEDS TO HAVE EXPRESS-SESSION INSTALLED TO WORK
 const path = require('path');
 const ejsMate = require('ejs-mate');
-const students = require('./routes/students');
-const attendance = require('./routes/attendance');
+const studentsRoutes = require('./routes/students');
+const attendanceRoutes = require('./routes/attendance');
+const authRoutes = require('./routes/auth');
 const ExpressError = require('./utils/ExpressError');
 const methodOverride = require('method-override');
+const passport = require('passport'); // http://www.passportjs.org/   https://github.com/jaredhanson/passport
+const LocalStrategy = require('passport-local'); // http://www.passportjs.org/packages/passport-local/    https://github.com/jaredhanson/passport-local
+const User = require('./models/user');
 const mongoose = require('mongoose');
 const mongooseOptions = {
     useNewUrlParser: true, 
@@ -61,17 +65,30 @@ app.use(session(sessionOptions));
 // ENABLES USE OF FLASHES, WHICH GIVES USER SUCCESS/FAILURE ALERTS
 app.use(flash());
 
+// ENABLES PASSPORT, WHICH IS USED FOR LOGINS AUTHENTICATION
+app.use(passport.initialize());
+// ENABLES PERSISTENT LOGIN SESSIONS. KEEPS YOU LOGGED IN FROM PAGE TO PAGE. DEPENDENT ON SESSION, SO ENSURE THIS COMES AFTER THE SESSION APP.USE
+app.use(passport.session());
+// TELLS PASSPORT TO USE THE LOCAL STRATEGY LIBRARY WE INSTALLED TO AUTHENTICATE THE USER MODEL/SCHEMA
+passport.use(new LocalStrategy(User.authenticate()));
+// TELLS PASSPORT HOW TO DE/SERIALIZE A USER
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 // ADDS A ONE-TIME req.flash(flashMessage) TO EVERY ROUTE. IF A flashMessage EXISTS, THEN IT WILL DISPLAY AT THE TOP OF THE PAGE
 app.use((req, res, next) => {
-    res.locals.flashMessage = req.flash('flashMessage');
-    res.locals.errorFlashMessage = req.flash('errorFlashMessage')
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error')
+    res.locals.currentUser = req.user; // GETS USER INFORMATION FROM PASSPORT AND PASSES IT TO TEMPLATES (USERNAME AND EMAIL. NO PASSWORD HASH)
     next();
 })
 
+// AUTHENTICATION ROUTES. LOGIN, SIGNUP, LOG OUT
+app.use('/', authRoutes);
 // ANY URLS WITH /students WILL BE ROUTED TO ./routes/students.js
-app.use('/students', students)
+app.use('/students', studentsRoutes);
 // IF :ID AND ATTENDANCE ADDED ON IT WILL ROUTE TO ./routes/attendance.js
-app.use('/students/:id/attendance', attendance)
+app.use('/students/:id/attendance', attendanceRoutes);
 
 // DEFAULT INDEX PAGE. UNFINISHED. USED FOR FUTURE VISITORS WELCOME PAGE AND LOGIN. GO TO HTTP://localhost:3000/students/
 app.get('/', (req, res) => {
