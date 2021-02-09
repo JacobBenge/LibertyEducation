@@ -1,104 +1,285 @@
 <% layout('layouts/boilerplate') %>
     <div class="row">
-        <h1 class="text-center">Edit Student</h1>
-        <form action="/students/<%=student._id%>?_method=PUT" method="POST" novalidate class="validated-form">
-            <div class="row">
-                <!-- FIRST COLUMN -->
-                <div class="col-6">
-                    <h4>Student</h4>
+        <div class="card shadow">
+            <div class="card-body">
+                <h1 class="text-center">Edit Student</h1>
+                <form action="/students/<%=student._id%>?_method=PUT" method="POST" novalidate class="validated-form">
                     <div class="row">
+                        <!-- FIRST COLUMN -->
                         <div class="col-6">
+                            <h4>Student</h4>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="firstName">First Name</label>
+                                        <input class="form-control" type="text" placeholder="First"
+                                            value="<%=student.firstName%>" id="firstName" name="student[firstName]"
+                                            required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="lastName">Last Name</label>
+                                        <input class="form-control" type="text" placeholder="Last"
+                                            value="<%=student.lastName%>" id="lastName" name="student[lastName]"
+                                            required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="prefName">Preferred Name</label>
+                                        <input class="form-control" type="text" placeholder="Preferred (opt)"
+                                            value="<%=student.prefName%>" id="prefName" name="student[prefName]">
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label for="dateOfBirth">Birth Date:</label> <br>
+                                        <input type="date" id="dateOfBirth" name="student[dateOfBirth]"
+                                            value="<%=student.dateOfBirth%>" min="1900-01-01" max="2050-12-31">
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="mb-3">
-                                <label class="form-label" for="firstName">First Name</label>
-                                <input class="form-control" type="text" placeholder="First" value="<%=student.firstName%>" id="firstName"
-                                    name="student[firstName]" required>
+                                <label for="gender">Gender</label>
+                                <select class="form-select" aria-label="Default select example" id="gender"
+                                    name="student[gender]" required>
+                                    <option selected>
+                                        <%=student.gender%>
+                                    </option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Unknown">Unknown</option>
+                                </select>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
                             </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="addressLine1">Address Line 1</label>
+                                <input class="form-control" type="text" placeholder="123 Main St."
+                                    value="<%=student.addressLine1%>" id="addressLine1" name="student[addressLine1]"
+                                    required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="addressLine2">Address Line 2</label>
+                                <input class="form-control" type="text" placeholder="Apartment (opt)"
+                                    value="<%=student.addressLine2%>" id="addressLine2" name="student[addressLine2]">
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="city">City</label>
+                                        <input class="form-control" type="text" placeholder="City"
+                                            value="<%=student.city%>" id="city" name="student[city]" required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="stateCode">State Code</label>
+                                        <select class="form-select" aria-label="Default select example" id="stateCode"
+                                            name="student[stateCode]">
+                                            <option selected>
+                                                <%=student.stateCode%>
+                                            </option>
+                                            <% for(let state of stateList) { %>
+                                                <option value="<%=state%>">
+                                                    <%=state%>
+                                                </option>
+                                                <% } %>
+                                        </select>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="zipCodeBase">Zip Code</label>
+                                        <input class="form-control" type="text" placeholder="84999"
+                                            value="<%=student.zipCodeBase%>" id="zipCodeBase"
+                                            name="student[zipCodeBase]" required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="zipCodeExtension">Zip Code Ext.</label>
+                                        <input class="form-control" type="text" placeholder="1234 (opt)"
+                                            value="<%=student.zipCodeExtension%>" id="zipCodeExtension"
+                                            name="student[zipCodeExtension]">
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="schoolYear">Year in School</label>
+                                    <input class="form-control" type="text" placeholder="Year (opt)"
+                                        value="<%=student.schoolYear%>" id="schoolYear" name="student[schoolYear]">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <!-- SECOND COLUMN -->
                         <div class="col-6">
+                            <h4>Primary Contact</h4>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="primaryContactFirst">First Name</label>
+                                        <input class="form-control" type="text" placeholder="First"
+                                            value="<%=student.primaryContactFirst%>" id="primaryContactFirst"
+                                            name="student[primaryContactFirst]" required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="primaryContactLast">Last Name</label>
+                                        <input class="form-control" type="text" placeholder="Last"
+                                            value="<%=student.primaryContactLast%>" id="primaryContactLast"
+                                            name="student[primaryContactLast]" required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="primaryContactPhone">Phone</label>
+                                        <input class="form-control" type="text" placeholder="8011234567"
+                                            value="<%=student.primaryContactPhone%>" id="primaryContactPhone"
+                                            name="student[primaryContactPhone]" required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="primaryContactEmail">Email</label>
+                                        <input class="form-control" type="text" placeholder="primaryContact@gmail.com"
+                                            value="<%=student.primaryContactEmail%>" id="primaryContactEmail"
+                                            name="student[primaryContactEmail]" required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="mb-3">
-                                <label class="form-label" for="lastName">Last Name</label>
-                                <input class="form-control" type="text" placeholder="Last" value="<%=student.lastName%>" id="lastName"
-                                    name="student[lastName]" required>
+                                <label class="form-label" for="primaryContactRelationship">Relationship to
+                                    Student</label>
+                                <select class="form-select" aria-label="Default select example"
+                                    id="primaryContactRelationship" name="student[primaryContactRelationship]" required>
+                                    <option selected>
+                                        <%=student.primaryContactRelationship%>
+                                    </option>
+                                    <% for(let relationshipType of relationshipTypes) { %>
+                                        <option value="<%=relationshipType%>">
+                                            <%=relationshipType%>
+                                        </option>
+                                        <% } %>
+                                </select>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-3">
-                                <label class="form-label" for="prefName">Preferred Name</label>
-                                <input class="form-control" type="text" placeholder="Preferred (opt)" value="<%=student.prefName%>" id="prefName"
-                                    name="student[prefName]">
-                                <div class="valid-feedback">
-                                    Looks good!
+                            <h4>Secondary Contact</h4>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="secondaryContactFirst">First Name</label>
+                                        <input class="form-control" type="text" placeholder="First (opt)"
+                                            value="<%=student.secondaryContactFirst%>" id="secondaryContactFirst"
+                                            name="student[secondaryContactFirst]">
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="secondaryContactLast">Last Name</label>
+                                        <input class="form-control" type="text" placeholder="Last (opt)"
+                                            value="<%=student.secondaryContactLast%>" id="secondaryContactLast"
+                                            name="student[secondaryContactLast]">
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-3">
-                                <label for="dateOfBirth">Birth Date:</label> <br>
-                                <input type="date" id="dateOfBirth" name="student[dateOfBirth]" value="<%=student.dateOfBirth%>"
-                                    min="1900-01-01" max="2050-12-31">
-                                <div class="valid-feedback">
-                                    Looks good!
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="secondaryContactPhone">Phone</label>
+                                        <input class="form-control" type="text" placeholder="8011234567 (opt)"
+                                            value="<%=student.secondaryContactPhone%>" id="secondaryContactPhone"
+                                            name="student[secondaryContactPhone]">
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="secondaryContactEmail">Email</label>
+                                        <input class="form-control" type="text"
+                                            placeholder="secondaryContact@gmail.com (opt)"
+                                            value="<%=student.secondaryContactEmail%>" id="secondaryContactEmail"
+                                            name="student[secondaryContactEmail]">
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="gender">Gender</label>
-                        <select class="form-select" aria-label="Default select example" id="gender" 
-                            name="student[gender]" required>
-                            <option selected><%=student.gender%></option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Unknown">Unknown</option>
-                        </select>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="addressLine1">Address Line 1</label>
-                        <input class="form-control" type="text" placeholder="123 Main St." value="<%=student.addressLine1%>" id="addressLine1"
-                            name="student[addressLine1]" required>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="addressLine2">Address Line 2</label>
-                        <input class="form-control" type="text" placeholder="Apartment (opt)" value="<%=student.addressLine2%>" id="addressLine2"
-                            name="student[addressLine2]">
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-8">
                             <div class="mb-3">
-                                <label class="form-label" for="city">City</label>
-                                <input class="form-control" type="text" placeholder="City" value="<%=student.city%>" id="city"
-                                    name="student[city]" required>
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="mb-3">
-                                <label class="form-label" for="stateCode">State Code</label>
-                                <select class="form-select" aria-label="Default select example" id="stateCode"
-                                    name="student[stateCode]">
-                                    <option selected><%=student.stateCode%></option>
-                                    <% for(let state of stateList) { %>
-                                        <option value="<%=state%>">
-                                            <%=state%>
+                                <label class="form-label" for="secondaryContactRelationship">Relationship to
+                                    Student</label>
+                                <select class="form-select" aria-label="Default select example"
+                                    id="secondaryContactRelationship" name="student[secondaryContactRelationship]">
+                                    <option selected>
+                                        <%=student.secondaryContactRelationship%>
+                                    </option>
+                                    <% for(let relationshipType of relationshipTypes) { %>
+                                        <option value="<%=relationshipType%>">
+                                            <%=relationshipType%>
                                         </option>
                                         <% } %>
                                 </select>
@@ -108,166 +289,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="mb-3">
-                                <label class="form-label" for="zipCodeBase">Zip Code</label>
-                                <input class="form-control" type="text" placeholder="84999" value="<%=student.zipCodeBase%>" id="zipCodeBase"
-                                    name="student[zipCodeBase]" required>
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="mb-3">
-                                <label class="form-label" for="zipCodeExtension">Zip Code Ext.</label>
-                                <input class="form-control" type="text" placeholder="1234 (opt)" value="<%=student.zipCodeExtension%>" id="zipCodeExtension"
-                                    name="student[zipCodeExtension]">
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="schoolYear">Year in School</label>
-                            <input class="form-control" type="text" placeholder="Year (opt)" value="<%=student.schoolYear%>" id="schoolYear"
-                                name="student[schoolYear]">
-                            <div class="valid-feedback">
-                                Looks good!
-                            </div>
+                    <div class="col-12">
+                        <div class="mb-3 mt-3 d-grid">
+                            <button class="btn btn-success">Update Student</button>
                         </div>
                     </div>
-                </div>
-                <!-- SECOND COLUMN -->
-                <div class="col-6">
-                    <h4>Primary Contact</h4>
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-3">
-                                <label class="form-label" for="primaryContactFirst">First Name</label>
-                                <input class="form-control" type="text" placeholder="First" value="<%=student.primaryContactFirst%>" id="primaryContactFirst"
-                                    name="student[primaryContactFirst]" required>
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-3">
-                                <label class="form-label" for="primaryContactLast">Last Name</label>
-                                <input class="form-control" type="text" placeholder="Last" value="<%=student.primaryContactLast%>" id="primaryContactLast"
-                                    name="student[primaryContactLast]" required>
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-3">
-                                <label class="form-label" for="primaryContactPhone">Phone</label>
-                                <input class="form-control" type="text" placeholder="8011234567" value="<%=student.primaryContactPhone%>" 
-                                    id="primaryContactPhone" name="student[primaryContactPhone]" required>
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-3">
-                                <label class="form-label" for="primaryContactEmail">Email</label>
-                                <input class="form-control" type="text" placeholder="primaryContact@gmail.com" value="<%=student.primaryContactEmail%>" 
-                                    id="primaryContactEmail" name="student[primaryContactEmail]" required>
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="primaryContactRelationship">Relationship to Student</label>
-                        <select class="form-select" aria-label="Default select example" id="primaryContactRelationship"
-                            name="student[primaryContactRelationship]" required>
-                            <option selected><%=student.primaryContactRelationship%></option>
-                            <% for(let relationshipType of relationshipTypes) { %>
-                                <option value="<%=relationshipType%>">
-                                    <%=relationshipType%>
-                                </option>
-                                <% } %>
-                        </select>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                    </div>
-                    <h4>Secondary Contact</h4>
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-3">
-                                <label class="form-label" for="secondaryContactFirst">First Name</label>
-                                <input class="form-control" type="text" placeholder="First (opt)" value="<%=student.secondaryContactFirst%>" 
-                                    id="secondaryContactFirst" name="student[secondaryContactFirst]">
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-3">
-                                <label class="form-label" for="secondaryContactLast">Last Name</label>
-                                <input class="form-control" type="text" placeholder="Last (opt)" value="<%=student.secondaryContactLast%>" 
-                                    id="secondaryContactLast" name="student[secondaryContactLast]">
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-3">
-                                <label class="form-label" for="secondaryContactPhone">Phone</label>
-                                <input class="form-control" type="text" placeholder="8011234567 (opt)" value="<%=student.secondaryContactPhone%>" 
-                                    id="secondaryContactPhone" name="student[secondaryContactPhone]">
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-3">
-                                <label class="form-label" for="secondaryContactEmail">Email</label>
-                                <input class="form-control" type="text" placeholder="secondaryContact@gmail.com (opt)" value="<%=student.secondaryContactEmail%>" 
-                                    id="secondaryContactEmail" name="student[secondaryContactEmail]">
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="secondaryContactRelationship">Relationship to Student</label>
-                        <select class="form-select" aria-label="Default select example"
-                            id="secondaryContactRelationship" name="student[secondaryContactRelationship]">
-                            <option selected><%=student.secondaryContactRelationship%></option>
-                            <% for(let relationshipType of relationshipTypes) { %>
-                                <option value="<%=relationshipType%>">
-                                    <%=relationshipType%>
-                                </option>
-                                <% } %>
-                        </select>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                    </div>
-                </div>
+                </form>
+                <a href="/students/<%=student._id%>">Back to Student</a>
             </div>
-            <div class="col-12">
-                <div class="mb-3 mt-3">
-                    <button class="btn btn-success">Update Student</button>
-                </div>
-            </div>
-        </form>
-        <a href="/students/<%=student._id%>">Back to Student</a>
+        </div>
     </div>

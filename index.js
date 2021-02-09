@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV !== "production") { //STORES SESSION SECRET IN AN ENVIRONMENT VARIABLE
+    require('dotenv').config();
+}
+
 const express = require('express');
 const app = express();
 const session = require('express-session'); // EXPRESS SESSION AUTOMATICALLY GIVES THE USER A connect.sid COOKIE. YOU CAN SEE THIS COOKIE UNDER THE Application> Cookies TAB IN THE CHROME DEVELOPER'S CONSOLE.
@@ -50,7 +54,7 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 const sessionOptions = { 
-    secret: 'thisisnotagoodsecret', // THE SECRET IS USED TO SIGN THE COOKIES TO CONFIRM THAT THEY HAVEN'T BEEN TAMPERED WITH. NEED TO MAKE THIS AN ENVIRONMENT VARIABLE.
+    secret: process.env.SECRET, // THE SECRET IS USED TO SIGN THE COOKIES TO CONFIRM THAT THEY HAVEN'T BEEN TAMPERED WITH. NEED TO MAKE THIS AN ENVIRONMENT VARIABLE.
     resave: false, 
     saveUninitialized: true,
     cookie: {
@@ -90,7 +94,7 @@ app.use('/students', studentsRoutes);
 // IF :ID AND ATTENDANCE ADDED ON IT WILL ROUTE TO ./routes/attendance.js
 app.use('/students/:id/attendance', attendanceRoutes);
 
-// DEFAULT INDEX PAGE. UNFINISHED. USED FOR FUTURE VISITORS WELCOME PAGE AND LOGIN. GO TO HTTP://localhost:3000/students/
+// RENDERS HOME PAGE
 app.get('/', (req, res) => {
     res.render('home')
 })
