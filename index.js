@@ -81,8 +81,39 @@ const sessionOptions = {
 app.use(session(sessionOptions));
 // ENABLES USE OF FLASHES, WHICH GIVES USER SUCCESS/FAILURE ALERTS
 app.use(flash());
-// ADDS HTML RESPONSE HEADERS
-app.use(helmet({ contentSecurityPolicy: false }));
+// HELMET ADDS COMMON SECURITY MEASURES
+// app.use(helmet({ contentSecurityPolicy: false }));
+app.use(helmet());
+
+// SETTINGS FOR HELMET CONTENT SECURITY POLICY. THIS WEBSITE WILL ONLY LOAD FILES FROM EXPLICITLY SPECIFIED URLS https://helmetjs.github.io/
+    const scriptSrcUrls = [
+        "https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js",
+        "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
+    ];
+    const styleSrcUrls = [
+        "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css",
+
+    ];
+    const connectSrcUrls = [];
+    const fontSrcUrls = [];
+    app.use(
+        helmet.contentSecurityPolicy({
+            directives: {
+                defaultSrc: [],
+                connectSrc: ["'self'", ...connectSrcUrls],
+                scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+                styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+                workerSrc: ["'self'", "blob:"],
+                objectSrc: [],
+                imgSrc: [
+                    "'self'",
+                    "blob:",
+                    "data:"
+                ],
+                fontSrc: ["'self'", ...fontSrcUrls],
+            },
+        })
+    );
 
 // ENABLES PASSPORT, WHICH IS USED FOR LOGINS AUTHENTICATION
 app.use(passport.initialize());

@@ -1,4 +1,5 @@
 <% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/styles/register.css">
     <div class="container d-flex justify-content-center align-items-center mt-5">
         <div class="row">
             <div class="card shadow">
@@ -19,12 +20,26 @@
                                 Looks good!
                             </div>
                         </div>
+                        <!-- Password strength checker https://jsbin.com/malopev/edit?html,js,output https://www.kurmis.com/2019/11/01/password-strength-javascript.html -->
                         <div class="mb-3">
                             <label class="form-label" for="password">Password</label>
-                            <input class="form-control" type="password" id="password" name="password" required>
+                            <input class="form-control pwd" type="password" id="password" name="password" required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
+                        </div>
+                        <div class="mb-3">
+                            <!-- https://www.youtube.com/watch?v=z_R13WXXovw video on styling of progress bar -->
+                            <progress id="strength" value="0" max="5"></progress>
+                            <p>Password Strength Recommendations:</p>
+                            <ul>
+                                <li>At least 8 characters long.</li>
+                                <li>Contains a lowercase letter.</li>
+                                <li>Contains an uppercase letter.</li>
+                                <li>Contains a number.</li>
+                                <li>Contains a special character.</li>
+                                <li>Bonus if 12 characters long</li>
+                            </ul>
                         </div>
                         <div class="d-grid">
                             <button class="btn btn-success">Register</button>
@@ -34,3 +49,4 @@
             </div>
         </div>
     </div>
+    <script src="/scripts/register.js"></script>

@@ -1,0 +1,7 @@
+/* https://www.youtube.com/watch?v=z_R13WXXovw */
+progress {
+    width: 100%;
+    height: 15px;
+    border:1px solid #ccc;
+    color: #aaa;
+}
