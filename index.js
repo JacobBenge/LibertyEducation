@@ -1,22 +1,24 @@
-if(process.env.NODE_ENV !== "production") { //STORES SESSION SECRET IN AN ENVIRONMENT VARIABLE
+// USE THE COMMAND (
+// SET NODE_ENV=production
+// node index.js 
+// TO START UP APP IN PRODUCTION MODE
+if(process.env.NODE_ENV !== "production") { //STORES SESSION SECRET IN AN ENVIRONMENT VARIABLE. 
     require('dotenv').config();
 }
 
-const express = require('express');
+/** NPM PACKAGES IMPORT **/
+const express = require('express'); // EXPRESS MANAGES ROUTING/CONTROLLERS. IT MAKES OUR WEBSITE A SINGLE PAGE
 const app = express();
 const session = require('express-session'); // EXPRESS SESSION AUTOMATICALLY GIVES THE USER A connect.sid COOKIE. YOU CAN SEE THIS COOKIE UNDER THE Application> Cookies TAB IN THE CHROME DEVELOPER'S CONSOLE.
+const mongoSanitize = require('express-mongo-sanitize'); // HELPS PREVENT MONGO INJECTION (NoSQL Injection)
+const helmet = require('helmet'); // https://helmetjs.github.io/
 const flash = require('connect-flash'); // USED FOR FLASH ALERTS. NEEDS TO HAVE EXPRESS-SESSION INSTALLED TO WORK
-const path = require('path');
-const ejsMate = require('ejs-mate');
-const studentsRoutes = require('./routes/students');
-const attendanceRoutes = require('./routes/attendance');
-const authRoutes = require('./routes/auth');
-const ExpressError = require('./utils/ExpressError');
-const methodOverride = require('method-override');
+const path = require('path'); // PROVIDES UTILITIES FOR WORKING WITH FILE AND DIRECTORY PATHS. SEE __dirname
+const ejsMate = require('ejs-mate'); // ENABLES USE OF BOILERPLATE LAYOUTS AND PARTIALS
+const methodOverride = require('method-override'); // ENABLES US TO TRIGGER PUT & DELETE HTTP REQUESTS/VERBS WITH FORMS
 const passport = require('passport'); // http://www.passportjs.org/   https://github.com/jaredhanson/passport
 const LocalStrategy = require('passport-local'); // http://www.passportjs.org/packages/passport-local/    https://github.com/jaredhanson/passport-local
-const User = require('./models/user');
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); // MONGOOSE IS MIDDLEWARE THAT MANAGES THE GAP BETWEEN EXPRESS AND MONGODB
 const mongooseOptions = {
     useNewUrlParser: true, 
     useCreateIndex: true, 
@@ -24,12 +26,17 @@ const mongooseOptions = {
     useFindAndModify: false
 };
 
+/** OUR IMPORTS AND CONSTANTS **/
+const User = require('./models/user');
+const studentsRoutes = require('./routes/students');
+const attendanceRoutes = require('./routes/attendance');
+const authRoutes = require('./routes/auth');
+const ExpressError = require('./utils/ExpressError');
 const database = "test-liberty"; //MUST BE LOWERCASE
 const localHostPort = 3000; //ANY UNUSED PORT IS FINE FOR TESTING. DEFAULT IS 3000
 const dbPort = 27017; //DEFAULT PORT FOR MONGODB
 
-// MONGOOSE IS MIDDLEWARE THAT BRIDGES THE GAP BETWEEN EXPRESS AND MONGODB
-// SETS UP MONGODB CONNECTION. mongod.exe MUST BE RUNNING ALREADY TO CONNECT.
+// SETS UP MONGODB CONNECTION. mongod.exe MUST BE RUNNING ALREADY TO CONNECT. 
 mongoose.connect(`mongodb://localhost:${dbPort}/${database}`, mongooseOptions)
     .then(() => {
         console.log(`SUCCESSFULLY CONNECTED TO ${database} DATABASE ON MONGODB SERVER ON PORT: ${dbPort}`)
@@ -52,8 +59,13 @@ app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'));
 // SERVES ALL FILES IN THE PUBLIC DIRECTORY WITH EVERY REQUEST
 app.use(express.static(path.join(__dirname, 'public')));
+// SANITIZES REQUESTS BY REPLACING $ AND PERIODS WITH AN UNDERSCORE
+app.use(mongoSanitize({
+    replaceWith: '_'
+}))
 
 const sessionOptions = { 
+    name: 'sessionID', // CHANGES DEFAULT NAME OF SESSIONID (connect.sid)
     secret: process.env.SECRET, // THE SECRET IS USED TO SIGN THE COOKIES TO CONFIRM THAT THEY HAVEN'T BEEN TAMPERED WITH. NEED TO MAKE THIS AN ENVIRONMENT VARIABLE.
     resave: false, 
     saveUninitialized: true,
@@ -61,6 +73,7 @@ const sessionOptions = {
         expires: Date.now() + 1000 * 60 * 60 * 24, // Date.now() IS IN MILLISECONDS. EXPIRES IN A DAY
         maxAge: 1000 * 60 * 60 * 24,
         httpOnly: true, // HELPS PREVENT CROSS-SITE SCRIPTING ATTACKS FROM ACCESSING THE SESSIONID (connect.sid)
+        // secure: true // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!MAKE SURE TO ENABLE THIS ONCE WE DEPLOY. MAKES IT SO OUR SESSION ONLY WORKS OVER HTTPS.
     }
 }; 
 
@@ -68,6 +81,8 @@ const sessionOptions = {
 app.use(session(sessionOptions));
 // ENABLES USE OF FLASHES, WHICH GIVES USER SUCCESS/FAILURE ALERTS
 app.use(flash());
+// ADDS HTML RESPONSE HEADERS
+app.use(helmet({ contentSecurityPolicy: false }));
 
 // ENABLES PASSPORT, WHICH IS USED FOR LOGINS AUTHENTICATION
 app.use(passport.initialize());
@@ -81,6 +96,7 @@ passport.deserializeUser(User.deserializeUser());
 
 // ADDS A ONE-TIME req.flash(flashMessage) TO EVERY ROUTE. IF A flashMessage EXISTS, THEN IT WILL DISPLAY AT THE TOP OF THE PAGE
 app.use((req, res, next) => {
+    // console.log(req.query); // USED TO TEST IF MONGOSANITIZE IS WORKING. http://localhost:3000/?$gt=""
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error')
     res.locals.currentUser = req.user; // GETS USER INFORMATION FROM PASSPORT AND PASSES IT TO TEMPLATES (USERNAME AND EMAIL. NO PASSWORD HASH)
