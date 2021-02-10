@@ -30,15 +30,15 @@
                         </div>
                         <div class="mb-3">
                             <!-- https://www.youtube.com/watch?v=z_R13WXXovw video on styling of progress bar -->
-                            <progress id="strength" value="0" max="4"></progress>
+                            <!-- <progress id="strength" value="0" max="4"></progress> -->
                             <p>Password Strength Requirements:</p>
                             <ul>
-                                <li>At least 8 characters long.</li>
-                                <li>Contains a lowercase letter.</li>
-                                <li>Contains an uppercase letter.</li>
-                                <li>Contains a number.</li>
-                                <li>Contains a special character.</li>
-                                <li>Even better if longer than 12 characters</li>
+                                <li class="length unmet">At least 8 characters long.</li>
+                                <li class="lower unmet">Contains a lowercase letter.</li>
+                                <li class="upper unmet">Contains an uppercase letter.</li>
+                                <li class="number unmet">Contains a number.</li>
+                                <li class="special unmet">Contains a special character.</li>
+                                <li class="bonus unmet">Even better if longer than 12 characters</li>
                             </ul>
                         </div>
                         <div class="d-grid">

@@ -5,3 +5,7 @@ progress {
     border:1px solid #ccc;
     color: #aaa;
 }
+
+.unmet {
+    color:tomato;
+}
