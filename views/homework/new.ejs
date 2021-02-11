@@ -1,0 +1,43 @@
+<% layout('layouts/boilerplate') %>
+    <div class="row">
+        <div class="card shadow">
+            <div class="card-body">
+                <h1 class="text-center">New Homework</h1>
+                <form action="/homework/" method="POST" novalidate class="validated-form">
+                    <div class="row">
+                        <!-- FIRST COLUMN -->
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="subjectLine">Subject Line</label>
+                                        <input class="form-control" type="text" placeholder="Subject Line"
+                                            id="subjectLine" name="homework[subjectLine]" required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="url">URL</label>
+                                        <input class="form-control" type="text" placeholder="URL" id="url"
+                                            name="homework[url]" required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mb-3 mt-3 d-grid">
+                                    <button class="btn btn-success">Add Homework</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <a href="/homework/">Back to all homework</a>
+            </div>
+        </div>
+    </div>

@@ -63,3 +63,11 @@ module.exports.attendanceSchema = Joi.object({
         comment: Joi.string().trim().allow('').optional().escapeHTML()
     }).required()
 })
+
+// MUST MATCH models/homework.js
+module.exports.homeworkSchema = Joi.object({
+    homework: Joi.object({
+        subjectLine: Joi.string().trim().required().escapeHTML(),
+        url: Joi.string().trim().required().escapeHTML(),
+    }).required()
+})

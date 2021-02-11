@@ -30,6 +30,7 @@ const mongooseOptions = {
 const User = require('./models/user');
 const studentsRoutes = require('./routes/students');
 const attendanceRoutes = require('./routes/attendance');
+const homeworkRoutes = require('./routes/homework');
 const authRoutes = require('./routes/auth');
 const ExpressError = require('./utils/ExpressError');
 const database = "test-liberty"; //MUST BE LOWERCASE
@@ -140,6 +141,8 @@ app.use('/', authRoutes);
 app.use('/students', studentsRoutes);
 // IF :ID AND ATTENDANCE ADDED ON IT WILL ROUTE TO ./routes/attendance.js
 app.use('/students/:id/attendance', attendanceRoutes);
+// ANY URLS WITH /homework WILL BE ROUTED TO ./routes/homework.js
+app.use('/homework', homeworkRoutes);
 
 // RENDERS HOME PAGE
 app.get('/', (req, res) => {

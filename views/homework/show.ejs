@@ -1,0 +1,24 @@
+<% layout('layouts/boilerplate') %>
+<h1 class="text-center">Homework Details</h1>
+<div class="row mt-5">
+    <div class="col-6">
+        <div class="card mb-5">
+            <div class="card-body">
+                <h5 class="card-title">Subject Line: <%=homework.subjectLine%></h5>
+                <p class="card-text">URL: <%=homework.url%></p>
+            </div>
+            <!-- CHECKS TO SEE IF THE currentUser IS THE SAME AS THE homework.author. THIS ALONE DOESN'T PREVENT DELETE AND EDITS. IT JUST HIDES THE BUTTONS. -->
+            <% if(currentUser && homework.author.equals(currentUser)) { %> 
+                <div class="card-body">
+                    <a href="/homework/<%=homework._id%>/edit" class="card-link btn btn-info">Edit</a>
+                    <form class="d-inline" action="/homework/<%=homework._id%>?_method=DELETE" method="POST">
+                        <button class= "btn btn-danger" onclick="return confirm('Are you sure you want to permanently delete this homework?')">Delete</button>
+                    </form>
+                </div>
+            <% } %> 
+            <div class="card-footer text-muted">
+                <a href="/homework">Back to All homework</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-6"> 

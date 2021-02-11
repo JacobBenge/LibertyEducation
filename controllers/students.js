@@ -57,7 +57,7 @@ module.exports.updateStudent = async (req, res) => {
 //DELETE
 module.exports.deleteStudent = async (req,res) => {
     const { id } = req.params; // PULLS THE STUDENT ID FROM THE REQUEST PARAMETERS (URL)
-    const student = await Student.findById(req.params.id);
+    const student = await Student.findById(id);
     await Student.findByIdAndDelete(id); // ALSO TRIGGERS CASCADE DELETE OF RELATED ATTENDANCE. SEE student.js line 20
     req.flash('success', `Successfully deleted ${student.firstName}'s student profile`);
     res.redirect('/students');
