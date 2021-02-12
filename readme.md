@@ -14,4 +14,4 @@ We also recommend to install the nodemon package so the server automatically res
 
 If you want to add color to your terminal and make it easier to read, then follow along with Scott Hanselman. https://www.youtube.com/watch?v=lu__oGZVT98&list=WL&index=10
 
-THANKS!
+
