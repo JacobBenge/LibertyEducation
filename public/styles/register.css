@@ -6,6 +6,6 @@ progress {
     color: #aaa;
 }
 
-.unmet {
+.pw-unmet, .pw-confirm-unmet {
     color:tomato;
 }

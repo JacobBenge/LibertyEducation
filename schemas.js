@@ -71,3 +71,12 @@ module.exports.homeworkSchema = Joi.object({
         url: Joi.string().trim().required().escapeHTML(),
     }).required()
 })
+
+// MUST MATCH models/user.js
+module.exports.userSchema = Joi.object({
+    user: Joi.object({
+        userRegistrationCode: Joi.string().trim().min(24).max(24).required().escapeHTML(), 
+        email: Joi.string().trim().required().escapeHTML(),
+        username: Joi.string().trim().required().escapeHTML()
+    }).required()
+})

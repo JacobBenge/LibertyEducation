@@ -3,9 +3,24 @@ const Schema = mongoose.Schema;
 const passportLocalMongoose = require('passport-local-mongoose'); // https://www.npmjs.com/package/passport-local-mongoose  https://github.com/saintedlama/passport-local-mongoose#readme
 
 const UserSchema = new Schema({
+    userRegistrationCode:{
+        type: String,
+        required: true,
+        trim: true,
+        minLength: 24,
+        maxLength: 24,
+        unique: true
+    },
     email:{
         type: String,
         required: true,
+        trim: true,
+        unique: true
+    },
+    username:{
+        type: String,
+        required: true,
+        trim: true,
         unique: true
     }
 });

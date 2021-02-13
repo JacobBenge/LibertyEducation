@@ -4,7 +4,6 @@ const passport = require('passport');
 const catchAsync =  require('../utils/catchAsync');
 const authController = require('../controllers/auth');
 
-
 router.route('/login')
     // ROUTES TO LOGIN PAGE
     .get(authController.renderLogin)
