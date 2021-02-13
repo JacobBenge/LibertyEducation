@@ -122,7 +122,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 // TELLS PASSPORT TO USE THE LOCAL STRATEGY LIBRARY WE INSTALLED TO AUTHENTICATE THE USER MODEL/SCHEMA
 passport.use(new LocalStrategy(User.authenticate()));
-// TELLS PASSPORT HOW TO DE/SERIALIZE A USER
+// TELLS PASSPORT HOW TO DE/SERIALIZE A USER. SESSION STUFF
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 

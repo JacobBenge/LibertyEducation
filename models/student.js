@@ -23,9 +23,8 @@ const studentSchema = new Schema({
         required: false
     },
     dateOfBirth: {
-        type: Date,
-        min: '1900-01-01',
-        max: '2051-12-31',
+        type: String,
+        trim: true,
         required: true
     },
     schoolYear: {

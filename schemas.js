@@ -33,7 +33,7 @@ module.exports.studentSchema = Joi.object({
         firstName: Joi.string().trim().required().escapeHTML(),
         lastName: Joi.string().trim().required().escapeHTML(),
         prefName: Joi.string().trim().allow('').optional().escapeHTML(),
-        dateOfBirth: Joi.date().greater('01-01-1900').allow('').optional(),
+        dateOfBirth: Joi.string().trim().required().escapeHTML(),
         schoolYear: Joi.number().allow('').optional(),
         primaryContactFirst: Joi.string().trim().required().escapeHTML(),
         primaryContactLast: Joi.string().trim().required().escapeHTML(),

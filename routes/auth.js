@@ -15,7 +15,7 @@ router.route('/register')
     .get(authController.renderRegister)
     // TRIGGERED WHEN REGISTER FORM IS SUBMITTED
     .post(catchAsync(authController.createUser))
-
+    
 // RENDER LOGOUT.
 router.get('/logout', authController.renderLogout)
 
