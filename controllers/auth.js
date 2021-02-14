@@ -19,7 +19,8 @@ module.exports.createUser = async (req, res, next) => {
             throw ("You must use the registration code given to you by your teacher!"); // BREAKS THE WHOLE PROCESS. NOTHING IS SAVED IN DB. REDIRECTED TO REGISTER PAGE WITH A FLASH MESSAGE.
         }
         const user = new User({ userRegistrationCode, email, username }); // VALIDATES WITH THE USER MODEL AND CREATES THE USER OBJECT
-        // WHEN A SECOND USER IS CREATED WE RUN INTO THE [object Object] ERROR ON THE NEXT LINE. NOT SURE WHY
+        if(userRegistrationCode === 'adminIsAllowedToRegister'){user.isAdmin = true;} // SET isAdmin TO TRUE IF ADMIN CODE USED. THIS MUST BE DONE AFTER USER OBJECT IS CREATED.
+        // IF YOU RUN INTO A [object Object] ERROR MESSAGE, THEN DROP THE DATABASE AND START FRESH TO REFRESH THE SCHEMAS
         const registeredUser = await User.register(user, password); // register() IS A BLACK-BOX PASSPORT FUNCTION. IT SALT AND HASHES THE USERNAME AND PASSWORD. IT TAKES TIME SO AWAIT IT
         req.login(registeredUser, err => { // LOGS THE USER IN SO THEY DONT HAVE TO GO TO SIGN IN PAGE AFTER REGISTERING.
             if (err) return next(err);

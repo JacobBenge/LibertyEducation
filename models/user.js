@@ -16,6 +16,10 @@ const UserSchema = new Schema({
         required: true,
         trim: true,
         unique: true
+    },
+    isAdmin:{
+        type: Boolean,
+        default: false
     }
 });
 UserSchema.plugin(passportLocalMongoose); // PASSPORT WILL ENSURE THAT USERNAMES ARE UNIQUE. AUTOMATICALLY HANDLES THE SCHEMA FOR USERNAME AND PASSWORD. ENABLES USE OF PASSPORT METHODS ON THE INDEX.JS FILE

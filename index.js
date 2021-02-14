@@ -28,6 +28,8 @@ const mongooseOptions = {
 
 /** OUR IMPORTS AND CONSTANTS **/
 const User = require('./models/user');
+const sportalRoutes = require('./routes/sportal');
+const tportalRoutes = require('./routes/tportal');
 const studentsRoutes = require('./routes/students');
 const attendanceRoutes = require('./routes/attendance');
 const homeworkRoutes = require('./routes/homework');
@@ -137,6 +139,10 @@ app.use((req, res, next) => {
 
 // AUTHENTICATION ROUTES. LOGIN, SIGNUP, LOG OUT
 app.use('/', authRoutes);
+// TEACHERS PORTAL IS USED TO NAVIGATE TO OTHER TEACHER RESOURCES
+app.use('/tportal', tportalRoutes);
+// STUDENTS PORTAL IS USED TO NAVIGATE TO OTHER STUDENT RESOURCES
+app.use('/sportal', sportalRoutes);
 // ANY URLS WITH /students WILL BE ROUTED TO ./routes/students.js
 app.use('/students', studentsRoutes);
 // IF :ID AND ATTENDANCE ADDED ON IT WILL ROUTE TO ./routes/attendance.js
