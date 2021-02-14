@@ -5,7 +5,6 @@ const Attendance = require('../models/attendance');
 module.exports.createAttendance = async (req, res) => {
     const student = await Student.findById(req.params.id);
     const attendance = new Attendance(req.body.attendance); // USE THE ATTENDANCE MODEL TO CREATE AN ATTENDANCE OBJECT
-    attendance.author = req.user._id; // SAVES THE NAME OF THE AUTHOR AS THE CURRENTLY LOGGED IN USER
     student.attendance.push(attendance); // ADD THE ATTENDANCE OBJECT ID TO THE ATTENDANCE ARRAY UNDER THE STUDENT OBJECT
     await attendance.save(); // SAVE THE ATTENDANCE ITSELF
     await student.save(); // SAVE THE STUDENT

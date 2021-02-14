@@ -3,7 +3,7 @@ const Student = require('../models/student');
 // GET
 module.exports.index = async (req, res) => { // isAuthenticated IS A MIDDLEWARE FUNCTION THAT USES THE PASSPORT FUNCTION (isAuthenticated()) TO SEE IF USER IS LOGGED IN. IF NOT IT ROUTES TO LOGIN PAGE.
     const students = await Student.find({});
-    res.render('students/index', { students});
+    res.render('students/index', { students });
 }
 
 // GET
@@ -14,7 +14,6 @@ module.exports.renderStudentNew = (req, res) => {
 // POST
 module.exports.createStudent = async (req, res) => {
     const student = new Student(req.body.student);
-    student.author = req.user._id; // TAKES THE USERNAME OF THE CURRENTLY LOGGED IN ACCOUNT AND SAVES IT AS THE AUTHOR.
     await student.save();
     req.flash('success', `Successfully created a student profile for ${student.firstName}`); // FLASH IS USED TO PASS A ONE-TIME MESSAGE TO THE NEXT PAGE LOAD FOR A FLASH MESSAGE
     res.redirect(`/students/${student._id}`)
@@ -22,12 +21,7 @@ module.exports.createStudent = async (req, res) => {
 
 // GET
 module.exports.renderStudentShow = async (req, res) => {
-    const student = await Student.findById(req.params.id).populate({
-        path:'attendance', // POPULATE ALL THE ATTENDANCE
-        populate: {
-            path: 'author' // POPULATE ALL THE AUTHORS FOR EACH ATTENDANCE
-        }
-    }).populate('author'); // LOADS ALL INFORMATION ABOUT THE STUDENT FROM MONGODB USING THE ID GIVEN IN THE URL. THEN POPULATES THE ATTENDANCE BY USING THE OBJECTIDS IN THE ATTENDANCE ARRAY. SAME FOR THE AUTHOR.
+    const student = await Student.findById(req.params.id).populate({path:'attendance'}); // LOADS ALL INFORMATION ABOUT THE STUDENT FROM MONGODB USING THE ID GIVEN IN THE URL. THEN POPULATES THE ATTENDANCE BY USING THE OBJECTIDS IN THE ATTENDANCE ARRAY.
     if(!student) { // SAY YOU BOOKMARKED A STUDENT URL AND SOMEONE DELETES THAT STUDENT AND YOU TRY TO RETURN TO THAT PAGE.
         req.flash('error', `Sorry, I couldn't find that student. Was that profile deleted?`); // FLASH A MESSAGE
         return res.redirect('/students'); // SEND TO /students RATHER THAN students/show. OTHERWISE IT WOULD SHOW A NASTY DEFAULT ERROR MESSAGE.

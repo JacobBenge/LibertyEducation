@@ -18,10 +18,6 @@ const attendanceSchema = new Schema({
     comment:{
         type: String,
         required: false
-    },
-    author: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
     }
 });
 

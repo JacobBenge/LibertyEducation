@@ -13,11 +13,7 @@ const homeworkSchema = new Schema({
         type: String,
         trim: true,
         required: true
-    },
-    author: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
+    }
 })
 
 // EXPORTS THE STUDENT MODEL

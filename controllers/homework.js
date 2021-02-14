@@ -14,7 +14,6 @@ module.exports.renderHomeworkNew = (req, res) => {
 // POST
 module.exports.createHomework = async (req, res) => {
     const homework = new Homework(req.body.homework);
-    homework.author = req.user._id; // TAKES THE USERNAME OF THE CURRENTLY LOGGED IN ACCOUNT AND SAVES IT AS THE AUTHOR.
     await homework.save();
     req.flash('success', `Successfully created a homework assignment for ${homework.subjectLine}`); // FLASH IS USED TO PASS A ONE-TIME MESSAGE TO THE NEXT PAGE LOAD FOR A FLASH MESSAGE
     res.redirect(`/homework/${homework._id}`)
@@ -22,7 +21,7 @@ module.exports.createHomework = async (req, res) => {
 
 // GET
 module.exports.renderHomeworkShow = async (req, res) => {
-    const homework = await Homework.findById(req.params.id).populate('author');
+    const homework = await Homework.findById(req.params.id)
     if(!homework) { // SAY YOU BOOKMARKED A homework URL AND SOMEONE DELETES THAT homework AND YOU TRY TO RETURN TO THAT PAGE.
         req.flash('error', `Sorry, I couldn't find that homework. Was that assignment deleted?`); // FLASH A MESSAGE
         return res.redirect('/homework'); // SEND TO /homework RATHER THAN homework/show. OTHERWISE IT WOULD SHOW A NASTY DEFAULT ERROR MESSAGE.

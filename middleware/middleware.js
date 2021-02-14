@@ -54,36 +54,3 @@ module.exports.validateAttendance = (req, res, next) => {
         next();
     }
 }
-
-// CHECKS TO SEE IF PERSON LOGGED IN IS THE SAME AS THE PERSON WHO CREATED THE ITEM.
-module.exports.isAuthor = async(req, res, next) => {
-    const { id } = req.params;
-    const student = await Student.findById(id); // PULL THE STUDENT INFORMATION FROM DATABASE USING THE ID GIVEN
-    if(!student.author.equals(req.user._id)  || req.user.isAdmin) { // IF THE PERSON THAT IS LOGGED IN IS NOT THE ORIGINAL AUTHOR
-        req.flash('error', 'You do not have permission to do that action')
-        return res.redirect(`/students/${id}`);
-    }
-    next();
-}
-
-// // CHECKS TO SEE IF PERSON LOGGED IN IS THE SAME AS THE PERSON WHO CREATED THE ITEM.
-// module.exports.isAttendanceAuthor = async(req, res, next) => {
-//     const { id, attendanceId } = req.params;
-//     const attendance = await Attendance.findById(attendanceId); // PULL THE STUDENT INFORMATION FROM DATABASE USING THE ID GIVEN
-//     if(!attendance.author.equals(req.user._id) || req.user.isAdmin) { // IF THE PERSON THAT IS LOGGED IN IS NOT THE ORIGINAL AUTHOR
-//         req.flash('error', 'You do not have permission to do that action')
-//         return res.redirect(`/students/${id}`);
-//     }
-//     next();
-// }
-
-// // CHECKS TO SEE IF PERSON LOGGED IN IS THE SAME AS THE PERSON WHO CREATED THE ITEM.
-// module.exports.isHomeworkAuthor = async(req, res, next) => {
-//     const { id } = req.params;
-//     const homework = await Homework.findById(id); // PULL THE STUDENT INFORMATION FROM DATABASE USING THE ID GIVEN
-//     if(!homework.author.equals(req.user._id) || req.user.isAdmin) { // IF THE PERSON THAT IS LOGGED IN IS NOT THE ORIGINAL AUTHOR
-//         req.flash('error', 'You do not have permission to do that action')
-//         return res.redirect(`/homework/${id}`);
-//     }
-//     next();
-// }

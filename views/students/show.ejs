@@ -23,25 +23,19 @@
                 <li class="list-group-item">State: <%=student.stateCode%></li>
                 <li class="list-group-item">ZipCode First 5:<%=student.zipCodeBase%></li>
                 <li class="list-group-item">ZipCode Last 4:<%=student.zipCodeExtension%></li>
-                <li class="list-group-item">Profile Created by User: <%=student.author.username%></li>
             </ul>
-            <!-- CHECKS TO SEE IF THE currentUser IS THE SAME AS THE student.author. THIS ALONE DOESN'T PREVENT DELETE AND EDITS. IT JUST HIDES THE BUTTONS. -->
-            <% if(currentUser && student.author.equals(currentUser) || (currentUser && currentUser.isAdmin)) { %> 
                 <div class="card-body">
                     <a href="/students/<%=student._id%>/edit" class="card-link btn btn-info">Edit</a>
                     <form class="d-inline" action="/students/<%=student._id%>?_method=DELETE" method="POST">
                         <button class= "btn btn-danger" onclick="return confirm('Are you sure you want to permanently delete this student?')">Delete</button>
                     </form>
                 </div>
-            <% } %> 
             <div class="card-footer text-muted">
                 <a href="/students">Back to All Students</a>
             </div>
         </div>
     </div>
     <div class="col-6">
-        <!-- hides the review form if the user isn't logged in -->
-        <% if(currentUser) { %> 
             <h2>Attendance</h2>
             <form action="/students/<%=student._id%>/attendance" class="mb-3 validated-form" method="POST" novalidate>
                 <div class="mb-3">
@@ -66,19 +60,15 @@
                 </div>
                 <button class="btn btn-success">Add Attendance</button>
             </form>
-        <% } %> 
         <% for(let attendance of student.attendance) { %>
             <div class="card mb-3">
                 <div class="card-body">
                     <h5 class="card-title">Date: <%= attendance.attendanceDate %></h5>
                     <p class="card-text">Code: <%= attendance.attendanceCode %></p>
                     <p class="card-text">Comments: <%= attendance.comment %></p>
-                    <p class="card-text">Author: <%= attendance.author.username %></p>
-                    <% if(currentUser && attendance.author.equals(currentUser._id)  || (currentUser && currentUser.isAdmin)) { %> 
                     <form action="/students/<%=student._id%>/attendance/<%=attendance._id%>?_method=DELETE" method="POST">
                         <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to permanently delete this item?')">Delete</button>
                     </form>
-                    <% } %> 
                 </div>
             </div>
         <% } %>
