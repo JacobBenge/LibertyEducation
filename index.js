@@ -155,6 +155,11 @@ app.get('/', (req, res) => {
     res.render('home')
 })
 
+// RENDERS HOME PAGE
+app.get('/aboutus', (req, res) => {
+    res.render('aboutus')
+})
+
 // DEFAULT ERROR PAGE WILL TRIGGER IF NO OTHER ROUTES HIT
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404)) // SEE THE ExpressError UTILITY
