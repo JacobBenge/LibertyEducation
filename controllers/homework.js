@@ -1,7 +1,7 @@
 const Homework = require('../models/homework');
 
 // GET
-module.exports.index = async (req, res) => { // isAuthenticated IS A MIDDLEWARE FUNCTION THAT USES THE PASSPORT FUNCTION (isAuthenticated()) TO SEE IF USER IS LOGGED IN. IF NOT IT ROUTES TO LOGIN PAGE.
+module.exports.index = async (req, res) => {
     const homework = await Homework.find({});
     res.render('homework/index', { homework });
 }
