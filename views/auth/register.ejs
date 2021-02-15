@@ -1,6 +1,6 @@
 <% layout('layouts/default-boilerplate') %>
 <link rel="stylesheet" href="/styles/register.css">
-    <div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="container d-flex justify-content-center align-items-center my-5">
         <div class="row">
             <div class="card shadow">
                 <div class="card-body">
@@ -58,8 +58,11 @@
                                 <li class="bonus pw-unmet pw-confirm-unmet">Even better if longer than 12 characters</li>
                             </ul>
                         </div>
-                        <div class="d-grid">
+                        <div class="d-grid mb-3">
                             <button class="btn btn-success register" disabled>Register</button>
+                        </div>
+                        <div class="d-grid mb-3">
+                            <a href="/login" class="btn btn-secondary">Login</a>
                         </div>
                     </form>
                 </div>

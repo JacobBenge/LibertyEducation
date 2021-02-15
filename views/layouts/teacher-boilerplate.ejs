@@ -7,17 +7,24 @@
     <title>Liberty Education</title>
     <!--FUTURE PROOFED BY INCLUDING BOOTSTRAP FILES IN PUBLIC DIRECTORY-->
     <link href="/styles/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Favicon  https://favicon.io/favicon-generator/-->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
 </head>
 
 <body class="d-flex flex-column vh-100">
     <%- include('../partials/teacher-navbar') %>
         <main class="container mt-5">
             <%- include('../partials/flash.ejs') %>
-            <%- body %>
+                <%- body %>
         </main>
         <%- include('../partials/footer') %>
-            <script src="/scripts/popper.min.js"></script> <!--FUTURE PROOFED BY INCLUDING BOOTSTRAP FILES IN PUBLIC DIRECTORY-->
-            <script src="/scripts/bootstrap.min.js"></script> <!--FUTURE PROOFED BY INCLUDING BOOTSTRAP FILES IN PUBLIC DIRECTORY-->
+            <script src="/scripts/popper.min.js"></script>
+            <!--FUTURE PROOFED BY INCLUDING BOOTSTRAP FILES IN PUBLIC DIRECTORY-->
+            <script src="/scripts/bootstrap.min.js"></script>
+            <!--FUTURE PROOFED BY INCLUDING BOOTSTRAP FILES IN PUBLIC DIRECTORY-->
             <script src="/scripts/validateForms.js"></script>
 </body>
 
