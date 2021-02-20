@@ -1,11 +1,23 @@
 <% layout('layouts/teacher-boilerplate') %>
 <h1 class="text-center">Homework Details</h1>
 <div class="row mt-5">
-    <div class="col-6">
+    <div class="col-12">
         <div class="card mb-5">
             <div class="card-body">
-                <h5 class="card-title">Subject Line: <%=homework.subjectLine%></h5>
-                <p class="card-text">URL: <%=homework.url%></p>
+                <p class="card-text"><Strong>Subject Line:</Strong></p>
+                <p class="card-text"><%=homework.subjectLine%></p>
+                <p class="card-text"><strong>Related Link:</strong></p>
+                <a href="<%=homework.url%>" target="_blank"><%=homework.url%></a>
+                <p class="card-text"><strong>Assigned To Student:</strong></p>
+                <p class="card-text"><%=homework.assignedStudent%></p>
+                <p class="card-text"><strong>Category: </strong></p>
+                <p class="card-text"><%=homework.category%></p>
+                <p class="card-text"><strong>Due Date: </strong></p>
+                <p class="card-text"><%=homework.dueDate%></p>
+                <p class="card-text"><strong>Points Possible: </strong></p>
+                <p class="card-text"><%=homework.pointsPossible%></p>
+                <p class="card-text"><strong>Description: </strong></p>
+                <p class="card-text"><%=homework.description%></p>
             </div>
                 <div class="card-body">
                     <a href="/homework/<%=homework._id%>/edit" class="card-link btn btn-info">Edit</a>

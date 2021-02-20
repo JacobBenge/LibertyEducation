@@ -7,19 +7,21 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">_id</th>
-                <th scope="col">Homework Subject Line</th>
-                <th scope="col">Homework URL</th>
+                <th scope="col">Due Date</th>
+                <th scope="col">Subject Line</th>
+                <th scope="col">Assigned To</th>
+                <th scope="col">Category</th>
                 <th scope="col">Details</th>
             </tr>
         </thead>
         <tbody>
             <% for (let hw of homework) { %>
             <tr>
-                <td scope="row"><%=hw._id%></td>
-                <td><%=hw.subjectLine%></td>
-                <td><%=hw.url%></td>
-                <td><a class="btn btn-primary" href="/homework/<%=hw._id%>">Details</a></td>
+                <td scope="row"><%=hw.dueDate%></td>
+                <td scope="row"><%=hw.subjectLine%></td>
+                <td scope="row"><%=hw.assignedStudent%></td>
+                <td scope="row"><%=hw.category%></td>
+                <td scope="row"><a class="btn btn-primary" href="/homework/<%=hw._id%>">Details</a></td>
             </tr>
             <% } %>
         </tbody>

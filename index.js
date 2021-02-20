@@ -173,6 +173,6 @@ app.use((err, req, res, next) => {
 })
 
 // EXPRESS BEGINS LISTENING ON SPECIFIED PORT
-app.listen(localHostPort, ()=> {
+app.listen(localHostPort, () => {
     console.log(`APP IS LISTENING ON http://localhost:${localHostPort}`)
 })

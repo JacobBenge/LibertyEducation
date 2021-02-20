@@ -17,7 +17,7 @@ router.route('/')
     .post(isAuthenticated, isAdmin, validateHomework, catchAsync(homeworkController.createHomework))
 
 // ROUTES USER TO NEW Homework PAGE
-router.get('/new', isAuthenticated, isAdmin, homeworkController.renderHomeworkNew)
+router.get('/new', isAuthenticated, isAdmin, catchAsync(homeworkController.renderHomeworkNew))
 
 router.route('/:id')
     // ROUTES USER TO Homework DETAILS (SHOW) PAGE

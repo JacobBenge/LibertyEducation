@@ -68,7 +68,13 @@ module.exports.attendanceSchema = Joi.object({
 module.exports.homeworkSchema = Joi.object({
     homework: Joi.object({
         subjectLine: Joi.string().trim().required().escapeHTML(),
-        url: Joi.string().trim().required().escapeHTML(),
+        url: Joi.string().trim().allow('').optional().escapeHTML(),
+        stuId: Joi.string().trim().required().escapeHTML(),
+        assignedStudent: Joi.string().trim().allow('').optional().escapeHTML(),
+        category: Joi.string().trim().valid('Reading', 'Writing', 'Math', 'Science', 'Social Studies', 'Physical Ed.', 'Art', 'Music', 'Other').required().escapeHTML(),
+        dueDate: Joi.string().trim().required().escapeHTML(),
+        pointsPossible: Joi.number().min(0).max(999).required(),
+        description: Joi.string().trim().required().escapeHTML(),
     }).required()
 })
 
