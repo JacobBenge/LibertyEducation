@@ -1,0 +1,16 @@
+<% layout('layouts/student-boilerplate') %>
+<h1>Homework</h1>
+<% for(let hw of homework) { %>
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Hw ID: <%=hw._id%></h5>
+            <p class="card-text">Subject Line: <%=hw.subjectLine%></p>
+            <p class="card-text">Related Link: <%=hw.url%></p>
+            <p class="card-text">Assigned To: <%=hw.assignedStudent%></p>
+            <p class="card-text">Category: <%=hw.category%></p>
+            <p class="card-text">Due Date: <%=hw.dueDate%></p>
+            <p class="card-text">Points Possible: <%=hw.pointsPossible%></p>
+            <p class="card-text">Description: <%=hw.description%></p>
+        </div>
+    </div>
+<% } %>
