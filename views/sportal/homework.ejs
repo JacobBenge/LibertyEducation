@@ -1,16 +1,32 @@
 <% layout('layouts/student-boilerplate') %>
-<h1>Homework</h1>
-<% for(let hw of homework) { %>
+    <h1>Homework</h1>
     <div class="card mb-3">
-        <div class="card-body">
-            <h5 class="card-title">Hw ID: <%=hw._id%></h5>
-            <p class="card-text">Subject Line: <%=hw.subjectLine%></p>
-            <p class="card-text">Related Link: <%=hw.url%></p>
-            <p class="card-text">Assigned To: <%=hw.assignedStudent%></p>
-            <p class="card-text">Category: <%=hw.category%></p>
-            <p class="card-text">Due Date: <%=hw.dueDate%></p>
-            <p class="card-text">Points Possible: <%=hw.pointsPossible%></p>
-            <p class="card-text">Description: <%=hw.description%></p>
+        <div class="accordion" id="accordion-parent">
+            <% for(let hw of homework) { %>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading_<%=hw._id%>">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse_<%=hw._id%>" aria-expanded="true"
+                            aria-controls="collapse_<%=hw._id%>">
+                            <strong>
+                                <%=hw.subjectLine%> 
+                                <span class="badge rounded-pill bg-secondary">Due: <%=hw.dueDate%></span>
+                                
+                            </strong>
+                        </button>
+                    </h2>
+                    <div id="collapse_<%=hw._id%>" class="accordion-collapse collapse"
+                        aria-labelledby="heading_<%=hw._id%>" data-bs-parent="#accordion-parent">
+                        <div class="accordion-body">
+                            <span class="badge rounded-pill bg-success">Pts: <%=hw.pointsPossible%></span>
+                            <span class="badge rounded-pill bg-primary"><%=hw.category%></span><br><br>
+                            <p class="card-text"><%=hw.description%></p>
+                            <% if(!hw.url == '') { %> 
+                                <a href="<%=hw.url%>" target="_blank" class="card-text"><%=hw.url%></a><br>
+                            <% } %> 
+                        </div>
+                    </div>
+                </div>
+                <% } %>
         </div>
     </div>
-<% } %>

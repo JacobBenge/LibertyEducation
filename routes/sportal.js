@@ -41,7 +41,6 @@ router.get('/homework', isAuthenticated, catchAsync(async (req, res) => {
         const userRegistrationCode = req.user.userRegistrationCode; // OBTAIN THE CODE FROM THE REQUEST
         const student = await Student.findById(userRegistrationCode) // LOOKUP THE MATCHING STUDENT
         const homework = await Homework.find({ stuId: `${userRegistrationCode}`}).exec(); // LOOKUP THE MATCHING HOMEWORK https://mongoosejs.com/docs/api.html#model_Model.find
-        console.log(homework);
         res.render('sportal/homework', { student, homework }) // SEND THESE OBJECTs BACK WITH THE RESPONSE SO ejs CAN ACCESS IT
     } catch(e) {
         req.flash('error', `Your registration code is no longer connected to a student profile.`) // YOU GET THIS ERROR IF THE TEACHER DELETES A STUDENT FROM THE DATABASE AND THE USER TRIES TO VISIT THE STUDENT PORTAL.
