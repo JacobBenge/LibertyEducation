@@ -23,7 +23,8 @@ const studentSchema = new Schema({
         required: false
     },
     dateOfBirth: {
-        type: String,
+        type: Date,
+        default: Date.now,
         trim: true,
         required: true
     },

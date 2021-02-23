@@ -13,7 +13,7 @@
                 <p class="card-text"><strong>Category: </strong></p>
                 <p class="card-text"><%=homework.category%></p>
                 <p class="card-text"><strong>Due Date: </strong></p>
-                <p class="card-text"><%=homework.dueDate%></p>
+                <p class="card-text"><%= homework.dueDate.toISOString().substring(0, 10) %></p>
                 <p class="card-text"><strong>Points Possible: </strong></p>
                 <p class="card-text"><%=homework.pointsPossible%></p>
                 <p class="card-text"><strong>Description: </strong></p>

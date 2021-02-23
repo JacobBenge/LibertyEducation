@@ -15,9 +15,10 @@
             </tr>
         </thead>
         <tbody>
+            <!-- https://stackoverflow.com/questions/25159330/convert-an-iso-date-to-the-date-format-yyyy-mm-dd-in-javascript -->
             <% for (let hw of homework) { %>
             <tr>
-                <td scope="row"><%=hw.dueDate%></td>
+                <td scope="row"><%= hw.dueDate.toISOString().substring(0, 10) %></td>
                 <td scope="row"><%=hw.subjectLine%></td>
                 <td scope="row"><%=hw.assignedStudent%></td>
                 <td scope="row"><%=hw.category%></td>

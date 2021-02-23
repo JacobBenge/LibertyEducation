@@ -67,8 +67,9 @@
                                 </div>
                                 <div class="col-6">
                                     <label class="form-label" for="dueDate">Due Date</label>
-                                    <input class="form-control" type="text" id="dueDate" name="homework[dueDate]"
-                                        placeholder="MM/DD/YYYY" value="<%=homework.dueDate%>" required>
+                                    <!-- https://stackoverflow.com/questions/25159330/convert-an-iso-date-to-the-date-format-yyyy-mm-dd-in-javascript -->
+                                    <input class="form-control" type="date" id="dueDate" name="homework[dueDate]"
+                                    value="<%=homework.dueDate.toISOString().substring(0, 10)%>" value="<%=homework.dueDate%>" required>
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>

@@ -33,7 +33,7 @@ module.exports.studentSchema = Joi.object({
         firstName: Joi.string().trim().required().escapeHTML(),
         lastName: Joi.string().trim().required().escapeHTML(),
         prefName: Joi.string().trim().allow('').optional().escapeHTML(),
-        dateOfBirth: Joi.string().trim().required().escapeHTML(),
+        dateOfBirth: Joi.date().required(),
         schoolYear: Joi.number().allow('').optional(),
         primaryContactFirst: Joi.string().trim().required().escapeHTML(),
         primaryContactLast: Joi.string().trim().required().escapeHTML(),
@@ -58,7 +58,7 @@ module.exports.studentSchema = Joi.object({
 // MUST MATCH models/attendance.js
 module.exports.attendanceSchema = Joi.object({
     attendance: Joi.object({
-        attendanceDate: Joi.date().greater('01-01-2021').required(),
+        attendanceDate: Joi.date().required(),
         attendanceCode: Joi.string().trim().valid('present', 'tardy', 'absent', 'excused absence').required().escapeHTML(),
         comment: Joi.string().trim().allow('').optional().escapeHTML()
     }).required()
@@ -72,7 +72,7 @@ module.exports.homeworkSchema = Joi.object({
         stuId: Joi.string().trim().required().escapeHTML(),
         assignedStudent: Joi.string().trim().allow('').optional().escapeHTML(),
         category: Joi.string().trim().valid('Reading', 'Writing', 'Math', 'Science', 'Social Studies', 'Physical Ed.', 'Art', 'Music', 'Other').required().escapeHTML(),
-        dueDate: Joi.string().trim().required().escapeHTML(),
+        dueDate: Joi.date().required(),
         pointsPossible: Joi.number().min(0).max(999).required(),
         description: Joi.string().trim().required().escapeHTML(),
     }).required()

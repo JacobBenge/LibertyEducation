@@ -10,8 +10,8 @@
                             aria-controls="collapse_<%=hw._id%>">
                             <strong>
                                 <%=hw.subjectLine%> 
-                                <span class="badge rounded-pill bg-secondary">Due: <%=hw.dueDate%></span>
-                                
+                                <!-- https://stackoverflow.com/questions/25159330/convert-an-iso-date-to-the-date-format-yyyy-mm-dd-in-javascript -->
+                                <span class="badge rounded-pill bg-secondary">Due: <%=hw.dueDate.toISOString().substring(0, 10)%></span>
                             </strong>
                         </button>
                     </h2>

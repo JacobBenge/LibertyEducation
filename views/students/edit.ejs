@@ -46,8 +46,8 @@
                                 <div class="col-6">
                                     <div class="mb-3">
                                         <label class="form-label"for="dateOfBirth">Birth Date:</label> <br>
-                                        <input class="form-control" type="text" placeholder="MM/DD/YYYY" id="dateOfBirth" name="student[dateOfBirth]"
-                                            value="<%=student.dateOfBirth%>">
+                                        <input class="form-control" type="date" id="dateOfBirth" name="student[dateOfBirth]"
+                                        value="<%=student.dateOfBirth.toISOString().substring(0, 10)%>">
                                         <div class="valid-feedback">
                                             Looks good!
                                         </div>

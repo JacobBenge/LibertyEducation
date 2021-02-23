@@ -20,7 +20,8 @@
                                 <div class="col-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="url">Related Link</label>
-                                        <input class="form-control" type="text" placeholder="https://www.youtube.com/... (opt)" id="url"
+                                        <input class="form-control" type="text"
+                                            placeholder="https://www.youtube.com/... (opt)" id="url"
                                             name="homework[url]">
                                         <div class="valid-feedback">
                                             Looks good!
@@ -30,8 +31,7 @@
                                 <div class="col-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="stuId">Assigned to Student</label>
-                                        <select class="form-select" id="stuId"
-                                            name="homework[stuId]" required>
+                                        <select class="form-select" id="stuId" name="homework[stuId]" required>
                                             <option selected></option>
                                             <% for(let student of students) { %>
                                                 <option value="<%=student._id%>">
@@ -47,8 +47,7 @@
                                 </div>
                                 <div class="col-6">
                                     <label class="form-label" for="category">Category</label>
-                                    <select class="form-select" id="category"
-                                        name="homework[category]" required>
+                                    <select class="form-select" id="category" name="homework[category]" required>
                                         <option selected></option>
                                         <option value="Reading">Reading</option>
                                         <option value="Writing">Writing</option>
@@ -66,8 +65,8 @@
                                 </div>
                                 <div class="col-6">
                                     <label class="form-label" for="dueDate">Due Date</label>
-                                    <input class="form-control" type="text" id="dueDate" name="homework[dueDate]"
-                                        placeholder="MM/DD/YYYY" required>
+                                    <input class="form-control" type="date" id="dueDate" name="homework[dueDate]"
+                                        required>
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>

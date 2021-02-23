@@ -6,8 +6,8 @@ const Schema = mongoose.Schema;
 const attendanceSchema = new Schema({
     attendanceDate: {
         type: Date,
-        min: '2021-01-01',
-        max: '2031-12-31',
+        default: Date.now,
+        trim: true,
         required: true
     },
     attendanceCode: {

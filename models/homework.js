@@ -30,7 +30,8 @@ const homeworkSchema = new Schema({
         required: true
     },
     dueDate: {
-        type: String,
+        type: Date,
+        default: Date.now,
         trim: true,
         required: true
     },

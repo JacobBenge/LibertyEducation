@@ -16,6 +16,7 @@ module.exports.renderHomeworkNew = async (req, res) => {
 // POST
 module.exports.createHomework = async (req, res) => {
     let hw = req.body.homework; // RETREIVE USER INPUT FROM BODY
+    hw.dueDate = new Date(hw.dueDate);
     const assignedStu = await Student.findById(hw.stuId); // LOOKUP THE ASSIGNED STUDENT IN DB WITH THE stuId provided
     hw.assignedStudent = `${assignedStu.firstName} ${assignedStu.lastName}`; // ADD AN ADDITIONAL KEY/VALUE PAIR TO THE HOMEWORK OBJECT
     const homework = new Homework(hw);  // VALIDATE HW OBJECT AGAINST THE SCHEMAS
