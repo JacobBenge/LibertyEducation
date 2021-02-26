@@ -51,7 +51,12 @@ module.exports.studentSchema = Joi.object({
         stateCode: Joi.string().trim().valid('AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY').length(2).required().escapeHTML(),
         zipCodeBase: Joi.number().required(),
         zipCodeExtension: Joi.number().allow('').optional(),
-        gender: Joi.string().trim().valid('Male','Female','Unknown').required().escapeHTML()
+        gender: Joi.string().trim().valid('Male','Female','Unknown').required().escapeHTML(),
+        notes: Joi.string().trim().allow('').optional().escapeHTML(),
+        mathURL: Joi.string().trim().allow('').optional().escapeHTML(),
+        languageArtsURL: Joi.string().trim().allow('').optional().escapeHTML(),
+        spanishURL: Joi.string().trim().allow('').optional().escapeHTML(),
+        codingURL: Joi.string().trim().allow('').optional().escapeHTML()
     }).required()
 })
 

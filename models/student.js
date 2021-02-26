@@ -123,6 +123,31 @@ const studentSchema = new Schema({
         enum: ['Male', 'Female', 'Unknown'],
         required: true
     },
+    notes: {
+        type: String,
+        trim: true,
+        required: false
+    },
+    mathURL: {
+        type: String,
+        trim: true,
+        required: false
+    },
+    languageArtsURL: {
+        type: String,
+        trim: true,
+        required: false
+    },
+    spanishURL: {
+        type: String,
+        trim: true,
+        required: false
+    },
+    codingURL: {
+        type: String,
+        trim: true,
+        required: false
+    },
     attendance: [
         {
             type: Schema.Types.ObjectId,
