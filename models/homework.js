@@ -40,7 +40,7 @@ const homeworkSchema = new Schema({
         trim: true,
         min: [0, 'Cannot have negative points'],
         max: 999,
-        required: true
+        required: false
     },
     description: {
         type: String,

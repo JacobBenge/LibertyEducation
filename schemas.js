@@ -78,7 +78,7 @@ module.exports.homeworkSchema = Joi.object({
         assignedStudent: Joi.string().trim().allow('').optional().escapeHTML(),
         category: Joi.string().trim().valid('Reading', 'Writing', 'Math', 'Science', 'Social Studies', 'Physical Ed.', 'Art', 'Music', 'Other').required().escapeHTML(),
         dueDate: Joi.date().required(),
-        pointsPossible: Joi.number().min(0).max(999).required(),
+        pointsPossible: Joi.number().min(0).max(999),
         description: Joi.string().trim().required().escapeHTML(),
     }).required()
 })
