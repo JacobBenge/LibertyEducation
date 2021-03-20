@@ -1,29 +1,43 @@
 <% layout('layouts/teacher-boilerplate') %>
-    <h1 class="text-center">All Homework</h1>
-    <div>
-        <a href="/homework/new">Add New homework</a>
-    </div>
+    <div class="row">
+        <div class="card shadow mb-5">
+            <div class="card-body">
+                <h1 class="text-center">All Homework</h1>
+                <div>
+                    <a href="/homework/new" class="btn btn-primary">Add New homework</a>
+                </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Due Date</th>
-                <th scope="col">Subject Line</th>
-                <th scope="col">Assigned To</th>
-                <th scope="col">Category</th>
-                <th scope="col">Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- https://stackoverflow.com/questions/25159330/convert-an-iso-date-to-the-date-format-yyyy-mm-dd-in-javascript -->
-            <% for (let hw of homework) { %>
-            <tr>
-                <td scope="row"><%= hw.dueDate.toISOString().substring(0, 10) %></td>
-                <td scope="row"><%=hw.subjectLine%></td>
-                <td scope="row"><%=hw.assignedStudent%></td>
-                <td scope="row"><%=hw.category%></td>
-                <td scope="row"><a class="btn btn-primary" href="/homework/<%=hw._id%>">Details</a></td>
-            </tr>
-            <% } %>
-        </tbody>
-    </table>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Due Date</th>
+                            <th scope="col">Subject Line</th>
+                            <th scope="col">Assigned To</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- https://stackoverflow.com/questions/25159330/convert-an-iso-date-to-the-date-format-yyyy-mm-dd-in-javascript -->
+                        <% for (let hw of homework) { %>
+                            <tr>
+                                <td scope="row">
+                                    <%= hw.dueDate.toISOString().substring(0, 10) %>
+                                </td>
+                                <td scope="row">
+                                    <%=hw.subjectLine%>
+                                </td>
+                                <td scope="row">
+                                    <%=hw.assignedStudent%>
+                                </td>
+                                <td scope="row">
+                                    <%=hw.category%>
+                                </td>
+                                <td scope="row"><a class="btn btn-primary" href="/homework/<%=hw._id%>">Details</a></td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

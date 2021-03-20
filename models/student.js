@@ -33,6 +33,96 @@ const studentSchema = new Schema({
         trim: true,
         required: false
     },
+    addressLine1: {
+        type: String,
+        trim: true,
+        required: true
+    },
+    addressLine2: {
+        type: String,
+        trim: true,
+        required: false
+    },
+    city: {
+        type: String,
+        trim: true,
+        required: true
+    },
+    stateCode: {
+        type: String,
+        trim: true,
+        min: 2,
+        max: 2,
+        enum: stateList,
+        required: true
+    },
+    zipCodeBase: {
+        type: Number,
+        trim: true,
+        required: true
+    },
+    zipCodeExtension: {
+        type: Number,
+        trim: true,
+        required: false
+    },
+    gender: {
+        type: String,
+        enum: ['Male', 'Female', 'Unknown'],
+        required: true
+    },
+    notes: {
+        type: String,
+        trim: true,
+        required: false
+    },
+    coinsBalance: {
+        type: Number,
+        trim: true,
+        min: [0, 'Cannot have negative points'],
+        max: 99999,
+        required: false
+    },
+    url1Label: {
+        type: String,
+        trim: true,
+        required: false
+    },
+    url2Label: {
+        type: String,
+        trim: true,
+        required: false
+    },
+    url3Label: {
+        type: String,
+        trim: true,
+        required: false
+    },
+    url4Label: {
+        type: String,
+        trim: true,
+        required: false
+    },
+    url1: {
+        type: String,
+        trim: true,
+        required: false
+    },
+    url2: {
+        type: String,
+        trim: true,
+        required: false
+    },
+    url3: {
+        type: String,
+        trim: true,
+        required: false
+    },
+    url4: {
+        type: String,
+        trim: true,
+        required: false
+    },
     primaryContactFirst: {
         type: String,
         trim: true,
@@ -81,69 +171,6 @@ const studentSchema = new Schema({
         required: false
     },
     secondaryContactEmail: {
-        type: String,
-        trim: true,
-        required: false
-    },
-    addressLine1: {
-        type: String,
-        trim: true,
-        required: true
-    },
-    addressLine2: {
-        type: String,
-        trim: true,
-        required: false
-    },
-    city: {
-        type: String,
-        trim: true,
-        required: true
-    },
-    stateCode: {
-        type: String,
-        trim: true,
-        min: 2,
-        max: 2,
-        enum: stateList,
-        required: true
-    },
-    zipCodeBase: {
-        type: Number,
-        trim: true,
-        required: true
-    },
-    zipCodeExtension: {
-        type: Number,
-        trim: true,
-        required: false
-    },
-    gender: {
-        type: String,
-        enum: ['Male', 'Female', 'Unknown'],
-        required: true
-    },
-    notes: {
-        type: String,
-        trim: true,
-        required: false
-    },
-    mathURL: {
-        type: String,
-        trim: true,
-        required: false
-    },
-    languageArtsURL: {
-        type: String,
-        trim: true,
-        required: false
-    },
-    spanishURL: {
-        type: String,
-        trim: true,
-        required: false
-    },
-    codingURL: {
         type: String,
         trim: true,
         required: false
