@@ -21,7 +21,7 @@ module.exports.createStudent = async (req, res) => {
 
 // GET
 module.exports.renderStudentShow = async (req, res) => {
-    const student = await Student.findById(req.params.id).populate({path:'attendance'}); // LOADS ALL INFORMATION ABOUT THE STUDENT FROM MONGODB USING THE ID GIVEN IN THE URL. THEN POPULATES THE ATTENDANCE BY USING THE OBJECTIDS IN THE ATTENDANCE ARRAY.
+    const student = await Student.findById(req.params.id).populate({path:'note'}); // LOADS ALL INFORMATION ABOUT THE STUDENT FROM MONGODB USING THE ID GIVEN IN THE URL. THEN POPULATES THE NOTE BY USING THE OBJECTIDS IN THE NOTE ARRAY.
     if(!student) { // SAY YOU BOOKMARKED A STUDENT URL AND SOMEONE DELETES THAT STUDENT AND YOU TRY TO RETURN TO THAT PAGE.
         req.flash('error', `Sorry, I couldn't find that student. Was that profile deleted?`); // FLASH A MESSAGE
         return res.redirect('/students'); // SEND TO /students RATHER THAN students/show. OTHERWISE IT WOULD SHOW A NASTY DEFAULT ERROR MESSAGE.
@@ -52,7 +52,7 @@ module.exports.updateStudent = async (req, res) => {
 module.exports.deleteStudent = async (req,res) => {
     const { id } = req.params; // PULLS THE STUDENT ID FROM THE REQUEST PARAMETERS (URL)
     const student = await Student.findById(id);
-    await Student.findByIdAndDelete(id); // ALSO TRIGGERS CASCADE DELETE OF RELATED ATTENDANCE. SEE student.js line 20
+    await Student.findByIdAndDelete(id); // ALSO TRIGGERS CASCADE DELETE OF RELATED NOTE. SEE student.js line 20
     req.flash('success', `Successfully deleted ${student.firstName}'s student profile`);
     res.redirect('/students');
 }

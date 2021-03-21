@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Attendance = require('./attendance');
+const Note = require('./note');
 const Schema = mongoose.Schema;
 const stateList = require('../public/scripts/stateList.js')
 const relationshipTypes = require('../public/scripts/relationshipTypes.js')
@@ -175,20 +175,20 @@ const studentSchema = new Schema({
         trim: true,
         required: false
     },
-    attendance: [
+    note: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Attendance'
+            ref: 'Note'
         }
     ]
 })
 
-// CASCADE DELETES THE REVIEWS WHEN A STUDENT IS DELETED. THIS IS QUERY MIDDLEWARE, NOT DOCUMENT MIDDLEWARE
+// CASCADE DELETES THE NOTES WHEN A STUDENT IS DELETED. THIS IS QUERY MIDDLEWARE, NOT DOCUMENT MIDDLEWARE
 studentSchema.post('findOneAndDelete', async function (doc) {
     if(doc) {
-        await Attendance.deleteMany({
+        await Note.deleteMany({
             _id: {
-                $in: doc.attendance
+                $in: doc.note
             }
         })
     }

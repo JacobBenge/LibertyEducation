@@ -24,7 +24,7 @@ router.route('/:id')
     .get(isAuthenticated, isAdmin, catchAsync(homeworkController.renderHomeworkShow))
     // APPLIES UPDATES TO THE Homework INFO
     .put(isAuthenticated, isAdmin, validateHomework, catchAsync(homeworkController.updateHomework))
-    // TRIGGERED BY DELETE BUTTON ON Homework. DELETES THE Homework AND RELATED ATTENDANCE
+    // TRIGGERED BY DELETE BUTTON ON Homework. DELETES THE Homework AND RELATED NOTES
     .delete(isAuthenticated, isAdmin, catchAsync(homeworkController.deleteHomework))
 
 // ROUTES USER TO Homework EDIT PAGE

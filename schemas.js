@@ -65,12 +65,12 @@ module.exports.studentSchema = Joi.object({
     }).required()
 })
 
-// MUST MATCH models/attendance.js
-module.exports.attendanceSchema = Joi.object({
-    attendance: Joi.object({
-        attendanceDate: Joi.date().required(),
-        attendanceCode: Joi.string().trim().valid('present', 'tardy', 'absent', 'excused absence').required().escapeHTML(),
-        comment: Joi.string().trim().allow('').optional().escapeHTML()
+// MUST MATCH models/note.js
+module.exports.noteSchema = Joi.object({
+    note: Joi.object({
+        noteDate: Joi.date().required(),
+        noteCategory: Joi.string().trim().required().escapeHTML(),
+        noteComment: Joi.string().trim().allow('').optional().escapeHTML()
     }).required()
 })
 

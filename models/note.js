@@ -3,23 +3,23 @@ const Schema = mongoose.Schema;
 
 // MUST MATCH schema.js
 // MANAGES THE DATATYPES ALLOWED TO PASS THROUGH MONGOOSE AND INTO MONGODB. ANOTHER LEVEL ON TOP OF BROWSER FORM VALIDATION. THIS PREVENTS INVALID DATA FROM ENTERING DB WHEN USING POSTMAN.
-const attendanceSchema = new Schema({
-    attendanceDate: {
+const noteSchema = new Schema({
+    noteDate: {
         type: Date,
         default: Date.now,
         trim: true,
         required: true
     },
-    attendanceCode: {
+    noteCategory: {
         type: String,
-        enum: ['present', 'tardy', 'absent', 'excused absence'],
+        trim: true,
         required: true
     },
-    comment:{
+    noteComment:{
         type: String,
         required: false
     }
 });
 
-// EXPORTS THE ATTENDANCE MODEL
-module.exports = mongoose.model('Attendance', attendanceSchema);
+// EXPORTS THE NOTE MODEL
+module.exports = mongoose.model('Note', noteSchema);
