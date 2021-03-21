@@ -163,23 +163,30 @@
                 <h2>Notes</h2>
                 <form action="/students/<%=student._id%>/note" class="mb-3 validated-form" method="POST" novalidate>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="mb-3">
-                                <label class="form-label" for="noteDate">Date:</label>
-                                <input class="form-control" type="date" id="noteDate" name="note[noteDate]" required>
+                                <label class="form-label" for="noteTitle">Title</label>
+                                <input class="form-control" type="text" id="noteTitle" placeholder="1:1 Weekly Session"
+                                    name="note[noteTitle]" required>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="mb-3">
                                 <label class="form-label" for="noteCategory">Category</label>
                                 <input class="form-control" type="text" id="noteCategory" placeholder="Fractions"
                                     name="note[noteCategory]" required>
                             </div>
                         </div>
+                        <div class="col-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="noteDate">Date:</label>
+                                <input class="form-control" type="date" id="noteDate" name="note[noteDate]" required>
+                            </div>
+                        </div>
                         <div class="mb-3">
                             <label class="form-label" for="noteComment">Comments</label>
-                            <textarea class="form-control" name="note[noteComment]" id="noteComment" cols="30"
-                                rows="3"></textarea>
+                            <textarea class="form-control" name="note[noteComment]" id="noteComment" cols="30" rows="3"
+                                placeholder="This week we worked on... we struggled with... assigned more practice homework for..."></textarea>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -191,18 +198,29 @@
         </div>
     </div>
     <!-- Past Notes -->
-    <% for(let note of student.note) { %>
+    <!-- Sorts by noteDate newest first -->
+    <% const sortedNotes = student.note.sort((a, b) => b.noteDate - a.noteDate) %> 
+    <% for(let note of sortedNotes) { %>
         <div class="row">
             <div class="card shadow mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Date: <%=note.noteDate.toISOString().substring(0, 10)%>
+                    <h5 class="card-title mb-2">
+                        <%=note.noteTitle%>
+                        <% if(!note.noteTitle) { %>
+                            Untitled
+                            <% } %> 
                     </h5>
-                    <p class="card-text">Category: <%= note.noteCategory%>
-                    </p>
-                    <p class="card-text">Comments: <%= note.noteComment %>
+                    <span class="badge rounded-pill bg-secondary">
+                        <%=note.noteDate.toISOString().substring(0, 10)%>
+                    </span>
+                    <span class="badge rounded-pill bg-info">
+                        <%= note.noteCategory%>
+                    </span>
+                    <p class="card-text mt-3">
+                        <%=note.noteComment%>
                     </p>
                     <form action="/students/<%=student._id%>/note/<%=note._id%>?_method=DELETE" method="POST">
-                        <button class="btn btn-sm btn-danger"
+                        <button class="btn btn-sm btn-danger mt-3"
                             onclick="return confirm('Are you sure you want to permanently delete this item?')">Delete</button>
                     </form>
                 </div>

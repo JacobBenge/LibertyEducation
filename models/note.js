@@ -13,6 +13,13 @@ const noteSchema = new Schema({
     noteCategory: {
         type: String,
         trim: true,
+        maxLength: 70,
+        required: true
+    },
+    noteTitle: {
+        type: String,
+        trim: true,
+        maxLength: 70,
         required: true
     },
     noteComment:{

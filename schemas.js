@@ -69,7 +69,8 @@ module.exports.studentSchema = Joi.object({
 module.exports.noteSchema = Joi.object({
     note: Joi.object({
         noteDate: Joi.date().required(),
-        noteCategory: Joi.string().trim().required().escapeHTML(),
+        noteCategory: Joi.string().trim().max(70).required().escapeHTML(),
+        noteTitle: Joi.string().trim().max(70).required().escapeHTML(),
         noteComment: Joi.string().trim().allow('').optional().escapeHTML()
     }).required()
 })

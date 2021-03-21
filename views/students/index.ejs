@@ -21,30 +21,31 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% for (let student of students) { %>
-                            <tr>
-                                <td scope="row">
-                                    <%=student._id%>
-                                </td>
-                                <td>
-                                    <%=student.firstName%>
-                                </td>
-                                <td>
-                                    <%=student.lastName%>
-                                </td>
-                                <td>
-                                    <%=student.gender%>
-                                </td>
-                                <td>
-                                    <%=student.city%>
-                                </td>
-                                <td>
-                                    <%=student.stateCode%>
-                                </td>
-                                <td><a class="btn btn-primary" href="/students/<%=student._id%>">Details
-                                        <%=student.title%></a></td>
-                            </tr>
-                            <% } %>
+                                <% for (let student of students) { %>
+                                    <tr>
+                                        <td scope="row">
+                                            <%=student._id%>
+                                        </td>
+                                        <td>
+                                            <%=student.lastName%>
+                                        </td>
+                                        <td>
+                                            <%=student.firstName%>
+                                        </td>
+                                        <td>
+                                            <%=student.gender%>
+                                        </td>
+                                        <td>
+                                            <%=student.city%>
+                                        </td>
+                                        <td>
+                                            <%=student.stateCode%>
+                                        </td>
+                                        <td><a class="btn btn-primary" href="/students/<%=student._id%>">Details
+                                                <%=student.title%>
+                                            </a></td>
+                                    </tr>
+                                    <% } %>
                     </tbody>
 
                 </table>
