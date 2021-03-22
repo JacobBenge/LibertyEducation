@@ -1,32 +1,47 @@
 <% layout('layouts/student-boilerplate') %>
-    <h1>Homework</h1>
-    <div class="card mb-3">
-        <div class="accordion" id="accordion-parent">
-            <% for(let hw of homework) { %>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="heading_<%=hw._id%>">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapse_<%=hw._id%>" aria-expanded="true"
-                            aria-controls="collapse_<%=hw._id%>">
-                            <strong>
-                                <%=hw.subjectLine%> 
-                                <!-- https://stackoverflow.com/questions/25159330/convert-an-iso-date-to-the-date-format-yyyy-mm-dd-in-javascript -->
-                                <span class="badge rounded-pill bg-secondary">Due: <%=hw.dueDate.toISOString().substring(0, 10)%></span>
-                            </strong>
-                        </button>
-                    </h2>
-                    <div id="collapse_<%=hw._id%>" class="accordion-collapse collapse"
-                        aria-labelledby="heading_<%=hw._id%>" data-bs-parent="#accordion-parent">
-                        <div class="accordion-body">
-                            <span class="badge rounded-pill bg-success">Coins: <%=hw.pointsPossible%></span>
-                            <span class="badge rounded-pill bg-primary"><%=hw.category%></span><br><br>
-                            <p class="card-text"><%=hw.description%></p>
-                            <% if(!hw.url == '') { %> 
-                                <a href="<%=hw.url%>" target="_blank" class="card-text"><%=hw.url%></a><br>
-                            <% } %> 
-                        </div>
+    <div class="row">
+        <div class="card shadow mb-5">
+            <div class="card-body">
+                <h1 class="text-center mt-4">My Homework</h1>
+                <div class="card mb-3">
+                    <div class="accordion" id="accordion-parent">
+                        <!-- Sort homework newest to oldest -->
+                        <% const sortedHomework = homework.sort((a, b) => b.dueDate - a.dueDate) %> 
+                        <% for(let hw of sortedHomework) { %>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading_<%=hw._id%>">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse_<%=hw._id%>" aria-expanded="true"
+                                        aria-controls="collapse_<%=hw._id%>">
+                                        <strong>
+                                            <%=hw.subjectLine%>
+                                                <!-- https://stackoverflow.com/questions/25159330/convert-an-iso-date-to-the-date-format-yyyy-mm-dd-in-javascript -->
+                                                <span class="badge rounded-pill bg-secondary">Due:
+                                                    <%=hw.dueDate.toISOString().substring(0, 10)%></span>
+                                        </strong>
+                                    </button>
+                                </h2>
+                                <div id="collapse_<%=hw._id%>" class="accordion-collapse collapse"
+                                    aria-labelledby="heading_<%=hw._id%>" data-bs-parent="#accordion-parent">
+                                    <div class="accordion-body">
+                                        <span class="badge rounded-pill bg-success">Coins: <%=hw.pointsPossible%></span>
+                                        <span class="badge rounded-pill bg-primary">
+                                            <%=hw.category%>
+                                        </span><br><br>
+                                        <p class="card-text">
+                                            <%=hw.description%>
+                                        </p>
+                                        <% if(!hw.url=='' ) { %>
+                                            <a href="<%=hw.url%>" target="_blank" class="card-text">
+                                                <%=hw.url%>
+                                            </a><br>
+                                            <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
                     </div>
                 </div>
-                <% } %>
+            </div>
         </div>
     </div>

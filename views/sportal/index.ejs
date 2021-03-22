@@ -1,11 +1,54 @@
 <% layout('layouts/student-boilerplate') %>
-<h1>Student Portal</h1>
-<a href="/sportal/profile" class="btn btn-lg btn-primary font-weight-bold">My Profile</a>
-<a href="/sportal/homework" class="btn btn-lg btn-primary font-weight-bold">My Homework</a>
-<a href="<%=student.mathURL%>" target="_blank" class="btn btn-lg btn-info font-weight-bold">Math</a>
-<a href="<%=student.languageArtsURL%>" target="_blank" class="btn btn-lg btn-warning font-weight-bold">Language Arts</a>
-<a href="<%=student.spanishURL%>" target="_blank" class="btn btn-lg btn-danger font-weight-bold">Spanish</a>
-<a href="<%=student.codingURL%>" target="_blank" class="btn btn-lg btn-secondary font-weight-bold">Coding</a>
-
-
-
+    <div class="row">
+        <div class="card shadow mb-5">
+            <div class="card-body">
+                <h1 class="text-center mt-4">Student Portal</h1>
+                <div class="row">
+                    <div class="col-9"></div>
+                    <div class="col-3">
+                        <!-- https://fsymbols.com/signs/cent/ -->
+                        <h2><span class="badge rounded-pill bg-success ml-auto">💰<%=student.coinsBalance%></span></h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>Getting Started:</p>
+                        <ol>
+                            <li>Visit <a href="/sportal/profile">My Profile</a> to verify your information is correct.
+                            </li>
+                            <li>Visit <a href="/sportal/homework">My Homework</a> to view your homework assignments</li>
+                        </ol>
+                        <a href="/sportal/profile" class="btn btn-primary font-weight-bold mb-1">My Profile</a>
+                        <a href="/sportal/homework" class="btn btn-secondary font-weight-bold mb-1">My Homework</a> <br><br>
+                    </div>
+                    <div class="col-sm-6">
+                        <!-- Show or hide external link buttons depending if they are present -->
+                        <% if(student.url1 || student.url2 || student.url3 || student.url4) { %>
+                            <p>External Sites:</p>
+                            <% } %>
+                                <% if(student.url1) { %>
+                                    <a href="<%=student.url1%>" target="_blank" class="btn btn-success mb-1">
+                                        <%=student.url1Label%>
+                                    </a>
+                                    <% } %>
+                                        <% if(student.url2) { %>
+                                            <a href="<%=student.url2%>" target="_blank" class="btn btn-warning mb-1">
+                                                <%=student.url2Label%>
+                                            </a>
+                                            <% } %>
+                                                <% if(student.url3) { %>
+                                                    <a href="<%=student.url3%>" target="_blank" class="btn btn-info mb-1">
+                                                        <%=student.url3Label%>
+                                                    </a>
+                                                    <% } %>
+                                                        <% if(student.url4) { %>
+                                                            <a href="<%=student.url4%>" target="_blank"
+                                                                class="btn btn-danger mb-1">
+                                                                <%=student.url4Label%>
+                                                            </a>
+                                                            <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
