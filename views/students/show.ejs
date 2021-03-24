@@ -3,10 +3,17 @@
     <div class="row">
         <div class="card shadow mb-5">
             <div class="card-body">
-                <h1 class="text-center mt-4">
-                    <%=student.firstName%>
-                        <%=student.lastName%>'s Profile
-                </h1>
+                <div class="row">
+                    <div class="col-2 mt-2">
+                        <a href="/students/" class="btn btn-dark font-weight-bold mb-1">&lt;-</a>
+                    </div>
+                    <h1 class="text-center mt-4 col-8">
+                        <%=student.firstName%>
+                            <%=student.lastName%>'s Profile
+                    </h1>
+                    <div class="col-2"></div>
+                </div>
+
                 <div class="row">
                     <div class="col-sm-6">
                         <!-- Student Information -->
@@ -62,6 +69,10 @@
                                         <% } %>
                                             <%=student.zipCodeExtension%>
                             </dd>
+                            <dt class="col-sm-4">Special Notes:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.notes%>
+                            </dd>
                         </dl>
                     </div>
                     <div class="col-sm-6">
@@ -74,18 +85,27 @@
                                 <%=student.coinsBalance%>
                             </dd>
                         </dl>
+                        <!-- Hide if blank -->
+                        <% if(student.url1 && student.url1Label){ %> 
                         <a href="<%=student.url1%>" target="_blank" class="btn btn-success">
                             <%=student.url1Label%>
                         </a>
+                        <% } %> 
+                        <% if(student.url2 && student.url2Label){ %> 
                         <a href="<%=student.url2%>" target="_blank" class="btn btn-warning">
                             <%=student.url2Label%>
                         </a>
+                        <% } %> 
+                        <% if(student.url3 && student.url3Label){ %> 
                         <a href="<%=student.url3%>" target="_blank" class="btn btn-info">
                             <%=student.url3Label%>
                         </a>
+                        <% } %> 
+                        <% if(student.url4 && student.url4Label){ %> 
                         <a href="<%=student.url4%>" target="_blank" class="btn btn-danger">
                             <%=student.url4Label%>
                         </a>
+                        <% } %> 
                     </div>
                     <!-- Emergency Contacts -->
                     <h2 class="mt-4 form-subtitle">Emergency Contacts</h2>

@@ -2,7 +2,16 @@
     <div class="row">
         <div class="card shadow mb-5">
             <div class="card-body">
-                <h1 class="text-center mt-4">My Homework</h1>
+                <div class="row">
+                    <div class="col-2 mt-2">
+                        <a href="/sportal/" class="btn btn-dark font-weight-bold mb-1">&lt;-</a>
+                    </div>
+                    <h1 class="text-center mt-4 col-8">
+                        <%=student.firstName%>
+                            <%=student.lastName%>'s Homework
+                    </h1>
+                    <div class="col-2"></div>
+                </div>
                 <div class="card mb-3">
                     <div class="accordion" id="accordion-parent">
                         <!-- Sort homework newest to oldest -->
