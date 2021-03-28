@@ -57,11 +57,16 @@ module.exports.studentSchema = Joi.object({
         primaryContactRelationship: Joi.string().trim().valid('Self','Spouse','Mother','Father','Mother-in-law','Father-in-law','Grandmother','Grandfather','Guardian','Sister','Brother', 'Other-Relative', 'Other-Nonrelative', 'Unknown').required().escapeHTML(),
         primaryContactPhone: Joi.string().trim().required().escapeHTML(),
         primaryContactEmail: Joi.string().trim().required().escapeHTML(),
-        secondaryContactFirst: Joi.string().trim().allow('').optional().escapeHTML(),
-        secondaryContactLast: Joi.string().trim().allow('').optional().escapeHTML(),
-        secondaryContactRelationship: Joi.string().trim().valid('Self','Spouse','Mother','Father','Mother-in-law','Father-in-law','Grandmother','Grandfather','Guardian','Sister','Brother', 'Other-Relative', 'Other-Nonrelative', 'Unknown').allow('').optional().escapeHTML(),
-        secondaryContactPhone: Joi.string().trim().allow('').optional().escapeHTML(),
-        secondaryContactEmail: Joi.string().trim().allow('').optional().escapeHTML()
+        emergPrimFirst: Joi.string().trim().required().escapeHTML(),
+        emergPrimLast: Joi.string().trim().required().escapeHTML(),
+        emergPrimRelationship: Joi.string().trim().valid('Self','Spouse','Mother','Father','Mother-in-law','Father-in-law','Grandmother','Grandfather','Guardian','Sister','Brother', 'Other-Relative', 'Other-Nonrelative', 'Unknown').required().escapeHTML(),
+        emergPrimPhone: Joi.string().trim().required().escapeHTML(),
+        emergPrimEmail: Joi.string().trim().required().escapeHTML(),
+        emergSecFirst: Joi.string().trim().allow('').optional().escapeHTML(),
+        emergSecLast: Joi.string().trim().allow('').optional().escapeHTML(),
+        emergSecRelationship: Joi.string().trim().valid('Self','Spouse','Mother','Father','Mother-in-law','Father-in-law','Grandmother','Grandfather','Guardian','Sister','Brother', 'Other-Relative', 'Other-Nonrelative', 'Unknown').allow('').optional().escapeHTML(),
+        emergSecPhone: Joi.string().trim().allow('').optional().escapeHTML(),
+        emergSecEmail: Joi.string().trim().allow('').optional().escapeHTML()
     }).required()
 })
 
@@ -71,7 +76,8 @@ module.exports.noteSchema = Joi.object({
         noteDate: Joi.date().required(),
         noteCategory: Joi.string().trim().max(70).required().escapeHTML(),
         noteTitle: Joi.string().trim().max(70).required().escapeHTML(),
-        noteComment: Joi.string().trim().allow('').optional().escapeHTML()
+        noteComment: Joi.string().trim().allow('').optional().escapeHTML(),
+        noteHide: Joi.string().trim().valid('true','false').optional().escapeHTML(),
     }).required()
 })
 

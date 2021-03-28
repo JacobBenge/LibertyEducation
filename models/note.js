@@ -25,6 +25,10 @@ const noteSchema = new Schema({
     noteComment:{
         type: String,
         required: false
+    },
+    noteHide:{
+        type: Boolean,
+        default: false
     }
 });
 

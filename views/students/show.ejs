@@ -1,8 +1,10 @@
 <% layout('layouts/teacher-boilerplate') %>
+    <link rel="stylesheet" href="/styles/filter.css">
     <!-- Profile -->
     <div class="row">
         <div class="card shadow mb-5">
             <div class="card-body">
+                <!-- Header -->
                 <div class="row">
                     <div class="col-2 mt-2">
                         <a href="/students/" class="btn btn-dark font-weight-bold mb-1">&lt;-</a>
@@ -11,9 +13,10 @@
                         <%=student.firstName%>
                             <%=student.lastName%>'s Profile
                     </h1>
-                    <div class="col-2"></div>
+                    <div class="col-2 mt-4">
+                        <a href="#note-form" class="btn btn-primary">Add Note</a>
+                    </div>
                 </div>
-
                 <div class="row">
                     <div class="col-sm-6">
                         <!-- Student Information -->
@@ -77,7 +80,7 @@
                     </div>
                     <div class="col-sm-6">
                         <!-- Student Portal Info -->
-                        <h2 class="mt-4 form-subtitle">Student Portal Info</h2>
+                        <h2 class="mt-4 form-subtitle">Student Portal</h2>
                         <hr>
                         <dl class="row">
                             <dt class="col-sm-4">Rewards Coin Balance:</dt>
@@ -86,101 +89,118 @@
                             </dd>
                         </dl>
                         <!-- Hide if blank -->
-                        <% if(student.url1 && student.url1Label){ %> 
-                        <a href="<%=student.url1%>" target="_blank" class="btn btn-success">
-                            <%=student.url1Label%>
-                        </a>
-                        <% } %> 
-                        <% if(student.url2 && student.url2Label){ %> 
-                        <a href="<%=student.url2%>" target="_blank" class="btn btn-warning">
-                            <%=student.url2Label%>
-                        </a>
-                        <% } %> 
-                        <% if(student.url3 && student.url3Label){ %> 
-                        <a href="<%=student.url3%>" target="_blank" class="btn btn-info">
-                            <%=student.url3Label%>
-                        </a>
-                        <% } %> 
-                        <% if(student.url4 && student.url4Label){ %> 
-                        <a href="<%=student.url4%>" target="_blank" class="btn btn-danger">
-                            <%=student.url4Label%>
-                        </a>
-                        <% } %> 
+                        <% if(student.url1 && student.url1Label){ %>
+                            <a href="<%=student.url1%>" target="_blank" class="btn btn-success">
+                                <%=student.url1Label%>
+                            </a>
+                            <% } %>
+                                <% if(student.url2 && student.url2Label){ %>
+                                    <a href="<%=student.url2%>" target="_blank" class="btn btn-warning">
+                                        <%=student.url2Label%>
+                                    </a>
+                                    <% } %>
+                                        <% if(student.url3 && student.url3Label){ %>
+                                            <a href="<%=student.url3%>" target="_blank" class="btn btn-info">
+                                                <%=student.url3Label%>
+                                            </a>
+                                            <% } %>
+                                                <% if(student.url4 && student.url4Label){ %>
+                                                    <a href="<%=student.url4%>" target="_blank" class="btn btn-danger">
+                                                        <%=student.url4Label%>
+                                                    </a>
+                                                    <% } %>
                     </div>
-                    <!-- Emergency Contacts -->
-                    <h2 class="mt-4 form-subtitle">Emergency Contacts</h2>
+                </div>
+                <!-- Contacts -->
+                <div class="row">
+                    <h2 class="mt-4 form-subtitle">Contacts</h2>
                     <hr>
-                    <div class="row">
-                        <div class="col-6">
+                    <dl class="row">
+                        <div class="col-sm-4">
                             <h4>Primary</h4>
                             <dt class="col-sm-4">First Name:</dt>
                             <dd class="col-sm-8">
                                 <%=student.primaryContactFirst%>
                             </dd>
-                            </dl>
                             <dt class="col-sm-4">Last Name:</dt>
                             <dd class="col-sm-8">
                                 <%=student.primaryContactLast%>
                             </dd>
-                            </dl>
                             <dt class="col-sm-4">Phone:</dt>
                             <dd class="col-sm-8">
                                 <%=student.primaryContactPhone%>
                             </dd>
-                            </dl>
                             <dt class="col-sm-4">Email:</dt>
                             <dd class="col-sm-8">
                                 <%=student.primaryContactEmail%>
                             </dd>
-                            </dl>
-                            <dt class="col-sm-4">Relationship to Student:</dt>
+                            <dt class="col-sm-4">Relationship:</dt>
                             <dd class="col-sm-8">
                                 <%=student.primaryContactRelationship%>
                             </dd>
-                            </dl>
                         </div>
-                        <div class="col-6">
-                            <h4>Secondary</h4>
+                        <div class="col-sm-4">
+                            <h4>Emergency 1</h4>
                             <dt class="col-sm-4">First Name:</dt>
                             <dd class="col-sm-8">
-                                <%=student.secondaryContactFirst%>
+                                <%=student.emergPrimFirst%>
                             </dd>
                             <dt class="col-sm-4">Last Name:</dt>
                             <dd class="col-sm-8">
-                                <%=student.secondaryContactLast%>
+                                <%=student.emergPrimLast%>
                             </dd>
-                            </dl>
                             <dt class="col-sm-4">Phone:</dt>
                             <dd class="col-sm-8">
-                                <%=student.secondaryContactPhone%>
+                                <%=student.emergPrimPhone%>
                             </dd>
-                            </dl>
                             <dt class="col-sm-4">Email:</dt>
                             <dd class="col-sm-8">
-                                <%=student.secondaryContactEmail%>
+                                <%=student.emergPrimEmail%>
                             </dd>
-                            </dl>
-                            <dt class="col-sm-4">Relationship to Student:</dt>
+                            <dt class="col-sm-4">Relationship:</dt>
                             <dd class="col-sm-8">
-                                <%=student.secondaryContactRelationship%>
+                                <%=student.emergPrimRelationship%>
                             </dd>
-                            </dl>
                         </div>
-                    </div>
+                        <div class="col-sm-4">
+                            <h4>Emergency 2</h4>
+                            <dt class="col-sm-4">First Name:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.emergSecFirst%>
+                            </dd>
+                            <dt class="col-sm-4">Last Name:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.emergSecLast%>
+                            </dd>
+                            <dt class="col-sm-4">Phone:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.emergSecPhone%>
+                            </dd>
+                            <dt class="col-sm-4">Email:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.emergSecEmail%>
+                            </dd>
+                            <dt class="col-sm-4">Relationship:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.emergSecRelationship%>
+                            </dd>
+                        </div>
+                    </dl>
                 </div>
+                <a href="/students/<%=student._id%>/edit" class="mb-3 mt-5 btn btn-info d-grid">Edit</a>
+                <form class="col-12 mb-3 d-grid" action="/students/<%=student._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger"
+                        onclick="return confirm('Are you sure you want to permanently delete this student?')">Delete</button>
+                </form>
             </div>
-            <a href="/students/<%=student._id%>/edit" class="mb-3 mt-5 btn btn-info d-grid">Edit</a>
-            <form class="col-12 mb-3 d-grid" action="/students/<%=student._id%>?_method=DELETE" method="POST">
-                <button class="btn btn-danger"
-                    onclick="return confirm('Are you sure you want to permanently delete this student?')">Delete</button>
-            </form>
         </div>
     </div>
     <!-- Notes -->
     <div class="row">
         <div class="card shadow mb-5">
             <div class="card-body">
-                <h2>Notes</h2>
+                <!-- ID is used by button at top of page -->
+                <h2 id="note-form">Add Note</h2>
                 <form action="/students/<%=student._id%>/note" class="mb-3 validated-form" method="POST" novalidate>
                     <div class="row">
                         <div class="col-4">
@@ -211,39 +231,70 @@
                                 Looks good!
                             </div>
                         </div>
+                        <div class="mb-3">
+                            <input type="checkbox" id="noteHide" name="note[noteHide]" value="true">
+                            <label class="form-label" for="noteHide">Hide this note from the Student Portal</label>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
                     </div>
                     <button class="btn btn-success">Add Notes</button>
                 </form>
             </div>
         </div>
     </div>
-    <!-- Past Notes -->
-    <!-- Sorts by noteDate newest first -->
-    <% const sortedNotes = student.note.sort((a, b) => b.noteDate - a.noteDate) %> 
-    <% for(let note of sortedNotes) { %>
-        <div class="row">
-            <div class="card shadow mb-3">
-                <div class="card-body">
-                    <h5 class="card-title mb-2">
-                        <%=note.noteTitle%>
-                        <% if(!note.noteTitle) { %>
-                            Untitled
-                            <% } %> 
-                    </h5>
-                    <span class="badge rounded-pill bg-secondary">
-                        <%=note.noteDate.toISOString().substring(0, 10)%>
-                    </span>
-                    <span class="badge rounded-pill bg-info">
-                        <%= note.noteCategory%>
-                    </span>
-                    <p class="card-text mt-3">
-                        <%=note.noteComment%>
-                    </p>
-                    <form action="/students/<%=student._id%>/note/<%=note._id%>?_method=DELETE" method="POST">
-                        <button class="btn btn-sm btn-danger mt-3"
-                            onclick="return confirm('Are you sure you want to permanently delete this item?')">Delete</button>
-                    </form>
+    <!-- Search Notes -->
+    <div class="row">
+        <div class="card shadow mb-2">
+            <div class="card-body">
+                <div class="row">
+                    <div class="mb-3">
+                        <label class="form-label" for="search-bar">Filter By:</label>
+                        <input class="form-control" type="text" id="search-bar"
+                            placeholder="Title, Category, or Date (YYYY-MM-DD)">
+                    </div>
                 </div>
             </div>
         </div>
-        <% } %>
+    </div>
+    <!-- Past Notes -->
+    <!-- Sorts by noteDate newest first -->
+    <% const sortedNotes=student.note.sort((a, b)=> b.noteDate - a.noteDate) %>
+        <% for(let note of sortedNotes) { %>
+            <div
+                class="filterDiv <%=note.noteCategory%> <%=note.noteTitle%> <%=note.noteDate.toISOString().substring(0, 10)%>">
+                <div class="row">
+                    <div class="card shadow mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title mb-2">
+                                <%=note.noteTitle%>
+                                    <% if(!note.noteTitle) { %>
+                                        Untitled
+                                        <% } %>
+                            </h5>
+                            <span class="badge rounded-pill bg-secondary">
+                                <%=note.noteDate.toISOString().substring(0, 10)%>
+                            </span>
+                            <span class="badge rounded-pill bg-info">
+                                <%=note.noteCategory%>
+                            </span>
+                            <% if(note.noteHide==true) { %>
+                                <span class="badge rounded-pill bg-warning">
+                                    Hidden
+                                </span>
+                                <% } %>
+                                    <p class="card-text mt-3">
+                                        <%=note.noteComment%>
+                                    </p>
+                                    <form action="/students/<%=student._id%>/note/<%=note._id%>?_method=DELETE"
+                                        method="POST">
+                                        <button class="btn btn-sm btn-danger mt-3"
+                                            onclick="return confirm('Are you sure you want to permanently delete this item?')">Delete</button>
+                                    </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+                <script src="/scripts/filter.js"></script>

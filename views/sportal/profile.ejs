@@ -1,139 +1,160 @@
 <% layout('layouts/student-boilerplate') %>
-<div class="row">
-    <div class="card shadow mb-5">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-2 mt-2">
-                    <a href="/sportal/" class="btn btn-dark font-weight-bold mb-1">&lt;-</a>
+    <!-- Profile -->
+    <div class="row">
+        <div class="card shadow mb-5">
+            <div class="card-body">
+                <!-- Header -->
+                <div class="row">
+                    <div class="col-2 mt-2">
+                        <a href="/sportal/" class="btn btn-dark font-weight-bold mb-1">&lt;-</a>
+                    </div>
+                    <h1 class="text-center mt-4 col-8">
+                        <%=student.firstName%>
+                            <%=student.lastName%>'s Profile
+                    </h1>
+                    <div class="col-2 mt-4">
+                    </div>
                 </div>
-                <h1 class="text-center mt-4 col-8">
-                    <%=student.firstName%>
-                        <%=student.lastName%>'s Profile
-                </h1>
-                <div class="col-2"></div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <!-- Student Information -->
-                    <h2 class="mt-4 form-subtitle">Personal Info</h2>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <!-- Student Information -->
+                        <h2 class="mt-4 form-subtitle">Personal Info</h2>
+                        <hr>
+                        <dl class="row">
+                            <dt class="col-sm-4">First Name:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.firstName%>
+                            </dd>
+                            <dt class="col-sm-4">Last Name:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.lastName%>
+                            </dd>
+                            <dt class="col-sm-4">Preferred Name:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.prefName%>
+                            </dd>
+                            <dt class="col-sm-4">Birth Date:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.dateOfBirth.toISOString().substring(0, 10)%>
+                            </dd>
+                            <dt class="col-sm-4">Gender:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.gender%>
+                            </dd>
+                            <dt class="col-sm-4">School Year:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.schoolYear%>
+                            </dd>
+                            <dt class="col-sm-4">Address Line 1:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.addressLine1%>
+                            </dd>
+                            <dt class="col-sm-4">Address Line 2:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.addressLine2%>
+                            </dd>
+                            <dt class="col-sm-4">City:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.city%>
+                            </dd>
+                            <dt class="col-sm-4">State:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.stateCode%>
+                            </dd>
+                            <dt class="col-sm-4">Zip Code:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.zipCodeBase%>
+                                    <!-- show or hide a dash depending if extension is present -->
+                                    <% if(student.zipCodeExtension) { %>
+                                        <span>-</span>
+                                        <% } %>
+                                            <%=student.zipCodeExtension%>
+                            </dd>
+                            <dt class="col-sm-4">Special Notes:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.notes%>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+                </div>
+                <!-- Contacts -->
+                <div class="row">
+                    <h2 class="mt-4 form-subtitle">Contacts</h2>
                     <hr>
                     <dl class="row">
-                        <dt class="col-sm-4">First Name:</dt>
-                        <dd class="col-sm-8">
-                            <%=student.firstName%>
-                        </dd>
-                        <dt class="col-sm-4">Last Name:</dt>
-                        <dd class="col-sm-8">
-                            <%=student.lastName%>
-                        </dd>
-                        <dt class="col-sm-4">Preferred Name:</dt>
-                        <dd class="col-sm-8">
-                            <%=student.prefName%>
-                        </dd>
-                        <dt class="col-sm-4">Birth Date:</dt>
-                        <dd class="col-sm-8">
-                            <%=student.dateOfBirth.toISOString().substring(0, 10)%>
-                        </dd>
-                        <dt class="col-sm-4">Gender:</dt>
-                        <dd class="col-sm-8">
-                            <%=student.gender%>
-                        </dd>
-                        <dt class="col-sm-4">School Year:</dt>
-                        <dd class="col-sm-8">
-                            <%=student.schoolYear%>
-                        </dd>
-                        <dt class="col-sm-4">Address Line 1:</dt>
-                        <dd class="col-sm-8">
-                            <%=student.addressLine1%>
-                        </dd>
-                        <dt class="col-sm-4">Address Line 2:</dt>
-                        <dd class="col-sm-8">
-                            <%=student.addressLine2%>
-                        </dd>
-                        <dt class="col-sm-4">City:</dt>
-                        <dd class="col-sm-8">
-                            <%=student.city%>
-                        </dd>
-                        <dt class="col-sm-4">State:</dt>
-                        <dd class="col-sm-8">
-                            <%=student.stateCode%>
-                        </dd>
-                        <dt class="col-sm-4">Zip Code:</dt>
-                        <dd class="col-sm-8">
-                            <%=student.zipCodeBase%>
-                                <!-- show or hide a dash depending if extension is present -->
-                                <% if(student.zipCodeExtension) { %>
-                                    <span>-</span>
-                                    <% } %>
-                                        <%=student.zipCodeExtension%>
-                        </dd>
-                        <dt class="col-sm-4">Special Notes:</dt>
-                        <dd class="col-sm-8">
-                            <%=student.notes%>
-                        </dd>
+                        <div class="col-sm-4">
+                            <h4>Primary</h4>
+                            <dt class="col-sm-4">First Name:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.primaryContactFirst%>
+                            </dd>
+                            <dt class="col-sm-4">Last Name:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.primaryContactLast%>
+                            </dd>
+                            <dt class="col-sm-4">Phone:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.primaryContactPhone%>
+                            </dd>
+                            <dt class="col-sm-4">Email:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.primaryContactEmail%>
+                            </dd>
+                            <dt class="col-sm-4">Relationship:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.primaryContactRelationship%>
+                            </dd>
+                        </div>
+                        <div class="col-sm-4">
+                            <h4>Emergency 1</h4>
+                            <dt class="col-sm-4">First Name:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.emergPrimFirst%>
+                            </dd>
+                            <dt class="col-sm-4">Last Name:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.emergPrimLast%>
+                            </dd>
+                            <dt class="col-sm-4">Phone:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.emergPrimPhone%>
+                            </dd>
+                            <dt class="col-sm-4">Email:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.emergPrimEmail%>
+                            </dd>
+                            <dt class="col-sm-4">Relationship:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.emergPrimRelationship%>
+                            </dd>
+                        </div>
+                        <div class="col-sm-4">
+                            <h4>Emergency 2</h4>
+                            <dt class="col-sm-4">First Name:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.emergSecFirst%>
+                            </dd>
+                            <dt class="col-sm-4">Last Name:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.emergSecLast%>
+                            </dd>
+                            <dt class="col-sm-4">Phone:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.emergSecPhone%>
+                            </dd>
+                            <dt class="col-sm-4">Email:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.emergSecEmail%>
+                            </dd>
+                            <dt class="col-sm-4">Relationship:</dt>
+                            <dd class="col-sm-8">
+                                <%=student.emergSecRelationship%>
+                            </dd>
+                        </div>
                     </dl>
-                </div>
-                <!-- Emergency Contacts -->
-                <h2 class="mt-4 form-subtitle">Emergency Contacts</h2>
-                <hr>
-                <div class="row">
-                    <div class="col-6">
-                        <h4>Primary</h4>
-                        <dt class="col-sm-4">First Name:</dt>
-                        <dd class="col-sm-8">
-                            <%=student.primaryContactFirst%>
-                        </dd>
-                        </dl>
-                        <dt class="col-sm-4">Last Name:</dt>
-                        <dd class="col-sm-8">
-                            <%=student.primaryContactLast%>
-                        </dd>
-                        </dl>
-                        <dt class="col-sm-4">Phone:</dt>
-                        <dd class="col-sm-8">
-                            <%=student.primaryContactPhone%>
-                        </dd>
-                        </dl>
-                        <dt class="col-sm-4">Email:</dt>
-                        <dd class="col-sm-8">
-                            <%=student.primaryContactEmail%>
-                        </dd>
-                        </dl>
-                        <dt class="col-sm-4">Relationship to Student:</dt>
-                        <dd class="col-sm-8">
-                            <%=student.primaryContactRelationship%>
-                        </dd>
-                        </dl>
-                    </div>
-                    <div class="col-6">
-                        <h4>Secondary</h4>
-                        <dt class="col-sm-4">First Name:</dt>
-                        <dd class="col-sm-8">
-                            <%=student.secondaryContactFirst%>
-                        </dd>
-                        <dt class="col-sm-4">Last Name:</dt>
-                        <dd class="col-sm-8">
-                            <%=student.secondaryContactLast%>
-                        </dd>
-                        </dl>
-                        <dt class="col-sm-4">Phone:</dt>
-                        <dd class="col-sm-8">
-                            <%=student.secondaryContactPhone%>
-                        </dd>
-                        </dl>
-                        <dt class="col-sm-4">Email:</dt>
-                        <dd class="col-sm-8">
-                            <%=student.secondaryContactEmail%>
-                        </dd>
-                        </dl>
-                        <dt class="col-sm-4">Relationship to Student:</dt>
-                        <dd class="col-sm-8">
-                            <%=student.secondaryContactRelationship%>
-                        </dd>
-                        </dl>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

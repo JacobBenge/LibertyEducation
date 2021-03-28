@@ -149,28 +149,54 @@ const studentSchema = new Schema({
         trim: true,
         required: true
     },
-    secondaryContactFirst: {
+    emergPrimFirst: {
+        type: String,
+        trim: true,
+        required: true
+    },
+    emergPrimLast: {
+        type: String,
+        trim: true,
+        required: true
+    },
+    emergPrimRelationship: {
+        type: String,
+        trim: true,
+        enum: relationshipTypes,
+        required: true
+    },
+    emergPrimPhone: {
+        type: String,
+        trim: true,
+        required: true
+    },
+    emergPrimEmail: {
+        type: String,
+        trim: true,
+        required: true
+    },
+    emergSecFirst: {
         type: String,
         trim: true,
         required: false
     },
-    secondaryContactLast: {
+    emergSecLast: {
         type: String,
         trim: true,
         required: false
     },
-    secondaryContactRelationship: {
+    emergSecRelationship: {
         type: String,
         trim: true,
         enum: relationshipTypes,
         required: false
     },
-    secondaryContactPhone: {
+    emergSecPhone: {
         type: String,
         trim: true,
         required: false
     },
-    secondaryContactEmail: {
+    emergSecEmail: {
         type: String,
         trim: true,
         required: false
