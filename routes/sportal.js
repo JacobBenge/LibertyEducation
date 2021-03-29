@@ -48,4 +48,16 @@ router.get('/homework', isAuthenticated, catchAsync(async (req, res) => {
     }
 }))
 
+// RENDER THE PROGRESS REPORT (Notes)
+router.get('/:id', isAuthenticated, catchAsync(async (req, res) => { 
+    try{
+        const userRegistrationCode = req.user.userRegistrationCode; // OBTAIN THE CODE FROM THE REQUEST
+        const student = await Student.findById(userRegistrationCode).populate({path:'note'}); // LOOKUP THE MATCHING STUDENT AND POPULATE THE NOTES
+        res.render('sportal/progress', { student }) // SEND THE STUDENT OBJECT BACK WITH THE RESPONSE SO ejs CAN ACCESS IT
+    } catch(e) {
+        req.flash('error', `Your registration code is no longer connected to a student profile.`) // YOU GET THIS ERROR IF THE TEACHER DELETES A STUDENT FROM THE DATABASE AND THE USER TRIES TO VISIT THE STUDENT PORTAL.
+        return res.redirect('/');
+    }
+}))
+
 module.exports = router;

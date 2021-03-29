@@ -200,7 +200,7 @@
         <div class="card shadow mb-5">
             <div class="card-body">
                 <!-- ID is used by button at top of page -->
-                <h2 id="note-form">Add Note</h2>
+                <h2 id="note-form">New Note</h2>
                 <form action="/students/<%=student._id%>/note" class="mb-3 validated-form" method="POST" novalidate>
                     <div class="row">
                         <div class="col-4">
@@ -233,13 +233,13 @@
                         </div>
                         <div class="mb-3">
                             <input type="checkbox" id="noteHide" name="note[noteHide]" value="true">
-                            <label class="form-label" for="noteHide">Hide this note from the Student Portal</label>
+                            <label class="form-label" for="noteHide">Hide this note from <%=student.firstName%>'s Progress Report</label>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-success">Add Notes</button>
+                    <button class="btn btn-success">Add Note</button>
                 </form>
             </div>
         </div>
@@ -254,6 +254,7 @@
                         <input class="form-control" type="text" id="search-bar"
                             placeholder="Title, Category, or Date (YYYY-MM-DD)">
                     </div>
+                    <p class="text-end text-muted">Ctrl+f or ⌘+f (Mac)</p>
                 </div>
             </div>
         </div>
