@@ -1,5 +1,4 @@
 <% layout('layouts/teacher-boilerplate') %>
-    <link rel="stylesheet" href="/styles/filter.css">
     <!-- Profile -->
     <div class="row">
         <div class="card shadow mb-5">
@@ -187,6 +186,10 @@
                         </div>
                     </dl>
                 </div>
+                <p class="text-muted mb-0"><small>Created By: <%=student.createdBy%> on
+                            <%=student.createDate.toISOString().substring(0, 10)%> </small></p>
+                <p class="text-muted mb-0"><small>Last Modified By: <%=student.lastModifiedBy%> on
+                            <%=student.lastModifiedDate.toISOString().substring(0, 10)%> </small></p>
                 <a href="/students/<%=student._id%>/edit" class="mb-3 mt-5 btn btn-info d-grid">Edit</a>
                 <form class="col-12 mb-3 d-grid" action="/students/<%=student._id%>?_method=DELETE" method="POST">
                     <button class="btn btn-danger"
@@ -233,7 +236,8 @@
                         </div>
                         <div class="mb-3">
                             <input type="checkbox" id="noteHide" name="note[noteHide]" value="true">
-                            <label class="form-label" for="noteHide">Hide this note from <%=student.firstName%>'s Progress Report</label>
+                            <label class="form-label" for="noteHide">Hide this note from <%=student.firstName%>'s
+                                    Progress Report</label>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -254,7 +258,7 @@
                         <input class="form-control" type="text" id="search-bar"
                             placeholder="Title, Category, or Date (YYYY-MM-DD)">
                     </div>
-                    <p class="text-end text-muted">Ctrl+f or ⌘+f (Mac)</p>
+                    <p class="text-end text-muted mb-0">Ctrl+f or ⌘+f (Mac)</p>
                 </div>
             </div>
         </div>
@@ -274,6 +278,9 @@
                                         Untitled
                                         <% } %>
                             </h5>
+                            <p class="card-text mt-3">
+                                <%=note.noteComment%>
+                            </p>
                             <span class="badge rounded-pill bg-secondary">
                                 <%=note.noteDate.toISOString().substring(0, 10)%>
                             </span>
@@ -285,14 +292,18 @@
                                     Hidden
                                 </span>
                                 <% } %>
-                                    <p class="card-text mt-3">
-                                        <%=note.noteComment%>
-                                    </p>
-                                    <form action="/students/<%=student._id%>/note/<%=note._id%>?_method=DELETE"
-                                        method="POST">
-                                        <button class="btn btn-sm btn-danger mt-3"
-                                            onclick="return confirm('Are you sure you want to permanently delete this item?')">Delete</button>
-                                    </form>
+                                    <p class="text-muted mb-0"><small>Created By: <%=note.createdBy%> on
+                                                <%=note.createDate.toISOString().substring(0, 10)%> </small></p>
+                                    <div class="row">
+                                        <div class="col-11"></div>
+                                        <div class="col-1">
+                                            <form action="/students/<%=student._id%>/note/<%=note._id%>?_method=DELETE"
+                                                method="POST">
+                                                <button class="btn btn-sm btn-danger"
+                                                    onclick="return confirm('Are you sure you want to permanently delete this item?')">Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
                         </div>
                     </div>
                 </div>

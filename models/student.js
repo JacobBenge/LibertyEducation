@@ -201,6 +201,26 @@ const studentSchema = new Schema({
         trim: true,
         required: false
     },
+    createdBy: {
+        type: String,
+        trim: true,
+        required: false
+    },
+    createDate:{
+        type: Date,
+        default: Date.now,
+        required: false
+    },
+    lastModifiedBy: {
+        type: String,
+        trim: true,
+        required: false
+    },
+    lastModifiedDate:{
+        type: Date,
+        default: Date.now,
+        required: false
+    },
     note: [
         {
             type: Schema.Types.ObjectId,
