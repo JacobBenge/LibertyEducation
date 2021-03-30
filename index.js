@@ -31,7 +31,7 @@ const User = require('./models/user');
 const sportalRoutes = require('./routes/sportal');
 const tportalRoutes = require('./routes/tportal');
 const studentsRoutes = require('./routes/students');
-const attendanceRoutes = require('./routes/attendance');
+const noteRoutes = require('./routes/note');
 const homeworkRoutes = require('./routes/homework');
 const authRoutes = require('./routes/auth');
 const ExpressError = require('./utils/ExpressError');
@@ -95,7 +95,6 @@ app.use(helmet());
     ];
     const styleSrcUrls = [
         "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css",
-
     ];
     const connectSrcUrls = [];
     const fontSrcUrls = [];
@@ -145,8 +144,8 @@ app.use('/tportal', tportalRoutes);
 app.use('/sportal', sportalRoutes);
 // ANY URLS WITH /students WILL BE ROUTED TO ./routes/students.js
 app.use('/students', studentsRoutes);
-// IF :ID AND ATTENDANCE ADDED ON IT WILL ROUTE TO ./routes/attendance.js
-app.use('/students/:id/attendance', attendanceRoutes);
+// IF :ID AND NOTE ADDED ON IT WILL ROUTE TO ./routes/note.js
+app.use('/students/:id/note', noteRoutes);
 // ANY URLS WITH /homework WILL BE ROUTED TO ./routes/homework.js
 app.use('/homework', homeworkRoutes);
 
@@ -173,6 +172,6 @@ app.use((err, req, res, next) => {
 })
 
 // EXPRESS BEGINS LISTENING ON SPECIFIED PORT
-app.listen(localHostPort, ()=> {
+app.listen(localHostPort, () => {
     console.log(`APP IS LISTENING ON http://localhost:${localHostPort}`)
 })

@@ -12,6 +12,39 @@ const homeworkSchema = new Schema({
     url: {
         type: String,
         trim: true,
+        required: false
+    },
+    stuId: { // NEEDS VALIDATION TO USE ENUM TO MAKE SURE THE student._id IS IN THE DATABASE
+        type: String,
+        trim: true,
+        required: true
+    },
+    assignedStudent: {
+        type: String,
+        trim: true
+    },
+    category: {
+        type: String,
+        trim: true,
+        enum: ['Reading', 'Writing', 'Math', 'Science', 'Social Studies', 'Physical Ed.', 'Art', 'Music', 'Other'],
+        required: true
+    },
+    dueDate: {
+        type: Date,
+        default: Date.now,
+        trim: true,
+        required: true
+    },
+    pointsPossible: {
+        type: Number,
+        trim: true,
+        min: [0, 'Cannot have negative points'],
+        max: 999,
+        required: false
+    },
+    description: {
+        type: String,
+        trim: true,
         required: true
     }
 })

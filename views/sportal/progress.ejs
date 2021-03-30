@@ -1,0 +1,75 @@
+<% layout('layouts/teacher-boilerplate') %>
+    <!-- Profile -->
+    <div class="row">
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <!-- Header -->
+                <div class="row">
+                    <div class="col-2 mt-2">
+                        <a href="/sportal/" class="btn btn-dark font-weight-bold mb-1">&lt;-</a>
+                    </div>
+                    <h1 class="text-center mt-4 col-8">
+                        <%=student.firstName%>
+                            <%=student.lastName%>'s Progress Report
+                    </h1>
+                    <div class="col-2 mt-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Search Notes -->
+    <div class="row">
+        <div class="card shadow mb-2">
+            <div class="card-body">
+                <div class="row">
+                    <div class="mb-3">
+                        <label class="form-label" for="search-bar">Filter By:</label>
+                        <input class="form-control" type="text" id="search-bar"
+                            placeholder="Title, Category, or Date (YYYY-MM-DD)">
+                    </div>
+                    <p class="text-end text-muted mb-0">Ctrl+f or ⌘+f (Mac)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Past Notes -->
+    <!-- Sorts by noteDate newest first -->
+    <% const sortedNotes=student.note.sort((a, b)=> b.noteDate - a.noteDate) %>
+        <% for(let note of sortedNotes) { %>
+            <% if(note.noteHide !==true) { %>
+                <div
+                    class="filterDiv <%=note.noteCategory%> <%=note.noteTitle%> <%=note.noteDate.toISOString().substring(0, 10)%>">
+                    <div class="row">
+                        <div class="card shadow mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title mb-2">
+                                    <%=note.noteTitle%>
+                                        <% if(!note.noteTitle) { %>
+                                            Untitled
+                                            <% } %>
+                                </h5>
+                                <p class="card-text mt-3">
+                                    <%=note.noteComment%>
+                                </p>
+                                <span class="badge rounded-pill bg-secondary">
+                                    <%=note.noteDate.toISOString().substring(0, 10)%>
+                                </span>
+                                <span class="badge rounded-pill bg-info">
+                                    <%=note.noteCategory%>
+                                </span>
+                                <% if(note.noteHide==true) { %>
+                                    <span class="badge rounded-pill bg-warning">
+                                        Hidden
+                                    </span>
+                                    <% } %>
+                                        <p class="text-muted mb-0"><small>Created By: <%=note.createdBy%> on
+                                                    <%=note.createDate.toISOString().substring(0, 10)%> </small>
+                                        </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+                    <% } %>
+                        <script src="/scripts/filter.js"></script>
