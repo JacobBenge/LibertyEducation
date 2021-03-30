@@ -14,6 +14,8 @@ module.exports.renderStudentNew = (req, res) => {
 // POST
 module.exports.createStudent = async (req, res) => {
     const student = new Student(req.body.student);
+    student.createdBy = req.user.username // ADD THE NAME OF THE PERSON THAT CREATED THE STUDENT
+    student.createDate = new Date(Date.now()); // ADD THE DATE THE STUDENT WAS ORIGINALLY CREATED
     await student.save();
     req.flash('success', `Successfully created a student profile for ${student.firstName}`); // FLASH IS USED TO PASS A ONE-TIME MESSAGE TO THE NEXT PAGE LOAD FOR A FLASH MESSAGE
     res.redirect(`/students/${student._id}`)
@@ -43,9 +45,12 @@ module.exports.renderStudentEdit = async (req, res) => {
 //PUT
 module.exports.updateStudent = async (req, res) => {
     const { id } = req.params; // PULLS THE STUDENT ID FROM THE REQUEST PARAMETERS (URL)
-    const student = await Student.findByIdAndUpdate(id, {...req.body.student}, { new: true })
-    req.flash('success', `Successfully updated ${student.firstName}'s student profile`);
-    res.redirect(`/students/${student.id}`);
+    const student = req.body.student;
+    student.lastModifiedBy = req.user.username // ADD THE NAME OF THE PERSON THAT UPDATED THE STUDENT
+    student.lastModifiedDate = new Date(Date.now()); // ADD THE DATE THE STUDENT WAS UPDATED
+    const studentFull = await Student.findByIdAndUpdate(id, {...student}, { new: true })
+    req.flash('success', `Successfully updated ${studentFull.firstName}'s student profile`);
+    res.redirect(`/students/${studentFull.id}`);
 }
 
 //DELETE

@@ -1,5 +1,4 @@
 <% layout('layouts/teacher-boilerplate') %>
-    <link rel="stylesheet" href="/styles/filter.css">
     <!-- Profile -->
     <div class="row">
         <div class="card shadow mb-4">
@@ -29,7 +28,7 @@
                         <input class="form-control" type="text" id="search-bar"
                             placeholder="Title, Category, or Date (YYYY-MM-DD)">
                     </div>
-                    <p class="text-end text-muted">Ctrl+f or ⌘+f (Mac)</p>
+                    <p class="text-end text-muted mb-0">Ctrl+f or ⌘+f (Mac)</p>
                 </div>
             </div>
         </div>
@@ -50,15 +49,23 @@
                                             Untitled
                                             <% } %>
                                 </h5>
+                                <p class="card-text mt-3">
+                                    <%=note.noteComment%>
+                                </p>
                                 <span class="badge rounded-pill bg-secondary">
                                     <%=note.noteDate.toISOString().substring(0, 10)%>
                                 </span>
                                 <span class="badge rounded-pill bg-info">
                                     <%=note.noteCategory%>
                                 </span>
-                                <p class="card-text mt-3">
-                                    <%=note.noteComment%>
-                                </p>
+                                <% if(note.noteHide==true) { %>
+                                    <span class="badge rounded-pill bg-warning">
+                                        Hidden
+                                    </span>
+                                    <% } %>
+                                        <p class="text-muted mb-0"><small>Created By: <%=note.createdBy%> on
+                                                    <%=note.createDate.toISOString().substring(0, 10)%> </small>
+                                        </p>
                             </div>
                         </div>
                     </div>

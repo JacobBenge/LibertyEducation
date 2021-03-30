@@ -14,3 +14,11 @@ hr {
 body {
     background-color:whitesmoke;
 }
+
+.filterDiv {
+    display: none;
+}
+
+.show {
+    display: block;
+}

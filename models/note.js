@@ -29,6 +29,16 @@ const noteSchema = new Schema({
     noteHide:{
         type: Boolean,
         default: false
+    },
+    createdBy: {
+        type: String,
+        trim: true,
+        required: false
+    },
+    createDate:{
+        type: Date,
+        default: Date.now,
+        required: false
     }
 });
 
