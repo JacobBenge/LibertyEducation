@@ -4,11 +4,11 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-2 mt-2">
-                        <a href="/tportal/" class="btn btn-dark font-weight-bold mb-1">&lt;-</a>
+                        <a href="/tportal/" class="btn btn-dark font-weight-bold mb-1"><i class="fas fa-chevron-left"></i></a>
                     </div>
                     <h1 class="text-center col-8 mt-4">All Students</h1>
                     <div class="col-2 mt-4">
-                        <a href="/students/new" class="btn btn-primary">Add New Student</a>
+                        <a href="/students/new" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Student</a>
                     </div>
                 </div>
                 <table class="table">
@@ -17,9 +17,8 @@
                             <th scope="col">Registration Code</th>
                             <th scope="col">First Name</th>
                             <th scope="col">Last Name</th>
-                            <th scope="col">Gender</th>
-                            <th scope="col">City</th>
-                            <th scope="col">State</th>
+                            <th scope="col">Pri Contact Last</th>
+                            <th scope="col">Pri Contact First</th>
                             <th scope="col">Access</th>
                         </tr>
                     </thead>
@@ -36,15 +35,12 @@
                                             <%=student.firstName%>
                                         </td>
                                         <td>
-                                            <%=student.gender%>
+                                            <%=student.primaryContactLast%>
                                         </td>
                                         <td>
-                                            <%=student.city%>
+                                            <%=student.primaryContactFirst%>
                                         </td>
-                                        <td>
-                                            <%=student.stateCode%>
-                                        </td>
-                                        <td><a class="btn btn-info" href="/students/<%=student._id%>">Profile
+                                        <td><a class="btn btn-info" href="/students/<%=student._id%>"><i class="fas fa-long-arrow-alt-right"></i>
                                                 <%=student.title%>
                                             </a></td>
                                     </tr>
