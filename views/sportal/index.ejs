@@ -1,61 +1,58 @@
 <% layout('layouts/student-boilerplate') %>
     <div class="row">
         <div class="card shadow mb-5">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-2 mt-2">
-                        <a href="/" class="btn btn-dark font-weight-bold mb-1"><i class="fas fa-home"></i></a>
-                    </div>
-                    <h1 class="text-center col-8 mt-4">Student Portal</h1>
-                    <div class="col-2 mt-4"></div>
+            <div class="card-body container">
+                <div class="col-2">                
+                        <a href="/" class="btn btn-dark font-weight-bold mb-1"><i class="fas fa-home"></i></a>                             
                 </div>
                 <div class="row">
-                    <div class="col-9"></div>
-                    <div class="col-3">
-                        <!-- https://fsymbols.com/signs/cent/ -->
+                    <h1 class="col-5 float-md-start">Student Portal</h1>
+                    <div class="col-2 "></div>
+                    <div class="col-3 "><h4>Coin Balance:</h4></div>
+                    <div class="col-2 ">                   
+                        <!-- https://fsymbols.com/signs/cent/ -->                   
                         <h2><span class="badge rounded-pill bg-success ml-auto"><i class="fas fa-coins"></i> <%=student.coinsBalance%></span></h2>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <p>Getting Started:</p>
-                        <ol>
-                            <li>Visit <a href="/sportal/profile">My Profile</a> to verify your information is correct.
-                            </li>
-                            <li>Visit <a href="/sportal/homework">My Homework</a> to view your homework assignments</li>
-                        </ol>
-                        <a href="/sportal/profile" class="btn btn-primary font-weight-bold mb-1"><i class="fas fa-id-card"></i> Profile</a>
-                        <a href="/sportal/homework" class="btn btn-primary font-weight-bold mb-1"><i class="fas fa-book-open"></i> Homework</a>
-                        <a href="/sportal/<%=student._id%>" class="btn btn-primary font-weight-bold mb-1"><i class="fas fa-chalkboard-teacher"></i> Progress Report</a> <br><br>
+                   
+            <div class="row">
+                <div class="col-5  pr-4">
+                    <div class="text-center">  <br>        
+                        <a href="/sportal/profile" class="btn btn-primary font-weight-bold mb-1 btn-lg"><i class="fas fa-id-card"></i> Profile</a><br><br>
+                        <a href="/sportal/homework" class="btn btn-primary font-weight-bold mb-1 btn-lg"><i class="fas fa-book-open"></i> Homework</a><br><br>
+                        <a href="/sportal/<%=student._id%>" class="btn btn-primary font-weight-bold mb-1 btn-lg"><i class="fas fa-chalkboard-teacher"></i> Progress Report</a> <br><br>
                     </div>
-                    <div class="col-sm-6">
+                </div>
+                <div class="col-2"></div>
+                    <div class="col-5 ">
+                        <h3>Links</h3>
                         <!-- Show or hide external link buttons depending if they are present -->
-                        <% if(student.url1 || student.url2 || student.url3 || student.url4) { %>
-                            <p>External Sites:</p>
+                        <% if(student.url1 || student.url2 || student.url3 || student.url4) { %>                           
                             <% } %>
                                 <% if(student.url1) { %>
-                                    <a href="<%=student.url1%>" target="_blank" class="btn btn-success mb-1">
+                                    <a href="<%=student.url1%>" target="_blank" class="btn btn-success btn-lg mb-1 text-center">
                                         <i class="fas fa-external-link-alt"></i> <%=student.url1Label%>
-                                    </a>
+                                    </a><br>
                                     <% } %>
                                         <% if(student.url2) { %>
-                                            <a href="<%=student.url2%>" target="_blank" class="btn btn-warning mb-1">
+                                            <a href="<%=student.url2%>" target="_blank" class="btn btn-warning btn-lg mb-1">
                                                 <i class="fas fa-external-link-alt"></i> <%=student.url2Label%>
-                                            </a>
+                                            </a><br>
                                             <% } %>
                                                 <% if(student.url3) { %>
-                                                    <a href="<%=student.url3%>" target="_blank" class="btn btn-info mb-1">
+                                                    <a href="<%=student.url3%>" target="_blank" class="btn btn-info btn-lg mb-1">
                                                         <i class="fas fa-external-link-alt"></i> <%=student.url3Label%>
-                                                    </a>
+                                                    </a><br>
                                                     <% } %>
                                                         <% if(student.url4) { %>
                                                             <a href="<%=student.url4%>" target="_blank"
-                                                                class="btn btn-danger mb-1">
+                                                                class="btn btn-danger mb-1 btn-lg">
                                                                 <i class="fas fa-external-link-alt"></i> <%=student.url4Label%>
-                                                            </a>
+                                                            </a><br>
                                                             <% } %>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
