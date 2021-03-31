@@ -37,7 +37,7 @@ const authRoutes = require('./routes/auth');
 const disclaimerRoutes = require('./routes/disclaimer');
 const ExpressError = require('./utils/ExpressError');
 const database = "test-liberty"; //MUST BE LOWERCASE
-const localHostPort = 3000; //ANY UNUSED PORT IS FINE FOR TESTING. DEFAULT IS 3000
+const localHostPort = 3010; //ANY UNUSED PORT IS FINE FOR TESTING. DEFAULT IS 3000
 const dbPort = 27017; //DEFAULT PORT FOR MONGODB
 
 // SETS UP MONGODB CONNECTION. mongod.exe MUST BE RUNNING ALREADY TO CONNECT. 
