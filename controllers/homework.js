@@ -1,5 +1,4 @@
 const Homework = require('../models/homework');
-const Student = require('../models/student');
 
 // GET
 module.exports.index = async (req, res) => {
@@ -8,19 +7,14 @@ module.exports.index = async (req, res) => {
 }
 
 // GET
-module.exports.renderHomeworkNew = async (req, res) => { 
-    const students = await Student.find({}); // PASS ALL STUDENTS TO NEW HOMEWORK PAGE SO WE CAN SELECT AN ASSIGNED STUDENT
-    res.render('homework/new', { students });
+module.exports.renderHomeworkNew = (req, res) => { 
+    res.render('homework/new');
 }
 
 // POST
 module.exports.createHomework = async (req, res) => {
-    let hw = req.body.homework; // RETREIVE USER INPUT FROM BODY
-    hw.dueDate = new Date(hw.dueDate);
-    const assignedStu = await Student.findById(hw.stuId); // LOOKUP THE ASSIGNED STUDENT IN DB WITH THE stuId provided
-    hw.assignedStudent = `${assignedStu.firstName} ${assignedStu.lastName}`; // ADD AN ADDITIONAL KEY/VALUE PAIR TO THE HOMEWORK OBJECT
-    const homework = new Homework(hw);  // VALIDATE HW OBJECT AGAINST THE SCHEMAS
-    await homework.save(); // SAVE THE HOMEWORK OBJECT TO THE DB
+    const homework = new Homework(req.body.homework);
+    await homework.save();
     req.flash('success', `Successfully created a homework assignment for ${homework.subjectLine}`); // FLASH IS USED TO PASS A ONE-TIME MESSAGE TO THE NEXT PAGE LOAD FOR A FLASH MESSAGE
     res.redirect(`/homework/${homework._id}`)
 }
@@ -39,12 +33,11 @@ module.exports.renderHomeworkShow = async (req, res) => {
 module.exports.renderHomeworkEdit = async (req, res) => {
     const { id } = req.params;
     const homework = await Homework.findById(id);
-    const students = await Student.find({});
     if(!homework) { // SAY YOU BOOKMARKED A homework URL AND SOMEONE DELETES THAT homework AND YOU TRY TO RETURN TO THAT PAGE.
         req.flash('error', `Sorry, I couldn't find that homework. Was that assignment deleted?`); // FLASH A MESSAGE
         return res.redirect('/homework'); // SEND TO /homework RATHER THAN homework/edit. OTHERWISE IT WOULD SHOW A NASTY DEFAULT ERROR MESSAGE.
     }
-    res.render('homework/edit', { homework, students }); // NEED students BECAUSE OF THE WAY THE EDIT FORM LOADS THE EXISTING INFO
+    res.render('homework/edit', { homework });
 }
 
 //PUT

@@ -1,4 +1,5 @@
 <% layout('layouts/teacher-boilerplate') %>
+<<<<<<< HEAD
     <div class="row">
         <div class="card shadow mb-5">
             <div class="card-body">
@@ -46,8 +47,36 @@
                                     </tr>
                                     <% } %>
                     </tbody>
-
-                </table>
-            </div>
-        </div>
+=======
+    <h1 class="text-center">All Students</h1>
+    <div>
+        <a href="/students/new">Add New Student</a>
     </div>
+>>>>>>> parent of 62ebe9e (Merge branch 'main' of https://github.com/JacobBenge/LibertyEducation into main)
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">_id</th>
+                <th scope="col">StuFirst</th>
+                <th scope="col">StuLast</th>
+                <th scope="col">StuGender</th>
+                <th scope="col">City</th>
+                <th scope="col">State</th>
+                <th scope="col">Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let student of students) { %>
+            <tr>
+                <td scope="row"><%=student._id%></td>
+                <td><%=student.firstName%></td>
+                <td><%=student.lastName%></td>
+                <td><%=student.gender%></td>
+                <td><%=student.city%></td>
+                <td><%=student.stateCode%></td>
+                <td><a class="btn btn-primary" href="/students/<%=student._id%>">Details <%=student.title%></a></td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Note = require('./note');
+const Attendance = require('./attendance');
 const Schema = mongoose.Schema;
 const stateList = require('../public/scripts/stateList.js')
 const relationshipTypes = require('../public/scripts/relationshipTypes.js')
@@ -23,13 +23,64 @@ const studentSchema = new Schema({
         required: false
     },
     dateOfBirth: {
-        type: Date,
-        default: Date.now,
+        type: String,
         trim: true,
         required: true
     },
     schoolYear: {
         type: Number,
+        trim: true,
+        required: false
+    },
+    primaryContactFirst: {
+        type: String,
+        trim: true,
+        required: true
+    },
+    primaryContactLast: {
+        type: String,
+        trim: true,
+        required: true
+    },
+    primaryContactRelationship: {
+        type: String,
+        trim: true,
+        enum: relationshipTypes,
+        required: true
+    },
+    primaryContactPhone: {
+        type: String,
+        trim: true,
+        required: true
+    },
+    primaryContactEmail: {
+        type: String,
+        trim: true,
+        required: true
+    },
+    secondaryContactFirst: {
+        type: String,
+        trim: true,
+        required: false
+    },
+    secondaryContactLast: {
+        type: String,
+        trim: true,
+        required: false
+    },
+    secondaryContactRelationship: {
+        type: String,
+        trim: true,
+        enum: relationshipTypes,
+        required: false
+    },
+    secondaryContactPhone: {
+        type: String,
+        trim: true,
+        required: false
+    },
+    secondaryContactEmail: {
+        type: String,
         trim: true,
         required: false
     },
@@ -71,170 +122,20 @@ const studentSchema = new Schema({
         enum: ['Male', 'Female', 'Unknown'],
         required: true
     },
-    notes: {
-        type: String,
-        trim: true,
-        required: false
-    },
-    coinsBalance: {
-        type: Number,
-        trim: true,
-        min: [0, 'Cannot have negative points'],
-        max: 99999,
-        required: false
-    },
-    url1Label: {
-        type: String,
-        trim: true,
-        required: false
-    },
-    url2Label: {
-        type: String,
-        trim: true,
-        required: false
-    },
-    url3Label: {
-        type: String,
-        trim: true,
-        required: false
-    },
-    url4Label: {
-        type: String,
-        trim: true,
-        required: false
-    },
-    url1: {
-        type: String,
-        trim: true,
-        required: false
-    },
-    url2: {
-        type: String,
-        trim: true,
-        required: false
-    },
-    url3: {
-        type: String,
-        trim: true,
-        required: false
-    },
-    url4: {
-        type: String,
-        trim: true,
-        required: false
-    },
-    primaryContactFirst: {
-        type: String,
-        trim: true,
-        required: true
-    },
-    primaryContactLast: {
-        type: String,
-        trim: true,
-        required: true
-    },
-    primaryContactRelationship: {
-        type: String,
-        trim: true,
-        enum: relationshipTypes,
-        required: true
-    },
-    primaryContactPhone: {
-        type: String,
-        trim: true,
-        required: true
-    },
-    primaryContactEmail: {
-        type: String,
-        trim: true,
-        required: true
-    },
-    emergPrimFirst: {
-        type: String,
-        trim: true,
-        required: true
-    },
-    emergPrimLast: {
-        type: String,
-        trim: true,
-        required: true
-    },
-    emergPrimRelationship: {
-        type: String,
-        trim: true,
-        enum: relationshipTypes,
-        required: true
-    },
-    emergPrimPhone: {
-        type: String,
-        trim: true,
-        required: true
-    },
-    emergPrimEmail: {
-        type: String,
-        trim: true,
-        required: true
-    },
-    emergSecFirst: {
-        type: String,
-        trim: true,
-        required: false
-    },
-    emergSecLast: {
-        type: String,
-        trim: true,
-        required: false
-    },
-    emergSecRelationship: {
-        type: String,
-        trim: true,
-        enum: relationshipTypes,
-        required: false
-    },
-    emergSecPhone: {
-        type: String,
-        trim: true,
-        required: false
-    },
-    emergSecEmail: {
-        type: String,
-        trim: true,
-        required: false
-    },
-    createdBy: {
-        type: String,
-        trim: true,
-        required: false
-    },
-    createDate:{
-        type: Date,
-        default: Date.now,
-        required: false
-    },
-    lastModifiedBy: {
-        type: String,
-        trim: true,
-        required: false
-    },
-    lastModifiedDate:{
-        type: Date,
-        default: Date.now,
-        required: false
-    },
-    note: [
+    attendance: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Note'
+            ref: 'Attendance'
         }
     ]
 })
 
-// CASCADE DELETES THE NOTES WHEN A STUDENT IS DELETED. THIS IS QUERY MIDDLEWARE, NOT DOCUMENT MIDDLEWARE
+// CASCADE DELETES THE REVIEWS WHEN A STUDENT IS DELETED. THIS IS QUERY MIDDLEWARE, NOT DOCUMENT MIDDLEWARE
 studentSchema.post('findOneAndDelete', async function (doc) {
     if(doc) {
-        await Note.deleteMany({
+        await Attendance.deleteMany({
             _id: {
-                $in: doc.note
+                $in: doc.attendance
             }
         })
     }

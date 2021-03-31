@@ -1,44 +1,8 @@
 <% layout('layouts/teacher-boilerplate') %>
-    <style>
-        /* https://www.geeksforgeeks.org/how-to-use-checkbox-inside-select-option-using-javascript/ */
-		.multipleSelection {
-			width: 300px;
-			background-color: #ebeded;
-		}
-
-		.selectBox {
-			position: relative;
-		}
-
-		.selectBox select {
-			width: 100%;
-			font-weight: bold;
-		}
-
-		.overSelect {
-			position: absolute;
-			left: 0;
-			right: 0;
-			top: 0;
-			bottom: 0;
-		}
-
-		#checkBoxes {
-			display: none;
-			border: 1px #4F615E solid;
-		}
-
-		#checkBoxes label {
-			display: block;
-		}
-
-		#checkBoxes label:hover {
-			background-color: #cccccc;
-		}
-    </style>
     <div class="row">
-        <div class="card shadow mb-5">
+        <div class="card shadow">
             <div class="card-body">
+<<<<<<< HEAD
                 <div class="row">
                     <div class="col-2 mt-2">
                         <a href="/homework/" class="btn btn-dark font-weight-bold mb-1"><i class="fas fa-chevron-left"></i></a>
@@ -46,15 +10,19 @@
                     <h1 class="col-8 text-center mt-4">New Homework</h1>
                     <div class="col-2"></div>
                 </div>
+=======
+                <h1 class="text-center">New Homework</h1>
+>>>>>>> parent of 62ebe9e (Merge branch 'main' of https://github.com/JacobBenge/LibertyEducation into main)
                 <form action="/homework/" method="POST" novalidate class="validated-form">
                     <div class="row">
-                        <div class="col-12">
+                        <!-- FIRST COLUMN -->
+                        <div class="col-6">
                             <div class="row">
                                 <div class="col-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="subjectLine">Subject Line</label>
                                         <input class="form-control" type="text" placeholder="Subject Line"
-                                            id="subjectLine" name="homework[subjectLine]" required autofocus>
+                                            id="subjectLine" name="homework[subjectLine]" required>
                                         <div class="valid-feedback">
                                             Looks good!
                                         </div>
@@ -62,88 +30,13 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="mb-3">
-                                        <label class="form-label" for="url">Related Link</label>
-                                        <input class="form-control" type="text"
-                                            placeholder="https://www.youtube.com/... (opt)" id="url"
-                                            name="homework[url]">
+                                        <label class="form-label" for="url">URL</label>
+                                        <input class="form-control" type="text" placeholder="URL" id="url"
+                                            name="homework[url]" required>
                                         <div class="valid-feedback">
                                             Looks good!
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="stuId">Assigned to Student</label>
-                                        <select class="form-select" id="stuId" name="homework[stuId]" required>
-                                            <option selected></option>
-                                            <% for(let student of students) { %>
-                                                <option value="<%=student._id%>">
-                                                    <%=student.firstName%>
-                                                        <%=student.lastName%>
-                                                </option>
-                                                <% } %>
-                                        </select>
-                                        <div class="valid-feedback">
-                                            Looks good!
-                                        </div>
-                                    </div>
-                                    <!-- <div class="multipleSelection">
-                                        <div class="selectBox" onclick="showCheckboxes()">
-                                            <select>
-                                                <option>Assigned To:</option>
-                                            </select>
-                                            <div class="overSelect"></div>
-                                        </div>
-                                        <div id="checkBoxes">
-                                           <% for(let student of students) { %>  
-                                            <label for="<%=student._id%>">
-                                                <input type="checkbox" id="<%=student._id%>" value="<%=student._id%>" name="homework[stuId]"/>
-                                                <%=student.firstName%>
-                                                <%=student.lastName%>
-                                            </label>
-                                            <% } %> 
-                                        </div>
-                                    </div> -->
-                                </div>
-                                <div class="col-6">
-                                    <label class="form-label" for="category">Category</label>
-                                    <select class="form-select" id="category" name="homework[category]" required>
-                                        <option selected></option>
-                                        <option value="Reading">Reading</option>
-                                        <option value="Writing">Writing</option>
-                                        <option value="Math">Math</option>
-                                        <option value="Science">Science</option>
-                                        <option value="Social Studies">Social Studies</option>
-                                        <option value="Physical Ed.">Physical Ed.</option>
-                                        <option value="Art">Art</option>
-                                        <option value="Music">Music</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <label class="form-label" for="dueDate">Due Date</label>
-                                    <input class="form-control" type="date" id="dueDate" name="homework[dueDate]"
-                                        required>
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <label class="form-label" for="pointsPossible">Coins Possible</label>
-                                    <input class="form-control" type="number" id="pointsPossible"
-                                        name="homework[pointsPossible]" placeholder="20" required>
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label" for="description">Description</label>
-                                    <textarea class="form-control rounded-0" id="description"
-                                        name="homework[description]" rows="7"
-                                        placeholder="For this assignment, you must ..." required></textarea>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -154,24 +47,11 @@
                         </div>
                     </div>
                 </form>
+<<<<<<< HEAD
                 <p class="text-center"><a href="/homework" class="mb-3 btn btn-lg btn-danger"><i class="fas fa-times"></i> Cancel</a></p>
+=======
+                <a href="/homework/">Back to all homework</a>
+>>>>>>> parent of 62ebe9e (Merge branch 'main' of https://github.com/JacobBenge/LibertyEducation into main)
             </div>
         </div>
     </div>
-    <!-- Used for Assign To: select box -->
-    <script>
-        var show = true;
-
-        function showCheckboxes() {
-            var checkboxes =
-                document.getElementById("checkBoxes");
-
-            if (show) {
-                checkboxes.style.display = "block";
-                show = false;
-            } else {
-                checkboxes.style.display = "none";
-                show = true;
-            }
-        }
-    </script>

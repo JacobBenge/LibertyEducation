@@ -33,57 +33,34 @@ module.exports.studentSchema = Joi.object({
         firstName: Joi.string().trim().required().escapeHTML(),
         lastName: Joi.string().trim().required().escapeHTML(),
         prefName: Joi.string().trim().allow('').optional().escapeHTML(),
-        dateOfBirth: Joi.date().required(),
+        dateOfBirth: Joi.string().trim().required().escapeHTML(),
         schoolYear: Joi.number().allow('').optional(),
+        primaryContactFirst: Joi.string().trim().required().escapeHTML(),
+        primaryContactLast: Joi.string().trim().required().escapeHTML(),
+        primaryContactRelationship: Joi.string().trim().valid('Self','Mother','Father','Mother-in-law','Father-in-law','Grandmother','Grandfather','Guardian','Sister','Brother', 'Other-Relative', 'Other-Nonrelative', 'Unknown').required().escapeHTML(),
+        primaryContactPhone: Joi.string().trim().required().escapeHTML(),
+        primaryContactEmail: Joi.string().trim().required().escapeHTML(),
+        secondaryContactFirst: Joi.string().trim().allow('').optional().escapeHTML(),
+        secondaryContactLast: Joi.string().trim().allow('').optional().escapeHTML(),
+        secondaryContactRelationship: Joi.string().trim().valid('Self','Mother','Father','Mother-in-law','Father-in-law','Grandmother','Grandfather','Guardian','Sister','Brother', 'Other-Relative', 'Other-Nonrelative', 'Unknown').allow('').optional().escapeHTML(),
+        secondaryContactPhone: Joi.string().trim().allow('').optional().escapeHTML(),
+        secondaryContactEmail: Joi.string().trim().allow('').optional().escapeHTML(),
         addressLine1: Joi.string().trim().required().escapeHTML(),
         addressLine2: Joi.string().trim().allow('').optional().escapeHTML(),
         city: Joi.string().trim().required().escapeHTML(),
         stateCode: Joi.string().trim().valid('AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY').length(2).required().escapeHTML(),
         zipCodeBase: Joi.number().required(),
         zipCodeExtension: Joi.number().allow('').optional(),
-        gender: Joi.string().trim().valid('Male','Female','Unknown').required().escapeHTML(),
-        notes: Joi.string().trim().allow('').optional().escapeHTML(),
-        coinsBalance: Joi.number().min(0).max(99999),
-        url1Label: Joi.string().trim().allow('').optional().escapeHTML(),
-        url2Label: Joi.string().trim().allow('').optional().escapeHTML(),
-        url3Label: Joi.string().trim().allow('').optional().escapeHTML(),
-        url4Label: Joi.string().trim().allow('').optional().escapeHTML(),
-        url1: Joi.string().trim().allow('').optional().escapeHTML(),
-        url2: Joi.string().trim().allow('').optional().escapeHTML(),
-        url3: Joi.string().trim().allow('').optional().escapeHTML(),
-        url4: Joi.string().trim().allow('').optional().escapeHTML(),
-        primaryContactFirst: Joi.string().trim().required().escapeHTML(),
-        primaryContactLast: Joi.string().trim().required().escapeHTML(),
-        primaryContactRelationship: Joi.string().trim().valid('Self','Spouse','Mother','Father','Mother-in-law','Father-in-law','Grandmother','Grandfather','Guardian','Sister','Brother', 'Other-Relative', 'Other-Nonrelative', 'Unknown').required().escapeHTML(),
-        primaryContactPhone: Joi.string().trim().required().escapeHTML(),
-        primaryContactEmail: Joi.string().trim().required().escapeHTML(),
-        emergPrimFirst: Joi.string().trim().required().escapeHTML(),
-        emergPrimLast: Joi.string().trim().required().escapeHTML(),
-        emergPrimRelationship: Joi.string().trim().valid('Self','Spouse','Mother','Father','Mother-in-law','Father-in-law','Grandmother','Grandfather','Guardian','Sister','Brother', 'Other-Relative', 'Other-Nonrelative', 'Unknown').required().escapeHTML(),
-        emergPrimPhone: Joi.string().trim().required().escapeHTML(),
-        emergPrimEmail: Joi.string().trim().required().escapeHTML(),
-        emergSecFirst: Joi.string().trim().allow('').optional().escapeHTML(),
-        emergSecLast: Joi.string().trim().allow('').optional().escapeHTML(),
-        emergSecRelationship: Joi.string().trim().valid('Self','Spouse','Mother','Father','Mother-in-law','Father-in-law','Grandmother','Grandfather','Guardian','Sister','Brother', 'Other-Relative', 'Other-Nonrelative', 'Unknown').allow('').optional().escapeHTML(),
-        emergSecPhone: Joi.string().trim().allow('').optional().escapeHTML(),
-        emergSecEmail: Joi.string().trim().allow('').optional().escapeHTML(),
-        createdBy: Joi.string().trim().allow('').optional().escapeHTML(),
-        createDate: Joi.date(),
-        lastModifiedBy: Joi.string().trim().allow('').optional().escapeHTML(),
-        lastModifiedDate: Joi.date()
+        gender: Joi.string().trim().valid('Male','Female','Unknown').required().escapeHTML()
     }).required()
 })
 
-// MUST MATCH models/note.js
-module.exports.noteSchema = Joi.object({
-    note: Joi.object({
-        noteDate: Joi.date().required(),
-        noteCategory: Joi.string().trim().max(70).required().escapeHTML(),
-        noteTitle: Joi.string().trim().max(70).required().escapeHTML(),
-        noteComment: Joi.string().trim().allow('').optional().escapeHTML(),
-        noteHide: Joi.string().trim().valid('true','false').optional().escapeHTML(),
-        createdBy: Joi.string().trim().allow('').optional().escapeHTML(),
-        createDate: Joi.date()
+// MUST MATCH models/attendance.js
+module.exports.attendanceSchema = Joi.object({
+    attendance: Joi.object({
+        attendanceDate: Joi.date().greater('01-01-2021').required(),
+        attendanceCode: Joi.string().trim().valid('present', 'tardy', 'absent', 'excused absence').required().escapeHTML(),
+        comment: Joi.string().trim().allow('').optional().escapeHTML()
     }).required()
 })
 
@@ -91,13 +68,7 @@ module.exports.noteSchema = Joi.object({
 module.exports.homeworkSchema = Joi.object({
     homework: Joi.object({
         subjectLine: Joi.string().trim().required().escapeHTML(),
-        url: Joi.string().trim().allow('').optional().escapeHTML(),
-        stuId: Joi.string().trim().required().escapeHTML(),
-        assignedStudent: Joi.string().trim().allow('').optional().escapeHTML(),
-        category: Joi.string().trim().valid('Reading', 'Writing', 'Math', 'Science', 'Social Studies', 'Physical Ed.', 'Art', 'Music', 'Other').required().escapeHTML(),
-        dueDate: Joi.date().required(),
-        pointsPossible: Joi.number().min(0).max(999),
-        description: Joi.string().trim().required().escapeHTML(),
+        url: Joi.string().trim().required().escapeHTML(),
     }).required()
 })
 

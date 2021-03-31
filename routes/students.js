@@ -24,7 +24,7 @@ router.route('/:id')
     .get(isAuthenticated, isAdmin, catchAsync(studentsController.renderStudentShow))
     // APPLIES UPDATES TO THE STUDENT INFO
     .put(isAuthenticated, isAdmin, validateStudent, catchAsync(studentsController.updateStudent))
-    // TRIGGERED BY DELETE BUTTON ON STUDENT. DELETES THE STUDENT AND RELATED NOTES
+    // TRIGGERED BY DELETE BUTTON ON STUDENT. DELETES THE STUDENT AND RELATED ATTENDANCE
     .delete(isAuthenticated, isAdmin, catchAsync(studentsController.deleteStudent))
 
 // ROUTES USER TO STUDENT EDIT PAGE
