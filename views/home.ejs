@@ -8,6 +8,8 @@
     <title>Home | Liberty Education</title>
     <link href="/styles/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/styles/home.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/styles/all.min.css">
     <!-- Favicon  https://favicon.io/favicon-generator/-->
     <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
@@ -21,7 +23,7 @@
             <div>
                 <h3 class="float-md-start mb-0">Liberty Education</h3>
                 <nav class="nav nav-masthead justify-content-center float-md-end">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/"><i class="fas fa-home"></i> Home</a>
                     <a class="nav-link" href="/aboutus">About Us</a>
                     <% if(currentUser) { %>
                         <a class="nav-link" href="/sportal">Student Portal</a>
@@ -32,7 +34,7 @@
                                 <a class="nav-link" href="/login">Login</a>
                                 <a class="nav-link" href="/register">Register</a>
                                 <% } else { %>
-                                    <a class="nav-link" href="/logout">Logout</a>
+                                    <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
                                     <% } %>
                 </nav>
             </div>
@@ -41,21 +43,22 @@
             <h1>Liberty Education</h1>
             <% if(!currentUser) { %>
                 <p class="lead"> Welcome, begin by registering or logging into your account. </p>
-                <a href="/register" class="btn btn-lg btn-secondary font-weight-bold text-white bg-white">Register</a>
-                <a href="/login" class="btn btn-lg btn-secondary font-weight-bold text-white bg-white">Login</a>
-                <% } else if(currentUser.isAdmin == true) { %>
+                <a href="/register" class="btn btn-lg btn-secondary font-weight-bold text-white bg-white"><i class="fas fa-user-plus"></i> Register</a>
+                <a href="/login" class="btn btn-lg btn-secondary font-weight-bold text-white bg-white"><i
+                        class="fas fa-sign-in-alt"></i> Login</a>
+                <% } else if(currentUser.isAdmin==true) { %>
                     <p class="lead">Now that you're logged in, head to the Teacher Portal. </p>
-                    <a href="/tportal" class="btn btn-lg btn-secondary font-weight-bold text-white bg-white">Teacher
+                    <a href="/tportal" class="btn btn-lg btn-secondary font-weight-bold text-white bg-white"><i class="fas fa-door-open"></i> Teacher
                         Portal</a>
-                        <% } else { %>
-                            <p class="lead">Now that you're logged in, head to the Student Portal. </p>
-                            <a href="/sportal" class="btn btn-lg btn-secondary font-weight-bold text-white bg-white">Student
-                                Portal</a>
-                    <% } %>
+                    <% } else { %>
+                        <p class="lead">Now that you're logged in, head to the Student Portal. </p>
+                        <a href="/sportal" class="btn btn-lg btn-secondary font-weight-bold text-white bg-white"><i class="fas fa-door-open"></i> Student
+                            Portal</a>
+                        <% } %>
         </main>
         <footer class="mt-auto text-white-50">
             <%- include('./partials/flash.ejs') %>
-                <p>&copy; 2021 Liberty Education</p>
+                <p>&copy; 2021 LibertyLaunchGroup</p>
         </footer>
     </div>
     <script src="/scripts/popper.min.js"></script>

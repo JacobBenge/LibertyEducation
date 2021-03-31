@@ -8,6 +8,8 @@
     <title>About Us | Liberty Education</title>
     <link href="/styles/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/styles/home.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/styles/all.min.css">
     <!-- Favicon  https://favicon.io/favicon-generator/-->
     <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
@@ -21,7 +23,7 @@
             <div>
                 <h3 class="float-md-start mb-0">Liberty Education</h3>
                 <nav class="nav nav-masthead justify-content-center float-md-end">
-                    <a class="nav-link"  href="/">Home</a>
+                    <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
                     <a class="nav-link active" aria-current="page" href="/aboutus">About Us</a>
                     <% if(currentUser) { %>
                         <a class="nav-link" href="/sportal">Student Portal</a>
@@ -32,22 +34,59 @@
                                 <a class="nav-link" href="/login">Login</a>
                                 <a class="nav-link" href="/register">Register</a>
                                 <% } else { %>
-                                    <a class="nav-link" href="/logout">Logout</a>
+                                    <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
                                     <% } %>
                 </nav>
             </div>
         </header>
         <main class="px-3">
-            <h1>About Us</h1>
-            <p class="lead"> Information we might want to display:
-                - contact info
-                - history of the company
-                - success stories
-                - photos
-                - short bio for each teacher
-                - pricing?
-                - location
-                - hours of operation</p>
+            <h1 class="mb-4">About Us</h1>
+            <div class="row">
+                <p class="lead text-center"><strong>HISTORY</strong></p>
+                <div class="col-12 text-start">
+                    <p class="lead text-start">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <p class="lead text-center"><strong>SUCCESS STORIES</strong></p>
+                <div class="col-12 text-start">
+                    <p class="lead text-start">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <p class="lead text-center"><strong>TEACHER BIO</strong></p>
+                <div class="col-12 text-start">
+                    <p class="lead text-start">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <p class="lead text-center"><strong>CONTACT</strong></p>
+                <div class="col-xl-2"></div>
+                <div class="col-xl-4 col-lg-12 text-start">
+                    <p class="lead"><i class="fas fa-envelope"></i> kori@fake_email.edu</p>
+                    <p class="lead"><i class="fas fa-phone-alt"></i> 801-999-9999</p>
+                </div>
+                <div class="col-xl-4 col-lg-12 text-start">
+                    <p class="lead"><i class="fas fa-clock"></i> 8-5p.m. M-F</p>
+                    <p class="lead"><i class="fas fa-map-marker-alt"></i> 123 Main St.<br>American Fork, UT 84000</p>
+                </div>
+                <div class="col-xl-2"></div>
+            </div>
         </main>
         <footer class="mt-auto text-white-50">
             <%- include('./partials/flash.ejs') %>
