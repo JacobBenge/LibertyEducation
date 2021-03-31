@@ -17,14 +17,14 @@ router.route('/')
     .post(isAuthenticated, isAdmin, validateHomework, catchAsync(homeworkController.createHomework))
 
 // ROUTES USER TO NEW Homework PAGE
-router.get('/new', isAuthenticated, isAdmin, homeworkController.renderHomeworkNew)
+router.get('/new', isAuthenticated, isAdmin, catchAsync(homeworkController.renderHomeworkNew))
 
 router.route('/:id')
     // ROUTES USER TO Homework DETAILS (SHOW) PAGE
     .get(isAuthenticated, isAdmin, catchAsync(homeworkController.renderHomeworkShow))
     // APPLIES UPDATES TO THE Homework INFO
     .put(isAuthenticated, isAdmin, validateHomework, catchAsync(homeworkController.updateHomework))
-    // TRIGGERED BY DELETE BUTTON ON Homework. DELETES THE Homework AND RELATED ATTENDANCE
+    // TRIGGERED BY DELETE BUTTON ON Homework. DELETES THE Homework AND RELATED NOTES
     .delete(isAuthenticated, isAdmin, catchAsync(homeworkController.deleteHomework))
 
 // ROUTES USER TO Homework EDIT PAGE
