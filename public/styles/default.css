@@ -11,14 +11,122 @@ hr {
     opacity: 0.75;
 }
 
-body {
-    background-color:whitesmoke;
-}
-
 .filterDiv {
     display: none;
 }
 
 .show {
     display: block;
+}
+
+.logo {
+    width: 400px;
+    height: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.icon {
+    width: 25px;
+    height: 100%;
+    padding-right: 5px;
+}
+
+.footer-link {
+    color: #c2c2c2;
+}
+
+.footer-link:hover {
+    color: #ff3030;
+}
+
+.nav-link:hover {
+    color: #ff3030 !important;
+}
+
+.bg-dark {
+    background-color: #4d4848 !important; 
+}
+.navbar-dark a {
+    color: whitesmoke!important;
+    font-weight: bold;
+}
+
+.btn-dark {
+    background-color: #4d4848;
+    font-weight: bold;
+    text-shadow: 1px 2px 2px rgba(0,0,0,0.3)
+}
+
+.btn-success {
+    background-color: #57ba66;
+    border-color: #57ba66;
+    font-weight: bold;
+    text-shadow: 1px 2px 2px rgba(0,0,0,0.3)
+}
+
+.btn-success:hover {
+    color: white !important;
+    font-weight: bold;
+    text-shadow: 1px 2px 2px rgba(0,0,0,0.3)
+}
+
+.btn-warning {
+    background-color :#f7db00;
+    border-color:#f7db00;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 2px 2px rgba(0,0,0,0.3)
+}
+
+.btn-warning:hover {
+    color: white !important;
+    background-color :#d9c214;
+    font-weight: bold;
+    text-shadow: 1px 2px 2px rgba(0,0,0,0.3)
+}
+
+.btn-info {
+    background-color :#3eb3f7;
+    border-color:#3eb3f7;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 2px 2px rgba(0,0,0,0.3)
+}
+
+.btn-info:hover {
+    color: white !important;
+    font-weight: bold;
+    text-shadow: 1px 2px 2px rgba(0,0,0,0.3)
+}
+
+.btn-danger {
+    background-color :#e83535;
+    border-color:#e83535;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 2px 2px rgba(0,0,0,0.3)
+}
+
+.btn-danger:hover {
+    color: white !important;
+    font-weight: bold;
+    text-shadow: 1px 2px 2px rgba(0,0,0,0.3)
+}
+
+.btn-primary {
+    background-color :#3162de;
+    border-color:#3162de;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 2px 2px rgba(0,0,0,0.3)
+}
+
+.btn-primary:hover {
+    color: white !important;
+    background-color :#243e80;
+    border-color:#243e80;
+    font-weight: bold;
+    text-shadow: 1px 2px 2px rgba(0,0,0,0.3)
 }
