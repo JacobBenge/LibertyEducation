@@ -1,29 +1,52 @@
 <% layout('layouts/teacher-boilerplate') %>
     <div class="row">
         <div class="card shadow mb-5">
-            <div class="card-body">
+            <div class="card-body container">
                 <div class="row">
                     <div class="col-2 mt-2">
                         <a href="/" class="btn btn-dark font-weight-bold mb-1"><i class="fas fa-home"></i></a>
                     </div>
-                    <h1 class="text-center col-8 mt-4">Teacher Portal</h1>
-                    <div class="col-2 mt-4"></div>
+                    <h1 class="text-center mt-4 col-8">Teacher Portal</h1>
+                    <div class="col-2 mt-4">
+                    </div>
                 </div>
-                <p>Welcome to the Teacher Portal.</p>
-                <p>How to begin:</p>
-                <ol>
-                    <li>Go to <a href="/students">Students</a> and click the <a href="/students/new">Add New Student</a> button. Fill out the form and push the Add Student button.</li>
-                    <li>You'll be redirected to the new student's profile page. You can edit or delete the student with this page.</li>
-                    <li>Scroll down to the bottom of the student's profile and you'll see a form to add notes. This is a great place to keep track of your progress with the student. Add a test note.</li>
-                    <li>After adding a note, you'll get a success message and the note will load at the bottom of the page. Notes are sorted by newest to oldest.</li>
-                    <li>To search your notes, we recommend using the Control+F (Command+F for Mac) hotkey.</li>
-                    <li>You can also delete individual notes.</li>
-                    <li>Use the Navigation bar to navigate to Students. Here you can see a list of your students and access their profiles with the Details button.</li>
-                    <li>To add homework assignments,.....</li>
-                </ol>
-                <a href="/students" class="btn btn-lg btn-primary font-weight-bold"><i class="fas fa-users"></i> Students</a>
-                <a href="/homework" class="btn btn-lg btn-primary font-weight-bold"><i class="fas fa-book-open"></i> Homework</a>
-                
+                <div class="row">
+                    <div class="col-lg-4 mb-4 p-4">
+                        <div class="card card2">
+                            <!-- https://www.iconfinder.com/ -->
+                            <!-- http://www.gnu.org/licenses/gpl-3.0.html -->
+                            <a href="/students"><img src="/img/iconfinder_humans_1216581.png" alt="Students"
+                                    class="card-img-top pt-5 px-5"></a>
+                            <div class="card-body">
+                                <h4 class="card-title text-center">Students</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mb-4 p-4">
+                        <div class="card card2">
+                            <!-- https://www.iconfinder.com/ -->
+                            <!-- http://www.gnu.org/licenses/gpl-3.0.html -->
+                            <a href="/homework"><img src="/img/iconfinder_pencil_1055013.png" alt="Pencil"
+                                    class="card-img-top pt-5 px-5"></a>
+                            <div class="card-body">
+                                <h4 class="card-title text-center">Homework</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mb-4 p-4">
+                        <div class="card card2">
+                            <!-- https://www.iconfinder.com/ -->
+                            <!-- http://www.gnu.org/licenses/gpl-3.0.html -->
+                            <a href="#" onclick="return confirm('This is still under development')"><img src="/img/iconfinder_Settings-2_379349.png"
+                                    alt="Settings" class="card-img-top pt-5 px-5"></a>
+                            <div class="card-body">
+                                <h4 class="card-title text-center">Site Settings</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
