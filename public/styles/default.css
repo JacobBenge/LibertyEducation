@@ -38,15 +38,15 @@ hr {
 }
 
 .footer-link:hover {
-    color: #ff3030;
+    color: #b30c14;
 }
 
 .nav-link:hover {
-    color: #ff3030 !important;
+    color: #b30c14 !important;
 }
 
 .bg-dark {
-    background-color: #4d4848 !important; 
+    background-color: #240c7a !important; 
 }
 .navbar-dark a {
     color: whitesmoke!important;
@@ -54,7 +54,7 @@ hr {
 }
 
 .btn-dark {
-    background-color: #4d4848;
+    background-color: #240c7a;
     font-weight: bold;
     text-shadow: 1px 2px 2px rgba(0,0,0,0.3)
 }
