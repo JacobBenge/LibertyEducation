@@ -17,7 +17,7 @@
                                 <div class="col-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="subjectLine">Subject Line</label>
-                                        <input class="form-control" type="text" placeholder="Subject Line" value="<%=homework.subjectLine%>"
+                                        <input class="form-control" type="text" placeholder="Finish Chapter 10" value="<%=homework.subjectLine%>"
                                             id="subjectLine" name="homework[subjectLine]" required autofocus>
                                         <div class="valid-feedback">
                                             Looks good!
@@ -26,10 +26,47 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="mb-3">
-                                        <label class="form-label" for="url">Related Link</label>
+                                        <label class="form-label" for="category"><i class="fas fa-tags"></i>
+                                            Category</label>
+                                        <input class="form-control" type="text" id="category" placeholder="Math" value="<%=homework.category%>"
+                                            name="homework[category]" required>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="dueDate">Due Date</label>
+                                        <input class="form-control" type="date" id="dueDate" name="homework[dueDate]" value="<%=homework.dueDate.toISOString().substring(0, 10)%>"
+                                            required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="pointsPossible">Coins Possible</label>
+                                        <input class="form-control" type="number" id="pointsPossible" value="<%=homework.pointsPossible%>"
+                                            name="homework[pointsPossible]" placeholder="20" required> 
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="urlLabel">Related Link Label (opt)</label>
                                         <input class="form-control" type="text"
-                                            placeholder="https://www.youtube.com/... (opt)" value="<%=homework.url%>" id="url"
-                                            name="homework[url]">
+                                            placeholder="Tutorial Video" value="<%=homework.urlLabel%>" id="urlLabel" name="homework[urlLabel]">
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="url">Related Link (opt)</label>
+                                        <input class="form-control" type="text" value="<%=homework.url%>"
+                                            placeholder="https://www.youtube.com/..." id="url" name="homework[url]">
                                         <div class="valid-feedback">
                                             Looks good!
                                         </div>
@@ -53,57 +90,25 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6">
-                                    <label class="form-label" for="category">Category</label>
-                                    <select class="form-select" id="category" name="homework[category]" required>
-                                        <option selected><%=homework.category%></option>
-                                        <option value="Reading">Reading</option>
-                                        <option value="Writing">Writing</option>
-                                        <option value="Math">Math</option>
-                                        <option value="Science">Science</option>
-                                        <option value="Social Studies">Social Studies</option>
-                                        <option value="Physical Ed.">Physical Ed.</option>
-                                        <option value="Art">Art</option>
-                                        <option value="Music">Music</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <label class="form-label" for="dueDate">Due Date</label>
-                                    <!-- https://stackoverflow.com/questions/25159330/convert-an-iso-date-to-the-date-format-yyyy-mm-dd-in-javascript -->
-                                    <input class="form-control" type="date" id="dueDate" name="homework[dueDate]"
-                                    value="<%=homework.dueDate.toISOString().substring(0, 10)%>" value="<%=homework.dueDate%>" required>
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <label class="form-label" for="pointsPossible">Coins Possible</label>
-                                    <input class="form-control" type="number" id="pointsPossible"
-                                        name="homework[pointsPossible]" placeholder="20" value="<%=homework.pointsPossible%>" required>
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
-                                </div>
+
                                 <div class="mb-3">
                                     <label class="form-label" for="description">Description</label>
                                     <textarea class="form-control rounded-0" id="description"
                                         name="homework[description]" rows="7"
-                                        placeholder="For this assignment, you must ..." required><%=homework.description%> </textarea>
+                                        placeholder="For this assignment, you must ..." required><%=homework.description%></textarea>
                                 </div>
                             </div>
                             <div class="col-12">
-                                <div class="mb-3 mt-3 d-grid">
-                                    <button class="btn btn-success">Update Homework</button>
+                                <div class="mb-3 mt-3 text-center">
+                                    <button class="btn btn-lg btn-success"><i class="fas fa-clipboard-check"></i> Update
+                                        Homework</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </form>
-                <a href="/homework/<%=homework._id%>" class="mb-3 btn btn-danger d-grid">Cancel</a>
+                <p class="text-center"><a href="/homework/<%=homework._id%>" class="mb-3 btn btn-lg btn-danger"><i
+                            class="fas fa-times"></i> Cancel</a></p>
             </div>
         </div>
     </div>

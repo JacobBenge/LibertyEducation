@@ -14,6 +14,11 @@ const homeworkSchema = new Schema({
         trim: true,
         required: false
     },
+    urlLabel: {
+        type: String,
+        trim: true,
+        required: false
+    },
     stuId: { // NEEDS VALIDATION TO USE ENUM TO MAKE SURE THE student._id IS IN THE DATABASE
         type: String,
         trim: true,
@@ -26,7 +31,7 @@ const homeworkSchema = new Schema({
     category: {
         type: String,
         trim: true,
-        enum: ['Reading', 'Writing', 'Math', 'Science', 'Social Studies', 'Physical Ed.', 'Art', 'Music', 'Other'],
+        maxLength: 70,
         required: true
     },
     dueDate: {
@@ -46,7 +51,27 @@ const homeworkSchema = new Schema({
         type: String,
         trim: true,
         required: true
-    }
+    },
+    createdBy: {
+        type: String,
+        trim: true,
+        required: false
+    },
+    createDate:{
+        type: Date,
+        default: Date.now,
+        required: false
+    },
+    lastModifiedBy: {
+        type: String,
+        trim: true,
+        required: false
+    },
+    lastModifiedDate:{
+        type: Date,
+        default: Date.now,
+        required: false
+    },
 })
 
 // EXPORTS THE STUDENT MODEL

@@ -92,12 +92,17 @@ module.exports.homeworkSchema = Joi.object({
     homework: Joi.object({
         subjectLine: Joi.string().trim().required().escapeHTML(),
         url: Joi.string().trim().allow('').optional().escapeHTML(),
+        urlLabel: Joi.string().trim().allow('').optional().escapeHTML(),
         stuId: Joi.string().trim().required().escapeHTML(),
         assignedStudent: Joi.string().trim().allow('').optional().escapeHTML(),
-        category: Joi.string().trim().valid('Reading', 'Writing', 'Math', 'Science', 'Social Studies', 'Physical Ed.', 'Art', 'Music', 'Other').required().escapeHTML(),
+        category: Joi.string().trim().max(70).required().escapeHTML(),
         dueDate: Joi.date().required(),
         pointsPossible: Joi.number().min(0).max(999),
         description: Joi.string().trim().required().escapeHTML(),
+        createdBy: Joi.string().trim().allow('').optional().escapeHTML(),
+        createDate: Joi.date(),
+        lastModifiedBy: Joi.string().trim().allow('').optional().escapeHTML(),
+        lastModifiedDate: Joi.date()
     }).required()
 })
 

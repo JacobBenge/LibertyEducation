@@ -4,48 +4,53 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-2 mt-2">
-                        <a href="/homework/" class="btn btn-dark font-weight-bold mb-1"><i class="fas fa-chevron-left"></i></a>
+                        <a href="/homework/" class="btn btn-dark font-weight-bold mb-1"><i
+                                class="fas fa-chevron-left"></i></a>
                     </div>
-                    <h1 class="col-8 text-center mt-4">Homework Details</h1>
+                    <h1 class="col-8 text-center mt-4">
+                        <%=homework.assignedStudent%>'s Homework
+                    </h1>
                     <div class="col-2"></div>
                 </div>
-                <div class="row">
-                    <div class="col-12">
-                        <dl class="row">
-                            <dt class="col-sm-4">Subject Line:</dt>
-                            <dd class="col-sm-8">
-                                <%=homework.subjectLine%>
-                            </dd>
-                            <dt class="col-sm-4">Related Link:</dt>
-                            <dd class="col-sm-8">
-                                <%=homework.url%>
-                            </dd>
-                            <dt class="col-sm-4">Assigned to Student:</dt>
-                            <dd class="col-sm-8">
-                                <%=homework.stuId%>
-                            </dd>
-                            <dt class="col-sm-4">Category:</dt>
-                            <dd class="col-sm-8">
-                                <%=homework.category%>
-                            </dd>
-                            <dt class="col-sm-4">Due Date:</dt>
-                            <dd class="col-sm-8">
-                                <%=homework.dueDate.toISOString().substring(0, 10)%>
-                            </dd>
-                            <dt class="col-sm-4">Coins Possible:</dt>
-                            <dd class="col-sm-8">
-                                <%=homework.pointsPossible%>
-                            </dd>
-                            <dt class="col-sm-4">Description:</dt>
-                            <dd class="col-sm-8">
-                                <%=homework.description%>
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
-                <a href="/homework/<%=homework._id%>/edit" class="card-link btn btn-info">Edit</a>
-                <form class="d-inline" action="/homework/<%=homework._id%>?_method=DELETE" method="POST">
-                    <button class="btn btn-danger"
-                        onclick="return confirm('Are you sure you want to permanently delete this homework?')">Delete</button>
-                </form>
+                <h5 class="card-title mt-2">
+                    <%=homework.subjectLine%>
+                </h5>
+                <span class="badge rounded-pill bg-secondary">
+                    <i class="fas fa-stopwatch"></i>
+                    <%=homework.dueDate.toISOString().substring(0, 10)%>
+                </span>
+                <span class="badge rounded-pill bg-info">
+                    <i class="fas fa-tags"></i>
+                    <%=homework.category%>
+                </span>
+                <span class="badge rounded-pill bg-success">
+                    <i class="fas fa-coins"></i>
+                    <%=homework.pointsPossible%>
+                </span>
+                <p class="card-text mt-3">
+                    <%=homework.description%>
+                </p>
+                <% if(homework.urlLabel && homework.url) { %>
+                    <p class="text-center"><a href="<%=homework.url%>" target="_blank"
+                            class="btn btn-sm btn-primary mb-1 text-center">
+                            <i class="fas fa-external-link-alt"></i>
+                            <%=homework.urlLabel%>
+                        </a></p>
+                    <% } %>
+                        <p class="text-muted mb-0"><small>Created By: <%=homework.createdBy%> on
+                                    <%=homework.createDate.toISOString().substring(0, 10)%> </small></p>
+                        <% if(homework.lastModifiedBy) { %>
+                            <p class="text-muted mb-0"><small>Last Modified By: <%=homework.lastModifiedBy%> on
+                                        <%=homework.lastModifiedDate.toISOString().substring(0, 10)%> </small></p>
+                            <% } %>
+                                <p class="text-end mb-1"><a href="/homework/<%=homework._id%>/edit"
+                                        class="btn btn-sm btn-info"><i class="fas fa-user-edit"></i> Edit</a></p>
+                                <form class="col-12 text-end" action="/homework/<%=homework._id%>?_method=DELETE"
+                                    method="POST">
+                                    <button class="btn btn-sm btn-danger"
+                                        onclick="return confirm('Are you sure you want to permanently delete this homework?')"><i
+                                            class="fas fa-trash-alt"></i> Delete</button>
+                                </form>
             </div>
+        </div>
+    </div>

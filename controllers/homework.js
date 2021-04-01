@@ -16,6 +16,8 @@ module.exports.renderHomeworkNew = async (req, res) => {
 // POST
 module.exports.createHomework = async (req, res) => {
     let hw = req.body.homework; // RETREIVE USER INPUT FROM BODY
+    hw.createdBy = req.user.username; // ADD THE NAME OF THE PERSON THAT CREATED THE HOMEWORK
+    hw.createDate = new Date(Date.now()); // ADD THE DATE THE HOMEWORK WAS ORIGINALLY CREATED
     hw.dueDate = new Date(hw.dueDate);
     const assignedStu = await Student.findById(hw.stuId); // LOOKUP THE ASSIGNED STUDENT IN DB WITH THE stuId provided
     hw.assignedStudent = `${assignedStu.firstName} ${assignedStu.lastName}`; // ADD AN ADDITIONAL KEY/VALUE PAIR TO THE HOMEWORK OBJECT
@@ -50,9 +52,12 @@ module.exports.renderHomeworkEdit = async (req, res) => {
 //PUT
 module.exports.updateHomework = async (req, res) => {
     const { id } = req.params; // PULLS THE homework ID FROM THE REQUEST PARAMETERS (URL)
-    const homework = await Homework.findByIdAndUpdate(id, {...req.body.homework}, { new: true })
-    req.flash('success', `Successfully updated ${homework.subjectLine}'s homework assignment `);
-    res.redirect(`/homework/${homework.id}`);
+    const homework = req.body.homework;
+    homework.lastModifiedBy = req.user.username; // GRAB THE USERNAME OF THE PERSON WHO UPDATED
+    homework.lastModifiedDate = new Date(Date.now()); // ADD THE MODIFIED DATE
+    const homeworkFull = await Homework.findByIdAndUpdate(id, {...req.body.homework}, { new: true })
+    req.flash('success', `Successfully updated ${homeworkFull.assignedStudent}'s homework assignment `);
+    res.redirect(`/homework/${homeworkFull.id}`);
 }
 
 //DELETE
@@ -60,6 +65,6 @@ module.exports.deleteHomework = async (req,res) => {
     const { id } = req.params; // PULLS THE Homework ID FROM THE REQUEST PARAMETERS (URL)
     const homework = await Homework.findById(id);
     await Homework.findByIdAndDelete(id);
-    req.flash('success', `Successfully deleted ${homework.firstName}'s homework assignment`);
+    req.flash('success', `Successfully deleted ${homework.assignedStudent}'s homework assignment`);
     res.redirect('/homework');
 }
