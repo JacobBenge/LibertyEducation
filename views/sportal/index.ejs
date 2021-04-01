@@ -2,83 +2,90 @@
     <div class="row">
         <div class="card shadow mb-5">
             <div class="card-body container">
-                <div class="col-2">                
-                        <a href="/" class="btn btn-dark font-weight-bold mb-1"><i class="fas fa-home"></i></a>                             
+                <div class="row">
+                    <div class="col-2 mt-2">
+                        <a href="/" class="btn btn-dark font-weight-bold mb-1"><i class="fas fa-home"></i></a>
+                    </div>
+                    <h1 class="text-center mt-4 col-8">Student Portal</h1>
+                    <div class="col-2 mt-4">
+                    </div>
+                    <div class="row">
+                        <h4 class="text-end">Coin Balance: <span class="badge rounded-pill bg-success ml-auto"><i class="fas fa-coins"></i>
+                            <%=student.coinsBalance%>
+                        </span></h4>
+                    </div>
                 </div>
                 <div class="row">
-                    <h1 class="col-5 float-md-start">Student Portal</h1>
-                    <div class="col-3 "></div>
-                    <div class="col-2 "><h4>Coin Balance:</h4></div>
-                    <div class="col-2 ">                   
-                        <!-- https://fsymbols.com/signs/cent/ -->                   
-                        <h2><span class="badge rounded-pill bg-success ml-auto"><i class="fas fa-coins"></i> <%=student.coinsBalance%></span></h2>
+                    <div class="col-lg-4 mb-4 p-4">
+                        <div class="card card2">
+                            <!-- https://www.iconfinder.com/ -->
+                            <!-- http://www.gnu.org/licenses/gpl-3.0.html -->
+                            <a href="/sportal/profile"><img src="/img/iconfinder_humans_1216581.png" alt="Profile"
+                                    class="card-img-top pt-5 px-5"></a>
+                            <div class="card-body">
+                                <h4 class="card-title text-center">Profile</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mb-4 p-4">
+                        <div class="card card2">
+                            <!-- https://www.iconfinder.com/ -->
+                            <!-- http://www.gnu.org/licenses/gpl-3.0.html -->
+                            <a href="/sportal/homework"><img src="/img/iconfinder_pencil_1055013.png" alt="Pencil"
+                                    class="card-img-top pt-5 px-5"></a>
+                            <div class="card-body">
+                                <h4 class="card-title text-center">Homework</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mb-4 p-4">
+                        <div class="card card2">
+                            <!-- https://www.iconfinder.com/ -->
+                            <!-- http://www.gnu.org/licenses/gpl-3.0.html -->
+                            <a href="/sportal/<%=student._id%>"><img src="/img/iconfinder_rocket_1054990.png"
+                                    alt="Rocket" class="card-img-top pt-5 px-5"></a>
+                            <div class="card-body">
+                                <h4 class="card-title text-center">Progress Report</h4>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-4 mb-4 p-4">
-                     <div class="card card2">
-                        <a href="/sportal/profile"><img src="/img/iconfinder_star_1054969.png" alt="Star" class="card-img-top pt-5 px-5"></a>
-                      <div class="card-body">
-                       <h4 class="card-title text-center">Profile</h4>
-                      </div>
-                     </div>
-                    </div>
-                    <div class="col-lg-4 mb-4 p-4">
-                     <div class="card card2">
-                        <a href="/sportal/homework"><img src="/img/iconfinder_rocket_1054990.png" alt="Rocket" class="card-img-top pt-5 px-5"></a>
-                      <div class="card-body">
-                       <h4 class="card-title text-center">Homework</h4>
-                      </div>
-                     </div>
-                    </div>
-                    <div class="col-lg-4 mb-4 p-4">
-                     <div class="card card2">
-                        <a href="/sportal/<%=student._id%>"><img src="/img/iconfinder_pencil_1055013.png" alt="Pencil" class="card-img-top pt-5 px-5"></a>
-                      <div class="card-body">
-                       <h4 class="card-title text-center">Progress Report</h4>
-                      </div>
-                     </div>
-                    </div>
-                   </div>
-            <!--<div class="row">
-                <div class="col-5  pr-4">
-                    <div class="text-center">  <br>  
-                        <a href="/sportal/profile"><img src="/img/Rocket.PNG" alt="Rocket" class="img-thumbnail"></i></a><br><br>
-                        <!--<a href="/sportal/profile" class="btn btn-primary font-weight-bold mb-1 btn-lg"><i class="fas fa-id-card"></i> Profile</a><br><br>
-                        <a href="/sportal/homework"> class="btn btn-primary font-weight-bold mb-1 btn-lg"><i class="fas fa-book-open"></i> Homework</a><br><br>
-                        <a href="/sportal/<%=student._id%>"> class="btn btn-primary font-weight-bold mb-1 btn-lg"><i class="fas fa-chalkboard-teacher"></i> Progress Report</a> <br><br>
-                    </div>
-                </div>-->
                 <div class="col-2"></div>
-                    <div class="col-5 ">
-                        <h3>Links</h3>
-                        <!-- Show or hide external link buttons depending if they are present -->
-                        <% if(student.url1 || student.url2 || student.url3 || student.url4) { %>                           
-                            <% } %>
-                                <% if(student.url1) { %>
-                                    <a href="<%=student.url1%>" target="_blank" class="btn btn-success btn-lg mb-1 text-center">
-                                        <i class="fas fa-external-link-alt"></i> <%=student.url1Label%>
-                                    </a><br>
-                                    <% } %>
-                                        <% if(student.url2) { %>
-                                            <a href="<%=student.url2%>" target="_blank" class="btn btn-warning btn-lg mb-1">
-                                                <i class="fas fa-external-link-alt"></i> <%=student.url2Label%>
-                                            </a><br>
-                                            <% } %>
-                                                <% if(student.url3) { %>
-                                                    <a href="<%=student.url3%>" target="_blank" class="btn btn-info btn-lg mb-1">
-                                                        <i class="fas fa-external-link-alt"></i> <%=student.url3Label%>
-                                                    </a><br>
-                                                    <% } %>
-                                                        <% if(student.url4) { %>
-                                                            <a href="<%=student.url4%>" target="_blank"
-                                                                class="btn btn-danger mb-1 btn-lg">
-                                                                <i class="fas fa-external-link-alt"></i> <%=student.url4Label%>
-                                                            </a><br>
-                                                            <% } %>
-                    </div>
+                <div class="col-5 ">
+                    <h3>External Links</h3>
+                    <!-- Show or hide external link buttons depending if they are present -->
+                    <% if(student.url1 || student.url2 || student.url3 || student.url4) { %>
+                        <% } %>
+                            <% if(student.url1) { %>
+                                <a href="<%=student.url1%>" target="_blank"
+                                    class="btn btn-success btn-lg mb-1 text-center">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    <%=student.url1Label%>
+                                </a>
+                                <% } %>
+                                    <% if(student.url2) { %>
+                                        <a href="<%=student.url2%>" target="_blank" class="btn btn-warning btn-lg mb-1">
+                                            <i class="fas fa-external-link-alt"></i>
+                                            <%=student.url2Label%>
+                                        </a>
+                                        <% } %>
+                                            <% if(student.url3) { %>
+                                                <a href="<%=student.url3%>" target="_blank"
+                                                    class="btn btn-info btn-lg mb-1">
+                                                    <i class="fas fa-external-link-alt"></i>
+                                                    <%=student.url3Label%>
+                                                </a>
+                                                <% } %>
+                                                    <% if(student.url4) { %>
+                                                        <a href="<%=student.url4%>" target="_blank"
+                                                            class="btn btn-danger mb-1 btn-lg">
+                                                            <i class="fas fa-external-link-alt"></i>
+                                                            <%=student.url4Label%>
+                                                        </a>
+                                                        <% } %>
                 </div>
             </div>
         </div>
-        </div>
+    </div>
+    </div>
     </div>

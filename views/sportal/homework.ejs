@@ -1,56 +1,77 @@
 <% layout('layouts/student-boilerplate') %>
+    <!-- Profile -->
     <div class="row">
-        <div class="card shadow mb-5">
+        <div class="card shadow mb-4">
             <div class="card-body">
+                <!-- Header -->
                 <div class="row">
                     <div class="col-2 mt-2">
-                        <a href="/sportal/" class="btn btn-dark font-weight-bold mb-1"><i class="fas fa-chevron-left"></i></a>
+                        <a href="/sportal/" class="btn btn-dark font-weight-bold mb-1"><i
+                                class="fas fa-chevron-left"></i></a>
                     </div>
-                    <h1 class="text-center mt-4 col-8">
-                        <%=student.firstName%>
-                            <%=student.lastName%>'s Homework
-                    </h1>
-                    <div class="col-2"></div>
-                </div>
-                <div class="card mb-3">
-                    <div class="accordion" id="accordion-parent">
-                        <!-- Sort homework newest to oldest -->
-                        <% const sortedHomework = homework.sort((a, b) => b.dueDate - a.dueDate) %> 
-                        <% for(let hw of sortedHomework) { %>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="heading_<%=hw._id%>">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse_<%=hw._id%>" aria-expanded="true"
-                                        aria-controls="collapse_<%=hw._id%>">
-                                        <strong>
-                                            <%=hw.subjectLine%>
-                                                <!-- https://stackoverflow.com/questions/25159330/convert-an-iso-date-to-the-date-format-yyyy-mm-dd-in-javascript -->
-                                                <span class="badge rounded-pill bg-secondary">Due:
-                                                    <%=hw.dueDate.toISOString().substring(0, 10)%></span>
-                                        </strong>
-                                    </button>
-                                </h2>
-                                <div id="collapse_<%=hw._id%>" class="accordion-collapse collapse"
-                                    aria-labelledby="heading_<%=hw._id%>" data-bs-parent="#accordion-parent">
-                                    <div class="accordion-body">
-                                        <span class="badge rounded-pill bg-success">Coins: <%=hw.pointsPossible%></span>
-                                        <span class="badge rounded-pill bg-primary">
-                                            <%=hw.category%>
-                                        </span><br><br>
-                                        <p class="card-text">
-                                            <%=hw.description%>
-                                        </p>
-                                        <% if(!hw.url=='' ) { %>
-                                            <a href="<%=hw.url%>" target="_blank" class="card-text">
-                                                <%=hw.url%>
-                                            </a><br>
-                                            <% } %>
-                                    </div>
-                                </div>
-                            </div>
-                            <% } %>
+                    <h1 class="text-center mt-4 col-8">My Homework</h1>
+                    <div class="col-2 mt-4">
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Search Notes -->
+    <div class="row">
+        <div class="card shadow mb-2">
+            <div class="card-body">
+                <div class="row">
+                    <div class="mb-3">
+                        <label class="form-label" for="search-bar"><i class="fas fa-filter"></i> Filter By:</label>
+                        <input class="form-control" type="text" id="search-bar"
+                            placeholder="Title, Category, or Date (YYYY-MM-DD)">
+                    </div>
+                    <p class="text-end text-muted mb-0">Ctrl+f or ⌘+f (Mac)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Past Notes -->
+    <!-- Sorts by noteDate newest first -->
+    <% const sortedHomework = homework.sort((a, b)=> b.dueDate - a.dueDate) %>
+        <% for(let homework of sortedHomework) { %>
+            <div class="filterDiv <%=homework.category%> <%=homework.subjectLine%> <%=homework.dueDate.toISOString().substring(0, 10)%>">
+                <div class="row">
+                    <div class="card shadow mb-2">
+                        <div class="card-body">
+                            <h5 class="card-title mt-2">
+                                <%=homework.subjectLine%>
+                            </h5>
+                            <span class="badge rounded-pill bg-secondary">
+                                <i class="fas fa-stopwatch"></i>
+                                <%=homework.dueDate.toISOString().substring(0, 10)%>
+                            </span>
+                            <span class="badge rounded-pill bg-info">
+                                <i class="fas fa-tags"></i>
+                                <%=homework.category%>
+                            </span>
+                            <span class="badge rounded-pill bg-success">
+                                <i class="fas fa-coins"></i>
+                                <%=homework.pointsPossible%>
+                            </span>
+                            <p class="card-text mt-3">
+                                <%=homework.description%>
+                            </p>
+                            <% if(homework.urlLabel && homework.url) { %>
+                                <p class="text-center"><a href="<%=homework.url%>" target="_blank"
+                                        class="btn btn-sm btn-primary mb-1 text-center">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        <%=homework.urlLabel%>
+                                    </a></p>
+                                <% } %>
+                                    <p class="text-muted mb-0"><small>Created By: <%=homework.createdBy%> on
+                                                <%=homework.createDate.toISOString().substring(0, 10)%> </small></p>
+                                    <% if(homework.lastModifiedBy) { %>
+                                        <p class="text-muted mb-0"><small>Last Modified By: <%=homework.lastModifiedBy%> on
+                                                    <%=homework.lastModifiedDate.toISOString().substring(0, 10)%> </small></p>
+                                        <% } %>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+                <script src="/scripts/filter.js"></script>
