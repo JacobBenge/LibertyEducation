@@ -1,5 +1,5 @@
 <% layout('layouts/default-boilerplate') %>
-<link rel="stylesheet" href="/styles/register.css">
+    <link rel="stylesheet" href="/styles/register.css">
     <div class="container d-flex justify-content-center align-items-center mt-3">
         <div class="row">
             <div class="card shadow mb-5">
@@ -7,23 +7,30 @@
                 <div class="card-body">
                     <h5 class="card-title text-center">Register</h5>
                     <form action="/register" method="POST" class="validated-form" novalidate>
+                        <p class="text-muted text-center mt-3">Complete the enrollment form to obtain a registration code.</p>
+                        <div class="mb-3 text-center">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSflgr6N3hKV0HKY3SuJ6pvmwMDj9N7DeAjOLtguQhOHtUuzBA/viewform" target="_blank" class="btn btn-sm btn-info ">Enrollment Form</a>
+                        </div>
                         <div class="mb-3">
                             <label class="form-label" for="registrationCode">Registration Code</label>
-                            <input class="form-control" type="text" id="registrationCode" name="userRegistrationCode" placeholder="see emailed code"autofocus required>
+                            <input class="form-control" type="text" id="registrationCode" name="userRegistrationCode"
+                                placeholder="obtained from teacher" autofocus required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="email">Email</label>
-                            <input class="form-control" type="email" id="email" name="email" placeholder="name@domain.com" required>
+                            <input class="form-control" type="email" id="email" name="email"
+                                placeholder="name@gmail.com" required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="username">Username</label>
-                            <input class="form-control" type="text" id="username" name="username" placeholder="username" required>
+                            <input class="form-control" type="text" id="username" name="username" placeholder="username"
+                                required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -31,18 +38,21 @@
                         <!-- Password strength checker https://jsbin.com/malopev/edit?html,js,output https://www.kurmis.com/2019/11/01/password-strength-javascript.html -->
                         <div class="mb-3">
                             <label class="form-label" for="password">Password</label>
-                            <input class="form-control" type="password" id="password" name="password" placeholder="password" required>
+                            <input class="form-control" type="password" id="password" name="password"
+                                placeholder="password" required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="confirm_password">Confirm Password</label>
-                            <input class="form-control mb-1" type="password" id="confirm_password" name="confirm_password" placeholder="password" required>
+                            <input class="form-control mb-1" type="password" id="confirm_password"
+                                name="confirm_password" placeholder="confirm password" required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
-                            <span id="message"></span><!--DISPLAYS NOT MATCHING OR MATCHING-->
+                            <span id="message"></span>
+                            <!--DISPLAYS NOT MATCHING OR MATCHING-->
                         </div>
                         <hr>
                         <div class="mb-3">
@@ -56,7 +66,8 @@
                                 <li class="upper pw-unmet pw-confirm-unmet">Contains an uppercase letter.</li>
                                 <li class="number pw-unmet pw-confirm-unmet">Contains a number.</li>
                                 <li class="special pw-unmet pw-confirm-unmet">Contains a special character.</li>
-                                <li class="bonus pw-unmet pw-confirm-unmet">Even better if longer than 12 characters</li>
+                                <li class="bonus pw-unmet pw-confirm-unmet">Even better if longer than 12 characters
+                                </li>
                             </ul>
                         </div>
                         <div class="d-grid mb-3">
