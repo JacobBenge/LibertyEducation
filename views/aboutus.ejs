@@ -24,7 +24,9 @@
                 <h3 class="float-md-start mb-0">Liberty Education</h3>
                 <nav class="nav nav-masthead justify-content-center float-md-end">
                     <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+                    <a class="nav-link" href="/courses">Courses</a>
                     <a class="nav-link active" aria-current="page" href="/aboutus">About Us</a>
+                    <a class="nav-link" href="/contact">Contact Us</a>
                     <% if(currentUser) { %>
                         <a class="nav-link" href="/sportal">Student Portal</a>
                         <a class="nav-link" href="/tportal">Teacher Portal</a>
@@ -40,73 +42,66 @@
             </div>
         </header>
         <main class="px-3">
-            <h1 class="mb-4">About Us</h1>
+            <h1 class="mb-4"><strong>About Us</strong></h1>
             <div class="row">
-                <p class="lead text-center"><strong>What is Liberty Education?</strong></p>
+                <h4 class="text-center">What is Liberty Education?</h4>
                 <div class="col-12 text-start">
                     <p class="lead text-start">It’s a micro-school that is open to the public and allows
-                         for the opportunity to have a tiny class with 6-12 students with individualized 
-                         curriculum and lots of one-on-one attention. In this uncharted and unfamiliar
-                          season where we aren’t sure exactly what school will look like, and if or when 
-                          it will close and go back to online school at home, this is an opportunity to 
-                          eliminate many of those risks. 
+                        for the opportunity to have a tiny class with 6-12 students with individualized
+                        curriculum and lots of one-on-one attention. In this uncharted and unfamiliar
+                        season where we aren’t sure exactly what school will look like, and if or when
+                        it will close and go back to online school at home, this is an opportunity to
+                        eliminate many of those risks.
                     </p>
                 </div>
             </div>
             <div class="row">
-                <p class="lead text-center"><strong>What does the school look like?</strong></p>
+                <h4 class="text-center">What does the school look like?</h4>
                 <div class="col-12 text-start">
-                    <p class="lead text-start">It is a 3rd-6th grade class. The beauty of such a small class, with parents 
-                        who are invested in their child’s experience and education is that we can plan much of the curriculum
-                         based on the students’ interests.
+                    <p class="lead text-start">It is a 3rd-6th grade class. The beauty of such a small class, with
+                        parents
+                        who are invested in their child’s experience and education is that we can plan much of the
+                        curriculum
+                        based on the students’ interests.
 
-                        Of course we cover the basics of grade level math, grammar, writing and reading comprehension 
-                        and we have the ability to work one-on-one with each student several times during the week to help 
-                        them fill in gaps and ensure that they are progressing at whatever speed they are capable of. We 
+                        Of course we cover the basics of grade level math, grammar, writing and reading comprehension
+                        and we have the ability to work one-on-one with each student several times during the week to
+                        help
+                        them fill in gaps and ensure that they are progressing at whatever speed they are capable of. We
                         cover history, geography, and science through project based learning.
-                        
+
                         We spend time outside every day. We build social skills within their age group, and discuss
-                         making healthy choices. We have a little less than a half acre and have several animals, a garden, 
-                         basketball hoop, swing set and room to play and run. We have art lessons from a professional
-                          artist and Spanish lessons from a native speaker. Fridays are Adventure Days. With such a small 
-                          group we can go pretty much anywhere, and you and your children can help determine where we explore!
-                         
+                        making healthy choices. We have a little less than a half acre and have several animals, a
+                        garden,
+                        basketball hoop, swing set and room to play and run. We have art lessons from a professional
+                        artist and Spanish lessons from a native speaker. Fridays are Adventure Days. With such a small
+                        group we can go pretty much anywhere, and you and your children can help determine where we
+                        explore!
+
                     </p>
                 </div>
-       
-            <div class="header">
-                <h1>Our Activities</h1>
-            </div>
-    <!-- Photo Grid -->
-            <div class="row"> 
-                <div class="column">
-                <img src="/img/FieldTripArt.jpg" style="width:100%"> 
-                <img src="/img/Exploration.jpg" style="width:100%"> 
-                <img src="/img/AboutUsLearn.jpg" style="width:100%">
-                <img src="/img/ArtsCrafts.jpg" style="width:100%">
+                <div class="header">
+                    <h2>Photo Gallery</h2>
                 </div>
-                <div class="column">
-                <img src="/img/AboutUsDance.jpg" style="width:100%">
-                <img src="/img/AboutUsTeamwork.jpg" style="width:100%">    
-                <img src="/img/FieldTrip.jpg" style="width:100%"> 
-             </div> 
-            </div> 
-                <p class="lead text-center"><strong>CONTACT</strong></p>
-                <div class="col-xl-2"></div>
-                <div class="col-xl-4 col-lg-12 text-start">
-                    <p class="lead"><i class="fas fa-envelope"></i> kori@fake_email.edu</p>
-                    <p class="lead"><i class="fas fa-phone-alt"></i> 801-999-9999</p>
+                <!-- Photo Grid -->
+                <div class="row">
+                    <div class="column">
+                        <img src="/img/FieldTripArt.jpg" style="width:100%">
+                        <img src="/img/Exploration.jpg" style="width:100%">
+                        <img src="/img/AboutUsLearn.jpg" style="width:100%">
+                        <img src="/img/ArtsCrafts.jpg" style="width:100%">
+                    </div>
+                    <div class="column">
+                        <img src="/img/AboutUsDance.jpg" style="width:100%">
+                        <img src="/img/AboutUsTeamwork.jpg" style="width:100%">
+                        <img src="/img/FieldTrip.jpg" style="width:100%">
+                    </div>
                 </div>
-                <div class="col-xl-4 col-lg-12 text-start">
-                    <p class="lead"><i class="fas fa-clock"></i> 8-5p.m. M-F</p>
-                    <p class="lead"><i class="fas fa-map-marker-alt"></i> 123 Main St.<br>American Fork, UT 84000</p>
-                </div>
-                <div class="col-xl-2"></div>
             </div>
         </main>
         <footer class="mt-auto text-white-50">
             <%- include('./partials/flash.ejs') %>
-                <p>&copy; 2021 Liberty Education</p>
+                <p>&copy; 2021 LibertyLaunchGroup</p>
         </footer>
     </div>
     <script src="/scripts/popper.min.js"></script>

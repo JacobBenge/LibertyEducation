@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | Liberty Education</title>
+    <title>Contact | Liberty Education</title>
     <link href="/styles/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/styles/home.css">
     <!-- Font Awesome -->
@@ -14,7 +14,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
-    <!--Page styling inspired by https://getbootstrap.com/docs/4.0/examples/cover/-->
+    <!--Page styling inspired by https://getbootstrap.com/docs/4.0/examples/cover/  -->
 </head>
 
 <body class="d-flex text-center text-white bg-dark">
@@ -23,10 +23,10 @@
             <div>
                 <h3 class="float-md-start mb-0">Liberty Education</h3>
                 <nav class="nav nav-masthead justify-content-center float-md-end">
-                    <a class="nav-link active" aria-current="page" href="/"><i class="fas fa-home"></i> Home</a>
+                    <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
                     <a class="nav-link" href="/courses">Courses</a>
                     <a class="nav-link" href="/aboutus">About Us</a>
-                    <a class="nav-link" href="/contact">Contact Us</a>
+                    <a class="nav-link active" aria-current="page" href="/contact">Contact Us</a>
                     <% if(currentUser) { %>
                         <a class="nav-link" href="/sportal">Student Portal</a>
                         <a class="nav-link" href="/tportal">Teacher Portal</a>
@@ -42,21 +42,20 @@
             </div>
         </header>
         <main class="px-3">
-            <h1 class="mb-4"><strong>Liberty Education</strong></h1>
-            <% if(!currentUser) { %>
-                <p class="lead"> Welcome, begin by registering or logging into your account. </p>
-                <a href="/register" class="btn btn-lg btn-secondary font-weight-bold text-white bg-white"><i class="fas fa-user-plus"></i> Register</a>
-                <a href="/login" class="btn btn-lg btn-secondary font-weight-bold text-white bg-white"><i
-                        class="fas fa-sign-in-alt"></i> Login</a>
-                <% } else if(currentUser.isAdmin==true) { %>
-                    <p class="lead">Now that you're logged in, head to the Teacher Portal. </p>
-                    <a href="/tportal" class="btn btn-lg btn-secondary font-weight-bold text-white bg-white"><i class="fas fa-door-open"></i> Teacher
-                        Portal</a>
-                    <% } else { %>
-                        <p class="lead">Now that you're logged in, head to the Student Portal. </p>
-                        <a href="/sportal" class="btn btn-lg btn-secondary font-weight-bold text-white bg-white"><i class="fas fa-door-open"></i> Student
-                            Portal</a>
-                        <% } %>
+            <div class="row">
+                <h1 class="mb-4"><strong>Contact Us</strong></h1>
+                <div class="col-xl-2"></div>
+                <div class="col-xl-4 col-lg-12 text-start">
+                    <p class="lead"> <a href="mailto:kori.haring@libertyeducation.org" class="text-decoration-none text-light"><i class="fas fa-envelope"></i> kori.haring@libertyeducation.org</a></p>
+                    <p class="lead"><a href="tel:8057919139" class="text-decoration-none text-light"><i class="fas fa-phone-alt"></i> (805) 791-9139</a></p>
+                    <p class="lead"><a href="https://www.facebook.com/libertyeducationofutah/" target="_blank" class="text-decoration-none text-light"><i class="fab fa-facebook-square"></i> LibertyEducationOfUtah</a></p>
+                </div>
+                <div class="col-xl-4 col-lg-12 text-start">
+                    <p class="lead"><i class="fas fa-clock"></i> 8-5p.m. M-F</p>
+                    <p class="lead"><a href="https://goo.gl/maps/wQKQpVVMGmzrYLBG6" target="_blank" class="text-decoration-none text-light"><i class="fas fa-map-marker-alt"></i> 123 Main St. American Fork, UT 84000</a></p>
+                </div>
+                <div class="col-xl-2"></div>
+            </div>
         </main>
         <footer class="mt-auto text-white-50">
             <%- include('./partials/flash.ejs') %>
