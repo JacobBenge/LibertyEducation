@@ -37,6 +37,7 @@ const authRoutes = require('./routes/auth');
 const disclaimerRoutes = require('./routes/disclaimer');
 const contactRoutes = require('./routes/contact');
 const coursesRoutes = require('./routes/courses');
+const settingsRoutes = require('./routes/settings');
 const ExpressError = require('./utils/ExpressError');
 const database = "test-liberty"; //MUST BE LOWERCASE
 const localHostPort = 3000; //ANY UNUSED PORT IS FINE FOR TESTING. DEFAULT IS 3000
@@ -76,8 +77,8 @@ const sessionOptions = {
     resave: false, 
     saveUninitialized: true,
     cookie: {
-        expires: Date.now() + 1000 * 60 * 60 * 24, // Date.now() IS IN MILLISECONDS. EXPIRES IN A DAY
-        maxAge: 1000 * 60 * 60 * 24,
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7, // Date.now() IS IN MILLISECONDS. EXPIRES IN A WEEK
+        maxAge: 1000 * 60 * 60 * 24 * 7,
         httpOnly: true, // HELPS PREVENT CROSS-SITE SCRIPTING ATTACKS FROM ACCESSING THE SESSIONID (connect.sid)
         // secure: true // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!MAKE SURE TO ENABLE THIS ONCE WE DEPLOY. MAKES IT SO OUR SESSION ONLY WORKS OVER HTTPS.
     }
@@ -88,17 +89,12 @@ app.use(session(sessionOptions));
 // ENABLES USE OF FLASHES, WHICH GIVES USER SUCCESS/FAILURE ALERTS
 app.use(flash());
 // HELMET ADDS COMMON SECURITY MEASURES
-// app.use(helmet({ contentSecurityPolicy: false }));
+// app.use(helmet({ contentSecurityPolicy: false })); // USE THIS LINE OF CODE IF YOU NEED TO TEST A CDN
 app.use(helmet());
 
 // SETTINGS FOR HELMET CONTENT SECURITY POLICY. THIS WEBSITE WILL ONLY LOAD FILES FROM EXPLICITLY SPECIFIED URLS https://helmetjs.github.io/
-    const scriptSrcUrls = [
-        "https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js",
-        "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
-    ];
-    const styleSrcUrls = [
-        "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css",
-    ];
+    const scriptSrcUrls = [];
+    const styleSrcUrls = [];
     const connectSrcUrls = [];
     const fontSrcUrls = [];
     app.use(
@@ -157,6 +153,8 @@ app.use('/disclaimer', disclaimerRoutes);
 app.use('/contact', contactRoutes);
 // ANY URLS WITH /courses WILL BE ROUTED TO ./routes/courses.js
 app.use('/courses', coursesRoutes);
+// ANY URLS WITH /settings WILL BE ROUTED TO ./routes/settings.js
+app.use('/settings', settingsRoutes);
 
 // RENDERS HOME PAGE
 app.get('/', (req, res) => {
