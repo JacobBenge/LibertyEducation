@@ -22,7 +22,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% for (let hw of homework) { %>
+                        <!-- Sorted by newest to oldest -->
+                        <% const ascHomework = homework.sort((a, b) => a.dueDate.toISOString().substring(0, 10).localeCompare(b.dueDate.toISOString().substring(0, 10)))%>
+                        <% const descHomework = ascHomework.reverse(); %> 
+                        <% for (let hw of descHomework) { %>
                             <tr>
                                 <td scope="row">
                                     <%= hw.dueDate.toISOString().substring(0, 10) %>

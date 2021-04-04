@@ -15,15 +15,17 @@
                     <thead>
                         <tr>
                             <th scope="col">Registration Code</th>
-                            <th scope="col">First Name</th>
                             <th scope="col">Last Name</th>
+                            <th scope="col">First Name</th>
                             <th scope="col">Pri Contact Last</th>
                             <th scope="col">Pri Contact First</th>
                             <th scope="col">Access</th>
                         </tr>
                     </thead>
                     <tbody>
-                                <% for (let student of students) { %>
+                        <!-- Sorted by student's last name -->
+                        <% const sortedStudents = students.sort((a, b) => a.lastName.localeCompare(b.lastName))%>
+                                <% for (let student of sortedStudents) { %>
                                     <tr>
                                         <td scope="row">
                                             <%=student._id%>
