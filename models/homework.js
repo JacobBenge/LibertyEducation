@@ -44,7 +44,7 @@ const homeworkSchema = new Schema({
         type: Number,
         trim: true,
         min: [0, 'Cannot have negative points'],
-        max: 999,
+        max: 10000,
         required: false
     },
     description: {

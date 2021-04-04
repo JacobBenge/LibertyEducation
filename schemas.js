@@ -97,7 +97,7 @@ module.exports.homeworkSchema = Joi.object({
         assignedStudent: Joi.string().trim().allow('').optional().escapeHTML(),
         category: Joi.string().trim().max(70).required().escapeHTML(),
         dueDate: Joi.date().required(),
-        pointsPossible: Joi.number().min(0).max(999),
+        pointsPossible: Joi.number().min(0).max(10000),
         description: Joi.string().trim().required().escapeHTML(),
         createdBy: Joi.string().trim().allow('').optional().escapeHTML(),
         createDate: Joi.date(),

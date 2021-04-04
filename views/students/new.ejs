@@ -15,8 +15,9 @@
                     <div class="row">
                         <h2 class="mt-4 form-subtitle">Personal Info</h2>
                         <hr>
+                        <p class="text-muted">Fields marked with * are required.</p>
                         <div class="mb-3 col-sm-6 col-md-4">
-                            <label class="form-label" for="firstName">First Name</label>
+                            <label class="form-label" for="firstName">*First Name</label>
                             <input class="form-control" type="text" placeholder="First" id="firstName"
                                 name="student[firstName]" required autofocus>
                             <div class="valid-feedback">
@@ -24,7 +25,7 @@
                             </div>
                         </div>
                         <div class="mb-3 col-sm-6 col-md-4">
-                            <label class="form-label" for="lastName">Last Name</label>
+                            <label class="form-label" for="lastName">*Last Name</label>
                             <input class="form-control" type="text" placeholder="Last" id="lastName"
                                 name="student[lastName]" required>
                             <div class="valid-feedback">
@@ -33,21 +34,21 @@
                         </div>
                         <div class="mb-3 col-sm-6 col-md-4">
                             <label class="form-label" for="prefName">Preferred Name</label>
-                            <input class="form-control" type="text" placeholder="Preferred (opt)" id="prefName"
+                            <input class="form-control" type="text" placeholder="Nickname" id="prefName"
                                 name="student[prefName]">
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
                         <div class="mb-3 col-sm-6 col-md-4">
-                            <label class="form-label" for="dateOfBirth">Birth Date:</label>
-                            <input class="form-control" type="date" id="dateOfBirth" name="student[dateOfBirth]">
+                            <label class="form-label" for="dateOfBirth">*Birth Date:</label>
+                            <input class="form-control" type="date" id="dateOfBirth" name="student[dateOfBirth]" required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
                         <div class="mb-3 col-sm-6 col-md-4">
-                            <label class="form-label" for="gender">Gender</label>
+                            <label class="form-label" for="gender">*Gender</label>
                             <select class="form-select" aria-label="Default select example" id="gender"
                                 name="student[gender]" required>
                                 <option selected></option>
@@ -62,7 +63,7 @@
                         <div class="col-sm-6 col-md-4">
                             <div class="mb-3">
                                 <label class="form-label" for="schoolYear">Year in School</label>
-                                <input class="form-control" type="number" placeholder="Year (opt)" id="schoolYear"
+                                <input class="form-control" type="number" placeholder="Year" id="schoolYear"
                                     name="student[schoolYear]">
                                 <div class="valid-feedback">
                                     Looks good!
@@ -70,7 +71,7 @@
                             </div>
                         </div>
                         <div class="mb-3 col-sm-6 col-md-6">
-                            <label class="form-label" for="addressLine1">Address Line 1</label>
+                            <label class="form-label" for="addressLine1">*Address Line 1</label>
                             <input class="form-control" type="text" placeholder="123 Main St." id="addressLine1"
                                 name="student[addressLine1]" required>
                             <div class="valid-feedback">
@@ -79,14 +80,14 @@
                         </div>
                         <div class="mb-3 col-sm-6 col-md-6">
                             <label class="form-label" for="addressLine2">Address Line 2</label>
-                            <input class="form-control" type="text" placeholder="Apartment (opt)" id="addressLine2"
+                            <input class="form-control" type="text" placeholder="Apartment" id="addressLine2"
                                 name="student[addressLine2]">
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
                         <div class="mb-3 col-sm-6 col-md-3">
-                            <label class="form-label" for="city">City</label>
+                            <label class="form-label" for="city">*City</label>
                             <input class="form-control" type="text" placeholder="City" id="city" name="student[city]"
                                 required>
                             <div class="valid-feedback">
@@ -94,9 +95,9 @@
                             </div>
                         </div>
                         <div class="mb-3 col-sm-6 col-md-3">
-                            <label class="form-label" for="stateCode">State Code</label>
+                            <label class="form-label" for="stateCode">*State Code</label>
                             <select class="form-select" id="stateCode"
-                                name="student[stateCode]">
+                                name="student[stateCode]" required>
                                 <option selected></option>
                                 <% for(let state of stateList) { %>
                                     <option value="<%=state%>">
@@ -109,7 +110,7 @@
                             </div>
                         </div>
                         <div class="mb-3 col-sm-6 col-md-3">
-                            <label class="form-label" for="zipCodeBase">Zip Code</label>
+                            <label class="form-label" for="zipCodeBase">*Zip Code</label>
                             <input class="form-control" type="text" placeholder="84999" id="zipCodeBase"
                                 name="student[zipCodeBase]" required>
                             <div class="valid-feedback">
@@ -118,7 +119,7 @@
                         </div>
                         <div class="mb-3 col-sm-6 col-md-3">
                             <label class="form-label" for="zipCodeExtension">Zip Code Ext.</label>
-                            <input class="form-control" type="text" placeholder="1234 (opt)" id="zipCodeExtension"
+                            <input class="form-control" type="text" placeholder="0000" id="zipCodeExtension"
                                 name="student[zipCodeExtension]">
                             <div class="valid-feedback">
                                 Looks good!
@@ -127,7 +128,7 @@
                         <div class="mb-3">
                             <label class="form-label" for="notes">Special Notes</label>
                             <textarea class="form-control" type="text" rows="4"
-                                placeholder="Allergies, medications, disabilities, court orders, etc. (opt)" id="notes"
+                                placeholder="Allergies, medications, disabilities, court orders, etc." id="notes"
                                 name="student[notes]"></textarea>
                             <div class="valid-feedback">
                                 Looks good!
@@ -216,7 +217,7 @@
                         <h2 class="mt-4 form-subtitle">Primary Contact</h2>
                         <hr>
                         <div class="mb-3 col-sm-6">
-                            <label class="form-label" for="primaryContactFirst">First Name</label>
+                            <label class="form-label" for="primaryContactFirst">*First Name</label>
                             <input class="form-control" type="text" placeholder="First" id="primaryContactFirst"
                                 name="student[primaryContactFirst]" required>
                             <div class="valid-feedback">
@@ -224,7 +225,7 @@
                             </div>
                         </div>
                         <div class="mb-3 col-sm-6">
-                            <label class="form-label" for="primaryContactLast">Last Name</label>
+                            <label class="form-label" for="primaryContactLast">*Last Name</label>
                             <input class="form-control" type="text" placeholder="Last" id="primaryContactLast"
                                 name="student[primaryContactLast]" required>
                             <div class="valid-feedback">
@@ -232,7 +233,7 @@
                             </div>
                         </div>
                         <div class="mb-3 col-sm-6 col-md-4">
-                            <label class="form-label" for="primaryContactPhone">Phone</label>
+                            <label class="form-label" for="primaryContactPhone">*Phone</label>
                             <input class="form-control" type="text" placeholder="8011234567" id="primaryContactPhone"
                                 name="student[primaryContactPhone]" required>
                             <div class="valid-feedback">
@@ -240,7 +241,7 @@
                             </div>
                         </div>
                         <div class="mb-3 col-sm-6 col-md-4">
-                            <label class="form-label" for="primaryContactEmail">Email</label>
+                            <label class="form-label" for="primaryContactEmail">*Email</label>
                             <input class="form-control" type="text" placeholder="primaryContact@gmail.com"
                                 id="primaryContactEmail" name="student[primaryContactEmail]" required>
                             <div class="valid-feedback">
@@ -248,7 +249,7 @@
                             </div>
                         </div>
                         <div class="mb-3 col-sm-6 col-md-4">
-                            <label class="form-label" for="primaryContactRelationship">Relationship to
+                            <label class="form-label" for="primaryContactRelationship">*Relationship to
                                 Student</label>
                             <select class="form-select" id="primaryContactRelationship"
                                 name="student[primaryContactRelationship]" required>
@@ -269,7 +270,7 @@
                         <hr>
                         <h4>Primary</h4>
                         <div class="mb-3 col-sm-6">
-                            <label class="form-label" for="emergPrimFirst">First Name</label>
+                            <label class="form-label" for="emergPrimFirst">*First Name</label>
                             <input class="form-control" type="text" placeholder="First" id="emergPrimFirst"
                                 name="student[emergPrimFirst]" required>
                             <div class="valid-feedback">
@@ -277,7 +278,7 @@
                             </div>
                         </div>
                         <div class="mb-3 col-sm-6">
-                            <label class="form-label" for="emergPrimLast">Last Name</label>
+                            <label class="form-label" for="emergPrimLast">*Last Name</label>
                             <input class="form-control" type="text" placeholder="Last" id="emergPrimLast"
                                 name="student[emergPrimLast]" required>
                             <div class="valid-feedback">
@@ -285,7 +286,7 @@
                             </div>
                         </div>
                         <div class="mb-3 col-sm-6 col-md-4">
-                            <label class="form-label" for="emergPrimPhone">Phone</label>
+                            <label class="form-label" for="emergPrimPhone">*Phone</label>
                             <input class="form-control" type="text" placeholder="8011234567" id="emergPrimPhone"
                                 name="student[emergPrimPhone]" required>
                             <div class="valid-feedback">
@@ -293,7 +294,7 @@
                             </div>
                         </div>
                         <div class="mb-3 col-sm-6 col-md-4">
-                            <label class="form-label" for="emergPrimEmail">Email</label>
+                            <label class="form-label" for="emergPrimEmail">*Email</label>
                             <input class="form-control" type="text" placeholder="emergency1@gmail.com"
                                 id="emergPrimEmail" name="student[emergPrimEmail]" required>
                             <div class="valid-feedback">
@@ -301,7 +302,7 @@
                             </div>
                         </div>
                         <div class="mb-3 col-sm-6 col-md-4">
-                            <label class="form-label" for="emergPrimRelationship">Relationship to
+                            <label class="form-label" for="emergPrimRelationship">*Relationship to
                                 Student</label>
                             <select class="form-select" id="emergPrimRelationship"
                                 name="student[emergPrimRelationship]" required>
@@ -321,7 +322,7 @@
                         <h4>Secondary</h4>
                         <div class="mb-3 col-sm-6">
                             <label class="form-label" for="emergSecFirst">First Name</label>
-                            <input class="form-control" type="text" placeholder="First (opt)" id="emergSecFirst"
+                            <input class="form-control" type="text" placeholder="First" id="emergSecFirst"
                                 name="student[emergSecFirst]">
                             <div class="valid-feedback">
                                 Looks good!
@@ -329,7 +330,7 @@
                         </div>
                         <div class="mb-3 col-sm-6">
                             <label class="form-label" for="emergSecLast">Last Name</label>
-                            <input class="form-control" type="text" placeholder="Last (opt)" id="emergSecLast"
+                            <input class="form-control" type="text" placeholder="Last" id="emergSecLast"
                                 name="student[emergSecLast]">
                             <div class="valid-feedback">
                                 Looks good!
@@ -337,7 +338,7 @@
                         </div>
                         <div class="mb-3 col-sm-6 col-md-4">
                             <label class="form-label" for="emergSecPhone">Phone</label>
-                            <input class="form-control" type="text" placeholder="8011234567 (opt)"
+                            <input class="form-control" type="text" placeholder="8011234567"
                                 id="emergSecPhone" name="student[emergSecPhone]">
                             <div class="valid-feedback">
                                 Looks good!
@@ -345,7 +346,7 @@
                         </div>
                         <div class="mb-3 col-sm-6 col-md-4">
                             <label class="form-label" for="emergSecEmail">Email</label>
-                            <input class="form-control" type="text" placeholder="emergency2@gmail.com (opt)"
+                            <input class="form-control" type="text" placeholder="emergency2@gmail.com"
                                 id="emergSecEmail" name="student[emergSecEmail]">
                             <div class="valid-feedback">
                                 Looks good!
