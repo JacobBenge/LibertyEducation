@@ -114,26 +114,3 @@ module.exports.userSchema = Joi.object({
         username: Joi.string().trim().required().escapeHTML()
     }).required()
 })
-
-// MUST MATCH models/settings.js
-module.exports.settingsSchema = Joi.object({
-    settings: Joi.object({
-        email: Joi.string().trim().required().escapeHTML(),
-        phone: Joi.string().trim().required().escapeHTML(),
-        hours: Joi.string().trim().required().escapeHTML(),
-        address: Joi.string().trim().required().escapeHTML(),
-        addressURL: Joi.string().trim().required().escapeHTML(),
-        fbook: Joi.string().trim().required().escapeHTML(),
-        fbookURL: Joi.string().trim().required().escapeHTML(),
-        pay: Joi.string().trim().required().escapeHTML(),
-        payURL: Joi.string().trim().required().escapeHTML(),
-        qLink1: Joi.string().trim().required().escapeHTML(),
-        qLink1URL: Joi.string().trim().required().escapeHTML(),
-        qLink2: Joi.string().trim().required().escapeHTML(),
-        qLink2URL: Joi.string().trim().required().escapeHTML(),
-        qLink3: Joi.string().trim().required().escapeHTML(),
-        qLink3URL: Joi.string().trim().required().escapeHTML(),
-        // lastModifiedBy: Joi.string().trim().allow('').optional().escapeHTML(),
-        // lastModifiedDate: Joi.date()
-    }).required()
-})

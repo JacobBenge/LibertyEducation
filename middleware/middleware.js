@@ -1,5 +1,5 @@
 const ExpressError = require('../utils/ExpressError');
-const { studentSchema, noteSchema, homeworkSchema, settingsSchema } = require('../schemas.js');
+const { studentSchema, noteSchema, homeworkSchema, settingSchema } = require('../schemas.js');
 
 // CHECKS TO SEE IF USER IS LOGGED IN
 module.exports.isAuthenticated = (req, res, next) => {
@@ -53,8 +53,8 @@ module.exports.validateNote = (req, res, next) => {
 }
 
 // CHECKS TO SEE IF FORM INPUT MEETS SCHEMA CRITERIA, OTHERWISE THROWS ERROR.
-module.exports.validateSettings = (req, res, next) => {
-    const { error } = settingsSchema.validate(req.body);
+module.exports.validateSetting = (req, res, next) => {
+    const { error } = settingSchema.validate(req.body);
     if(error){
         const msg = error.details.map(el => el.message).join(',')
         throw new ExpressError(msg, 400)

@@ -72,7 +72,7 @@ const homeworkSchema = new Schema({
         default: Date.now,
         required: false
     },
-})
+});
 
 // EXPORTS THE STUDENT MODEL
 module.exports = mongoose.model('Homework', homeworkSchema);

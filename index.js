@@ -37,7 +37,6 @@ const authRoutes = require('./routes/auth');
 const disclaimerRoutes = require('./routes/disclaimer');
 const contactRoutes = require('./routes/contact');
 const coursesRoutes = require('./routes/courses');
-const settingsRoutes = require('./routes/settings');
 const ExpressError = require('./utils/ExpressError');
 const database = "test-liberty"; //MUST BE LOWERCASE
 const localHostPort = 3000; //ANY UNUSED PORT IS FINE FOR TESTING. DEFAULT IS 3000
@@ -153,8 +152,6 @@ app.use('/disclaimer', disclaimerRoutes);
 app.use('/contact', contactRoutes);
 // ANY URLS WITH /courses WILL BE ROUTED TO ./routes/courses.js
 app.use('/courses', coursesRoutes);
-// ANY URLS WITH /settings WILL BE ROUTED TO ./routes/settings.js
-app.use('/settings', settingsRoutes);
 
 // RENDERS HOME PAGE
 app.get('/', (req, res) => {

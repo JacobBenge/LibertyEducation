@@ -1,7 +1,7 @@
 const Student = require('../models/student');
 
 // GET
-module.exports.index = async (req, res) => { // isAuthenticated IS A MIDDLEWARE FUNCTION THAT USES THE PASSPORT FUNCTION (isAuthenticated()) TO SEE IF USER IS LOGGED IN. IF NOT IT ROUTES TO LOGIN PAGE.
+module.exports.index = async (req, res) => { 
     const students = await Student.find({});
     res.render('students/index', { students });
 }
@@ -50,7 +50,7 @@ module.exports.updateStudent = async (req, res) => {
     student.lastModifiedDate = new Date(Date.now()); // ADD THE DATE THE STUDENT WAS UPDATED
     const studentFull = await Student.findByIdAndUpdate(id, {...student}, { new: true })
     req.flash('success', `Successfully updated ${studentFull.firstName}'s student profile`);
-    res.redirect(`/students/${studentFull.id}`);
+    res.redirect(`/students/${studentFull._id}`);
 }
 
 //DELETE
