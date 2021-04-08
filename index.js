@@ -38,18 +38,29 @@ const disclaimerRoutes = require('./routes/disclaimer');
 const contactRoutes = require('./routes/contact');
 const coursesRoutes = require('./routes/courses');
 const ExpressError = require('./utils/ExpressError');
-const database = "test-liberty"; //MUST BE LOWERCASE
-const localHostPort = 3000; //ANY UNUSED PORT IS FINE FOR TESTING. DEFAULT IS 3000
-const dbPort = 27017; //DEFAULT PORT FOR MONGODB
+const MongoDBStore = require("connect-mongo")(session);
+const database = "test-liberty"; // MUST BE LOWERCASE
+const serverPort = process.env.PORT || 3000; // ANY UNUSED PORT IS FINE FOR TESTING. DEFAULT IS 3000. HEROKU WILL SET THIS .ENV PORT AUTOMATICALLY
+const dbPort = 27017; // DEFAULT PORT FOR MONGODB
+const dbUrl = process.env.DB_URL || `mongodb://localhost:${dbPort}/${database}`;
 
 // SETS UP MONGODB CONNECTION. mongod.exe MUST BE RUNNING ALREADY TO CONNECT. 
-mongoose.connect(`mongodb://localhost:${dbPort}/${database}`, mongooseOptions)
+mongoose.connect(dbUrl, mongooseOptions)
     .then(() => {
-        console.log(`SUCCESSFULLY CONNECTED TO ${database} DATABASE ON MONGODB SERVER ON PORT: ${dbPort}`)
+        if(!process.env.DB_URL == "") {
+            console.log(`SUCCESSFULLY CONNECTED TO THE MONGODB CLOUD ATLAS SERVER`)
+        } else {
+            console.log(`SUCCESSFULLY CONNECTED TO THE ${database} COLLECTION/DATABASE ON THE LOCAL MONGODB SERVER THROUGH PORT: ${dbPort}`)
+        }
     })
     .catch(err => {
-        console.log(`ERROR IN CONNECTING TO ${database} DATABASE ON MONGODB SERVER ON PORT: ${dbPort}`)
-        console.log(err)
+        if(!process.env.DB_URL == "") {
+            console.log(`ERROR IN CONNECTING TO THE MONGODB CLOUD ATLAS SERVER`)
+            console.log(err)
+        } else {
+            console.log(`ERROR IN CONNECTING TO THE ${database} COLLECTION/DATABASE ON THE LOCAL MONGODB SERVER THROUGH PORT: ${dbPort}`)
+            console.log(err)
+        }
     })
 
 // ENABLES USE OF <% layout('boilerplate') -%> ON .ejs FILES. BETTER TEMPLATING THAN <% include ../footer %>
@@ -70,7 +81,20 @@ app.use(mongoSanitize({
     replaceWith: '_'
 }))
 
+// ALLOWS THE SESSION STORE TO BE SAVED ON MONGO ATLAS
+const store = new MongoDBStore({
+    url: dbUrl,
+    secret: process.env.SESSIONSECRET,
+    touchAfter: 24 * 60 * 60 // ONLY RESAVES AFTER GIVEN NUMBER OF SECONDS (A WEEK)
+});
+
+// IF THERE IS AN ERROR WITH SETTING UP SESSION STORE CONNECTION ON MONGO ATLAS
+store.on("error", function(e){
+    console.log("SESSION STORE ERROR", e)
+})
+
 const sessionOptions = { 
+    store,
     name: 'sessionID', // CHANGES DEFAULT NAME OF SESSIONID (connect.sid)
     secret: process.env.SECRET, // THE SECRET IS USED TO SIGN THE COOKIES TO CONFIRM THAT THEY HAVEN'T BEEN TAMPERED WITH. NEED TO MAKE THIS AN ENVIRONMENT VARIABLE.
     resave: false, 
@@ -79,7 +103,7 @@ const sessionOptions = {
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7, // Date.now() IS IN MILLISECONDS. EXPIRES IN A WEEK
         maxAge: 1000 * 60 * 60 * 24 * 7,
         httpOnly: true, // HELPS PREVENT CROSS-SITE SCRIPTING ATTACKS FROM ACCESSING THE SESSIONID (connect.sid)
-        // secure: true // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!MAKE SURE TO ENABLE THIS ONCE WE DEPLOY. MAKES IT SO OUR SESSION ONLY WORKS OVER HTTPS.
+        //secure: true // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!MAKE SURE TO ENABLE THIS ONCE WE DEPLOY. MAKES IT SO OUR SESSION ONLY WORKS OVER HTTPS.
     }
 }; 
 
@@ -176,6 +200,10 @@ app.use((err, req, res, next) => {
 })
 
 // EXPRESS BEGINS LISTENING ON SPECIFIED PORT
-app.listen(localHostPort, () => {
-    console.log(`APP IS LISTENING ON http://localhost:${localHostPort}`)
+app.listen(serverPort, () => {
+    if(!process.env.PORT == "") {
+        console.log(`HEROKU SERVER IS ONLINE AND LISTENING`)
+    } else {
+        console.log(`APP IS LISTENING ON PORT ${serverPort}`)
+    }
 })

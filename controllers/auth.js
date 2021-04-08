@@ -11,7 +11,7 @@ module.exports.createUser = async (req, res, next) => {
     try {
         const { userRegistrationCode, email, username, password } = req.body; // DESTRUCTURES THE REQ.BODY, WHICH IS THE DATA PROVIDED IN THE POST REQUEST FROM THE REGISTER FORM
         try {
-            if (!(userRegistrationCode == 'adminIsAllowedToRegister')) { // IF USER USES THE ADMIN CODE, THEN LET THEM REGISTER WITHOUT CHECKING TO SEE IF A STUDENT._ID MATCHES. ADMIN CODE SHOULD BE AN .ENV VARIABLE.
+            if (!(userRegistrationCode == process.env.ADMINCODE)) { // IF USER USES THE ADMIN CODE, THEN LET THEM REGISTER WITHOUT CHECKING TO SEE IF A STUDENT._ID MATCHES. ADMIN CODE SHOULD BE AN .ENV VARIABLE.
                 const foundStudent = await Student.findById(userRegistrationCode); // USE THE GIVEN REGISTRATION CODE TO LOOK FOR AN EXISTING STUDENT IN THE DATABASE
                 if (foundStudent._id == userRegistrationCode) { } else { throw e; } // IF THE REGISTRATION CODE MATCHES THEN FINISH THE REGISTRATION PROCESS. OTHERWISE, THROW AN ERROR AND INSTRUCT THE USER TO OBTAIN ONE FROM THE TEACHER.
             }
@@ -19,7 +19,7 @@ module.exports.createUser = async (req, res, next) => {
             throw ("You must use the registration code given to you by your teacher!"); // BREAKS THE WHOLE PROCESS. NOTHING IS SAVED IN DB. REDIRECTED TO REGISTER PAGE WITH A FLASH MESSAGE.
         }
         const user = new User({ userRegistrationCode, email, username }); // VALIDATES WITH THE USER MODEL AND CREATES THE USER OBJECT
-        if(userRegistrationCode === 'adminIsAllowedToRegister'){user.isAdmin = true;} // SET isAdmin TO TRUE IF ADMIN CODE USED. THIS MUST BE DONE AFTER USER OBJECT IS CREATED.
+        if(userRegistrationCode === process.env.ADMINCODE){user.isAdmin = true;} // SET isAdmin TO TRUE IF ADMIN CODE USED. THIS MUST BE DONE AFTER USER OBJECT IS CREATED.
         // IF YOU RUN INTO A [object Object] ERROR MESSAGE, THEN DROP THE DATABASE AND START FRESH TO REFRESH THE SCHEMAS
         const registeredUser = await User.register(user, password); // register() IS A BLACK-BOX PASSPORT FUNCTION. IT SALT AND HASHES THE USERNAME AND PASSWORD. IT TAKES TIME SO AWAIT IT
         req.login(registeredUser, err => { // LOGS THE USER IN SO THEY DONT HAVE TO GO TO SIGN IN PAGE AFTER REGISTERING.
